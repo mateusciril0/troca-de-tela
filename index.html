@@ -1179,6 +1179,7 @@
                 </select>
             </div>
             <div class="toolbar-right">
+                <button class="btn btn-secondary btn-icon" id="import-btn" title="Importar dados"><i class="fas fa-upload"></i></button>
                 <button class="btn btn-secondary btn-icon" id="export-btn" title="Exportar dados"><i class="fas fa-download"></i></button>
                 <button class="btn btn-secondary btn-icon" id="settings-btn" title="Configurações"><i class="fas fa-cog"></i></button>
             </div>
@@ -1211,6 +1212,24 @@
         </div>
     </div>
 
+    <!-- IMPORT MODAL -->
+    <div class="modal-overlay" id="import-modal">
+        <div class="modal">
+            <div class="modal-header">
+                <div class="modal-title"><i class="fas fa-file-import"></i> Importar Base de Dados</div>
+                <button class="modal-close" onclick="closeModal('import-modal')">&times;</button>
+            </div>
+            <div class="modal-body">
+                <div class="upload-area" id="upload-area" onclick="document.getElementById('file-input').click()">
+                    <i class="fas fa-cloud-upload-alt"></i>
+                    <p>Arraste seu arquivo Excel aqui ou clique para selecionar</p>
+                    <span class="upload-hint">Formatos suportados: .xlsx, .xls</span>
+                </div>
+                <input type="file" id="file-input" accept=".xlsx,.xls" style="display: none;">
+            </div>
+        </div>
+    </div>
+
     <!-- TOAST CONTAINER -->
     <div class="toast-container" id="toast-container"></div>
 
@@ -1222,15 +1241,15 @@
         let selectedDateForMap = null;
         let map = null;
         let markers = [];
-        const currentPage = 1;
+        let currentPage = 1;
         const itemsPerPage = 10;
 
         // ==================== INICIALIZAÇÃO ====================
         document.addEventListener('DOMContentLoaded', () => {
             updateCurrentDate();
             initializeMap();
-            loadSampleData();
             setupEventListeners();
+            loadDataFromLocalStorage();
             updateKPIs();
         });
 
@@ -1319,85 +1338,43 @@
             }
         }
 
-        // ==================== DADOS DE AMOSTRA ====================
-        function loadSampleData() {
-            allData = [
-                {
-                    codigo: 'NOC-001',
-                    data: '2026-05-06',
-                    horario: '09:00',
-                    area: 'N/Rádio',
-                    local: 'Estação Centro',
-                    tecnico: 'Carlos Silva',
-                    status: 'pendente',
-                    latitude: -15.7941,
-                    longitude: -47.8822
-                },
-                {
-                    codigo: 'NOC-002',
-                    data: '2026-05-06',
-                    horario: '10:30',
-                    area: 'Fibra Óptica',
-                    local: 'Torre Sul',
-                    tecnico: 'Ana Costa',
-                    status: 'concluido',
-                    latitude: -15.8100,
-                    longitude: -47.9200
-                },
-                {
-                    codigo: 'NOC-003',
-                    data: '2026-05-07',
-                    horario: '14:00',
-                    area: 'Microondas',
-                    local: 'Prédio Comercial',
-                    tecnico: 'João Ferreira',
-                    status: 'atrasado',
-                    latitude: -15.7800,
-                    longitude: -47.8600
-                },
-                {
-                    codigo: 'NOC-004',
-                    data: '2026-05-07',
-                    horario: '11:15',
-                    area: 'N/Rádio',
-                    local: 'Avenida Paulista',
-                    tecnico: 'Maria Santos',
-                    status: 'pendente',
-                    latitude: -15.7900,
-                    longitude: -47.8900
-                },
-                {
-                    codigo: 'NOC-005',
-                    data: '2026-05-08',
-                    horario: '13:45',
-                    area: 'Fibra Óptica',
-                    local: 'Shopping Center',
-                    tecnico: 'Pedro Oliveira',
-                    status: 'concluido',
-                    latitude: -15.8050,
-                    longitude: -47.8750
-                }
-            ];
-
-            filteredData = [...allData];
-            updateTable();
-            updateMapMarkers();
-            updateKPIs();
-        }
-
-        // ==================== EVENT LISTENERS ====================
+        // ==================== IMPORTAÇÃO ====================
         function setupEventListeners() {
+            // Botão importar
+            document.getElementById('import-btn').addEventListener('click', () => {
+                document.getElementById('import-modal').classList.add('show');
+            });
+
+            // Upload area drag and drop
+            const uploadArea = document.getElementById('upload-area');
+            uploadArea.addEventListener('dragover', (e) => {
+                e.preventDefault();
+                uploadArea.classList.add('dragover');
+            });
+            uploadArea.addEventListener('dragleave', () => {
+                uploadArea.classList.remove('dragover');
+            });
+            uploadArea.addEventListener('drop', (e) => {
+                e.preventDefault();
+                uploadArea.classList.remove('dragover');
+                handleFileUpload(e.dataTransfer.files[0]);
+            });
+
+            document.getElementById('file-input').addEventListener('change', (e) => {
+                handleFileUpload(e.target.files[0]);
+            });
+
+            // Exportar
+            document.getElementById('export-btn').addEventListener('click', exportToExcel);
+
             // Filtro de data do mapa
             document.getElementById('map-date-filter').addEventListener('change', (e) => {
                 selectedDateForMap = e.target.value;
                 document.getElementById('btn-clear-date').style.display = e.target.value ? 'block' : 'none';
-                
-                // Atualizar mapa e tabela
                 updateMapMarkers();
                 filterAndUpdateTable();
             });
 
-            // Botão limpar data
             document.getElementById('btn-clear-date').addEventListener('click', () => {
                 selectedDateForMap = null;
                 document.getElementById('map-date-filter').value = '';
@@ -1410,6 +1387,68 @@
             document.getElementById('search-input').addEventListener('input', filterAndUpdateTable);
             document.getElementById('area-filter').addEventListener('change', filterAndUpdateTable);
             document.getElementById('status-filter').addEventListener('change', filterAndUpdateTable);
+        }
+
+        function handleFileUpload(file) {
+            if (!file) return;
+
+            const reader = new FileReader();
+            reader.onload = (e) => {
+                try {
+                    const data = new Uint8Array(e.target.result);
+                    const workbook = XLSX.read(data, { type: 'array' });
+                    const firstSheet = workbook.Sheets[workbook.SheetNames[0]];
+                    const jsonData = XLSX.utils.sheet_to_json(firstSheet);
+
+                    // Mapear dados do Excel
+                    allData = jsonData.map(row => ({
+                        codigo: row.codigo || row['Código'] || '',
+                        data: row.data || row['Data'] || '',
+                        horario: row.horario || row['Horário'] || '',
+                        area: row.area || row['Área'] || '',
+                        local: row.local || row['Local'] || '',
+                        tecnico: row.tecnico || row['Técnico'] || '',
+                        status: (row.status || row['Status'] || '').toLowerCase(),
+                        latitude: parseFloat(row.latitude || row['Latitude']) || null,
+                        longitude: parseFloat(row.longitude || row['Longitude']) || null
+                    }));
+
+                    localStorage.setItem('trocaTelas_data', JSON.stringify(allData));
+                    filteredData = [...allData];
+                    
+                    updateTable();
+                    updateMapMarkers();
+                    updateKPIs();
+                    closeModal('import-modal');
+                    showToast(`✅ ${allData.length} registros importados com sucesso!`, 'success');
+                } catch (error) {
+                    showToast('❌ Erro ao importar arquivo: ' + error.message, 'error');
+                }
+            };
+            reader.readAsArrayBuffer(file);
+        }
+
+        function loadDataFromLocalStorage() {
+            const stored = localStorage.getItem('trocaTelas_data');
+            if (stored) {
+                allData = JSON.parse(stored);
+                filteredData = [...allData];
+                updateTable();
+                updateMapMarkers();
+            }
+        }
+
+        function exportToExcel() {
+            if (allData.length === 0) {
+                showToast('Nenhum dado para exportar', 'info');
+                return;
+            }
+
+            const worksheet = XLSX.utils.json_to_sheet(allData);
+            const workbook = XLSX.utils.book_new();
+            XLSX.utils.book_append_sheet(workbook, worksheet, 'Dados');
+            XLSX.writeFile(workbook, 'agenda_trocas.xlsx');
+            showToast('✅ Dados exportados com sucesso!', 'success');
         }
 
         // ==================== FILTROS E TABELA ====================
@@ -1430,6 +1469,7 @@
                 return matchesSearch && matchesArea && matchesStatus && matchesDate;
             });
 
+            currentPage = 1;
             updateTable();
             updateKPIs();
         }
@@ -1456,7 +1496,11 @@
                 'Microondas': '#3b82f6'
             };
 
-            filteredData.forEach(item => {
+            const start = (currentPage - 1) * itemsPerPage;
+            const end = start + itemsPerPage;
+            const pageData = filteredData.slice(start, end);
+
+            pageData.forEach(item => {
                 const row = document.createElement('tr');
                 row.innerHTML = `
                     <td class="td-cod">${item.codigo}</td>
@@ -1473,7 +1517,7 @@
                     <td>
                         <span class="status-badge ${statusBadgeClass[item.status]}">
                             <i class="fas fa-circle" style="font-size: 6px;"></i>
-                            ${statusText[item.status]}
+                            ${statusText[item.status] || 'Desconhecido'}
                         </span>
                     </td>
                     <td class="td-actions" style="text-align: center;">
@@ -1489,11 +1533,30 @@
             });
 
             updateTableInfo();
+            updatePagination();
         }
 
         function updateTableInfo() {
             const info = document.getElementById('table-info');
-            info.textContent = `Mostrando ${filteredData.length} de ${allData.length} registros`;
+            info.textContent = `Mostrando ${filteredData.length > 0 ? (currentPage - 1) * itemsPerPage + 1 : 0} a ${Math.min(currentPage * itemsPerPage, filteredData.length)} de ${filteredData.length} registros`;
+        }
+
+        function updatePagination() {
+            const pagination = document.getElementById('pagination');
+            pagination.innerHTML = '';
+            const totalPages = Math.ceil(filteredData.length / itemsPerPage);
+
+            for (let i = 1; i <= totalPages; i++) {
+                const btn = document.createElement('button');
+                btn.className = `page-btn ${i === currentPage ? 'active' : ''}`;
+                btn.textContent = i;
+                btn.onclick = () => {
+                    currentPage = i;
+                    updateTable();
+                    document.querySelector('.table-scroll').scrollTop = 0;
+                };
+                pagination.appendChild(btn);
+            }
         }
 
         // ==================== KPIs ====================
@@ -1511,6 +1574,11 @@
             document.getElementById('kpi-taxa').textContent = taxa + '%';
         }
 
+        // ==================== MODAIS ====================
+        function closeModal(modalId) {
+            document.getElementById(modalId).classList.remove('show');
+        }
+
         // ==================== ORDENAÇÃO ====================
         function sortTable(columnIndex) {
             const headers = document.querySelectorAll('thead th');
@@ -1523,13 +1591,7 @@
             const toast = document.createElement('div');
             toast.className = `toast ${type}`;
             
-            const icons = {
-                success: 'fas fa-check-circle',
-                error: 'fas fa-times-circle',
-                info: 'fas fa-info-circle'
-            };
-
-            toast.innerHTML = `<i class="fas ${icons[type]}"></i>${message}`;
+            toast.textContent = message;
             document.getElementById('toast-container').appendChild(toast);
 
             setTimeout(() => toast.remove(), 3000);
