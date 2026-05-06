@@ -882,9 +882,6 @@
             align-items: center;
             gap: 12px;
             flex-wrap: wrap;
-            padding: 12px 20px;
-            background: var(--bg-secondary);
-            border-bottom: 1px solid var(--border-color);
         }
 
         .map-date-input {
@@ -896,7 +893,6 @@
             font-size: 13px;
             font-family: 'Inter', sans-serif;
             outline: none;
-            cursor: pointer;
         }
 
         .map-date-input:focus {
@@ -956,38 +952,6 @@
             color: var(--text-primary);
         }
 
-        .map-filter-label {
-            font-size: 12px;
-            color: var(--text-secondary);
-            text-transform: uppercase;
-            letter-spacing: 0.5px;
-            font-weight: 600;
-            display: flex;
-            align-items: center;
-            gap: 6px;
-        }
-
-        .map-filter-label i {
-            color: var(--accent);
-            font-size: 14px;
-        }
-
-        .btn-clear-date {
-            background: var(--bg-input);
-            border: 1px solid var(--border-color);
-            color: var(--text-secondary);
-            padding: 8px 12px;
-            border-radius: var(--radius-sm);
-            font-size: 12px;
-            cursor: pointer;
-            transition: all 0.2s;
-        }
-
-        .btn-clear-date:hover {
-            border-color: var(--danger);
-            color: var(--danger);
-        }
-
         /* Custom Leaflet dark theme */
         .leaflet-tile-pane {
             filter: brightness(0.7) invert(1) contrast(3) hue-rotate(200deg) saturate(0.3) brightness(0.7);
@@ -1034,91 +998,326 @@
         .popup-row {
             display: flex;
             gap: 6px;
+            margin-bottom: 2px;
+            font-size: 12px;
         }
 
         .popup-label {
             color: var(--text-muted);
-            font-size: 12px;
+            white-space: nowrap;
         }
 
         .popup-value {
             color: var(--text-primary);
+        }
+
+        .leaflet-control-attribution {
+            background: rgba(26,26,26,0.8) !important;
+            color: var(--text-muted) !important;
+            font-size: 10px !important;
+        }
+
+        .leaflet-control-attribution a {
+            color: var(--accent) !important;
+        }
+
+        /* Route line animation */
+        .route-line {
+            stroke-dasharray: 8, 8;
+            animation: dashFlow 1s linear infinite;
+        }
+
+        @keyframes dashFlow {
+            to { stroke-dashoffset: -16; }
+        }
+
+        /* SCROLLBAR */
+        ::-webkit-scrollbar {
+            width: 6px;
+            height: 6px;
+        }
+        ::-webkit-scrollbar-track {
+            background: var(--bg-primary);
+        }
+        ::-webkit-scrollbar-thumb {
+            background: var(--border-color);
+            border-radius: 3px;
+        }
+        ::-webkit-scrollbar-thumb:hover {
+            background: var(--accent);
+        }
+
+        /* INLINE EDIT */
+        .inline-edit {
+            background: var(--bg-input);
+            border: 1px solid var(--accent);
+            border-radius: 4px;
+            color: var(--text-primary);
+            padding: 4px 8px;
+            font-size: 13px;
+            font-family: 'Inter', sans-serif;
+            outline: none;
+            width: 100%;
+        }
+
+        /* Checkbox */
+        .custom-checkbox {
+            width: 18px;
+            height: 18px;
+            accent-color: var(--accent);
+            cursor: pointer;
+        }
+
+        /* CONFIRM DIALOG */
+        .confirm-dialog {
+            text-align: center;
+            padding: 24px;
+        }
+
+        .confirm-dialog i {
+            font-size: 48px;
+            color: var(--warning);
+            margin-bottom: 16px;
+        }
+
+        .confirm-dialog p {
+            color: var(--text-secondary);
+            margin-bottom: 24px;
+        }
+
+        .confirm-dialog .btn-row {
+            display: flex;
+            justify-content: center;
+            gap: 12px;
+        }
+
+        /* Progress bar */
+        .progress-bar {
+            height: 6px;
+            background: var(--bg-input);
+            border-radius: 3px;
+            overflow: hidden;
+            margin-top: 8px;
+        }
+
+        .progress-fill {
+            height: 100%;
+            background: var(--accent);
+            border-radius: 3px;
+            transition: width 0.5s ease;
+        }
+
+        /* Stats mini cards in week panel */
+        .week-stats {
+            display: flex;
+            gap: 12px;
+            margin-top: 16px;
+            padding-top: 16px;
+            border-top: 1px solid var(--border-color);
+        }
+
+        .week-stat-item {
+            flex: 1;
+            text-align: center;
+        }
+
+        .week-stat-value {
+            font-size: 18px;
+            font-weight: 700;
+        }
+
+        .week-stat-label {
+            font-size: 11px;
+            color: var(--text-muted);
+            margin-top: 2px;
+        }
+
+        /* Tab styles for obs panel */
+        .obs-tabs {
+            display: flex;
+            gap: 0;
+            margin-bottom: 12px;
+            border-bottom: 1px solid var(--border-color);
+        }
+
+        .obs-tab {
+            padding: 8px 16px;
+            font-size: 12px;
             font-weight: 500;
+            color: var(--text-secondary);
+            cursor: pointer;
+            border-bottom: 2px solid transparent;
+            transition: all 0.2s;
+            background: none;
+            border-top: none;
+            border-left: none;
+            border-right: none;
+            font-family: 'Inter', sans-serif;
+        }
+
+        .obs-tab:hover {
+            color: var(--text-primary);
+        }
+
+        .obs-tab.active {
+            color: var(--accent);
+            border-bottom-color: var(--accent);
+        }
+
+        .obs-list {
+            max-height: 150px;
+            overflow-y: auto;
+        }
+
+        .obs-item {
+            display: flex;
+            justify-content: space-between;
+            align-items: flex-start;
+            padding: 8px 0;
+            border-bottom: 1px solid rgba(51, 51, 51, 0.3);
+            font-size: 13px;
+        }
+
+        .obs-item:last-child {
+            border-bottom: none;
+        }
+
+        .obs-item-text {
+            flex: 1;
+            color: var(--text-primary);
+        }
+
+        .obs-item-date {
+            font-size: 11px;
+            color: var(--text-muted);
+            white-space: nowrap;
+            margin-left: 12px;
+        }
+
+        .obs-item-delete {
+            background: none;
+            border: none;
+            color: var(--text-muted);
+            cursor: pointer;
+            padding: 2px 6px;
+            font-size: 12px;
+            transition: color 0.2s;
+        }
+
+        .obs-item-delete:hover {
+            color: var(--danger);
+        }
+
+        .obs-add-row {
+            display: flex;
+            gap: 8px;
+            margin-top: 8px;
+        }
+
+        .obs-add-row input {
+            flex: 1;
+            background: var(--bg-input);
+            border: 1px solid var(--border-color);
+            border-radius: 6px;
+            color: var(--text-primary);
+            padding: 8px 12px;
+            font-size: 13px;
+            font-family: 'Inter', sans-serif;
+            outline: none;
+        }
+
+        .obs-add-row input:focus {
+            border-color: var(--accent);
         }
     </style>
 </head>
 <body>
     <!-- HEADER -->
-    <div class="header">
+    <header class="header">
         <div class="header-left">
-            <div class="logo-text">Eletromidia</div>
+            <span class="logo-text"><i class="fa-solid fa-chart-line"></i> eletromidia</span>
             <div class="logo-divider"></div>
-            <div class="logo-subtitle">NOC - Agenda de Trocas N2</div>
+            <span class="logo-subtitle">NOC - Agenda de Trocas N2</span>
         </div>
         <div class="header-right">
-            <span class="header-badge">Beta 1.0</span>
-            <span class="header-date" id="current-date"></span>
+            <span class="header-badge"><i class="fa-solid fa-display"></i> Troca de Telas</span>
+            <span class="header-date" id="headerDate"></span>
         </div>
-    </div>
+    </header>
 
-    <!-- MAIN CONTAINER -->
+    <!-- MAIN -->
     <div class="main-container">
-        <!-- KPI CARDS -->
-        <div class="kpi-grid">
+
+        <!-- KPI ROW -->
+        <div class="kpi-grid" id="kpiGrid">
             <div class="kpi-card">
-                <div class="kpi-label"><i class="fas fa-list"></i> Total de Chamados</div>
-                <div class="kpi-value" id="kpi-total">0</div>
-                <div class="kpi-sub">Todos os registros</div>
+                <div class="kpi-label"><i class="fa-solid fa-list-check"></i> Total de Trocas</div>
+                <div class="kpi-value" id="kpiTotal">0</div>
+                <div class="kpi-sub">Programadas no período</div>
             </div>
             <div class="kpi-card">
-                <div class="kpi-label"><i class="fas fa-clock"></i> Pendentes</div>
-                <div class="kpi-value" id="kpi-pendentes">0</div>
-                <div class="kpi-sub">Aguardando execução</div>
+                <div class="kpi-label"><i class="fa-solid fa-calendar-day"></i> Hoje</div>
+                <div class="kpi-value" id="kpiToday">0</div>
+                <div class="kpi-sub" id="kpiTodayDate">-</div>
             </div>
             <div class="kpi-card">
-                <div class="kpi-label"><i class="fas fa-check-circle"></i> Concluídos</div>
-                <div class="kpi-value" id="kpi-concluidos">0</div>
-                <div class="kpi-sub">Finalizados</div>
+                <div class="kpi-label"><i class="fa-solid fa-calendar-week"></i> Semana Atual</div>
+                <div class="kpi-value" id="kpiWeek">0</div>
+                <div class="kpi-sub">Trocas agendadas</div>
             </div>
             <div class="kpi-card">
-                <div class="kpi-label"><i class="fas fa-exclamation-circle"></i> Atrasados</div>
-                <div class="kpi-value" id="kpi-atrasados">0</div>
-                <div class="kpi-sub">Fora do prazo</div>
+                <div class="kpi-label"><i class="fa-solid fa-map-location-dot"></i> Áreas</div>
+                <div class="kpi-value" id="kpiAreas">0</div>
+                <div class="kpi-sub">Regiões de atuação</div>
             </div>
             <div class="kpi-card">
-                <div class="kpi-label"><i class="fas fa-percent"></i> Taxa de conclusão</div>
-                <div class="kpi-value" id="kpi-taxa">0%</div>
-                <div class="kpi-sub">Eficiência geral</div>
+                <div class="kpi-label"><i class="fa-solid fa-chart-bar"></i> Progresso</div>
+                <div class="kpi-value" id="kpiProgress">0%</div>
+                <div class="progress-bar"><div class="progress-fill" id="kpiProgressBar" style="width:0%"></div></div>
             </div>
         </div>
 
         <!-- PANELS ROW -->
         <div class="panels-row">
-            <!-- SCHEDULE PANEL -->
+            <!-- WEEK SCHEDULE -->
             <div class="panel">
                 <div class="panel-header">
-                    <div class="panel-title"><i class="fas fa-calendar-alt"></i> Próximas Atividades</div>
+                    <div class="panel-title"><i class="fa-solid fa-calendar-week"></i> Agendamentos da Semana</div>
+                    <div class="week-nav">
+                        <button class="week-nav-btn" onclick="changeWeek(-1)"><i class="fa-solid fa-chevron-left"></i></button>
+                        <span class="week-label" id="weekLabel"></span>
+                        <button class="week-nav-btn" onclick="changeWeek(1)"><i class="fa-solid fa-chevron-right"></i></button>
+                    </div>
                 </div>
                 <div class="panel-body">
-                    <div class="week-nav" style="justify-content: space-between; margin-bottom: 12px;">
-                        <button class="week-nav-btn" id="week-prev-btn"><i class="fas fa-chevron-left"></i></button>
-                        <span class="week-label" id="week-label">Semana de 01 a 07 de Maio</span>
-                        <button class="week-nav-btn" id="week-next-btn"><i class="fas fa-chevron-right"></i></button>
-                    </div>
-                    <div class="week-grid" id="week-grid"></div>
+                    <div class="week-grid" id="weekGrid"></div>
+                    <div class="week-stats" id="weekStats"></div>
                 </div>
             </div>
 
-            <!-- OBSERVATIONS PANEL -->
+            <!-- OBSERVATIONS -->
             <div class="panel">
                 <div class="panel-header">
-                    <div class="panel-title"><i class="fas fa-sticky-note"></i> Observações</div>
+                    <div class="panel-title"><i class="fa-solid fa-clipboard-list"></i> Observações & Notas</div>
+                    <button class="btn btn-sm btn-secondary" onclick="clearObs()"><i class="fa-solid fa-trash-can"></i> Limpar</button>
                 </div>
                 <div class="panel-body">
-                    <textarea class="obs-textarea" id="obs-text" placeholder="Adicione observações, notas importantes ou comentários gerais..."></textarea>
-                    <div class="obs-actions">
-                        <button class="btn btn-secondary btn-sm" id="obs-cancel">Cancelar</button>
-                        <button class="btn btn-primary btn-sm" id="obs-save">Salvar</button>
+                    <div class="obs-tabs">
+                        <button class="obs-tab active" onclick="switchObsTab('notes', this)">Notas Rápidas</button>
+                        <button class="obs-tab" onclick="switchObsTab('general', this)">Observações Gerais</button>
+                    </div>
+                    <div id="obsNotesTab">
+                        <div class="obs-list" id="obsList"></div>
+                        <div class="obs-add-row">
+                            <input type="text" id="obsInput" placeholder="Adicionar nova observação..." onkeydown="if(event.key==='Enter')addObs()">
+                            <button class="btn btn-sm btn-primary" onclick="addObs()"><i class="fa-solid fa-plus"></i></button>
+                        </div>
+                    </div>
+                    <div id="obsGeneralTab" style="display:none">
+                        <textarea class="obs-textarea" id="obsGeneral" placeholder="Escreva observações gerais sobre o período de trocas..."></textarea>
+                        <div class="obs-actions">
+                            <button class="btn btn-sm btn-primary" onclick="saveGeneralObs()"><i class="fa-solid fa-floppy-disk"></i> Salvar</button>
+                        </div>
                     </div>
                 </div>
             </div>
@@ -1127,475 +1326,1114 @@
         <!-- MAP SECTION -->
         <div class="map-section">
             <div class="map-panel">
-                <div class="map-controls">
-                    <label class="map-filter-label">
-                        <i class="fas fa-calendar"></i> Filtrar por Data:
-                    </label>
-                    <input type="date" id="map-date-filter" class="map-date-input">
-                    <button class="btn-clear-date" id="btn-clear-date" style="display: none;"><i class="fas fa-times"></i> Limpar</button>
+                <div class="panel-header">
+                    <div class="panel-title"><i class="fa-solid fa-map-location-dot"></i> Mapa de Chamados — Otimização de Rota</div>
+                    <div class="map-controls">
+                        <input type="date" class="map-date-input" id="mapDate" onchange="updateMap()">
+                        <select class="filter-select" id="mapAreaFilter" onchange="updateMap()" style="min-width:150px;padding:8px 12px;font-size:12px">
+                            <option value="">Todas as Áreas</option>
+                        </select>
+                        <button class="btn btn-sm btn-secondary" onclick="fitMapBounds()" title="Centralizar mapa"><i class="fa-solid fa-expand"></i> Centralizar</button>
+                        <button class="btn btn-sm btn-primary" onclick="toggleRoute()" id="routeBtn"><i class="fa-solid fa-route"></i> Mostrar Rota</button>
+                    </div>
                 </div>
-                <div class="map-container" id="map-container"></div>
+                <div class="map-container" id="mapContainer"></div>
                 <div class="map-info-bar">
-                    <div class="map-legend">
-                        <div class="map-legend-item">
-                            <div class="map-legend-dot" style="background: #22c55e;"></div>
-                            <span>Concluído</span>
-                        </div>
-                        <div class="map-legend-item">
-                            <div class="map-legend-dot" style="background: #f59e0b;"></div>
-                            <span>Pendente</span>
-                        </div>
-                        <div class="map-legend-item">
-                            <div class="map-legend-dot" style="background: #ef4444;"></div>
-                            <span>Atrasado</span>
-                        </div>
-                    </div>
                     <div class="map-stats">
-                        <div class="map-stat">
-                            <i class="fas fa-map-marker-alt"></i>
-                            <span class="map-stat-value" id="map-markers-count">0</span>
-                            <span>Pontos</span>
-                        </div>
+                        <div class="map-stat"><i class="fa-solid fa-location-dot"></i> <span class="map-stat-value" id="mapPointCount">0</span>&nbsp;pontos no mapa</div>
+                        <div class="map-stat"><i class="fa-solid fa-ruler"></i> Distância estimada: <span class="map-stat-value" id="mapDistance">-</span></div>
+                        <div class="map-stat"><i class="fa-solid fa-map-pin"></i> <span class="map-stat-value" id="mapAreaCount">0</span>&nbsp;áreas</div>
                     </div>
+                    <div class="map-legend" id="mapLegend"></div>
                 </div>
             </div>
         </div>
 
-        <!-- TABLE SECTION -->
+        <!-- TOOLBAR -->
         <div class="toolbar">
             <div class="toolbar-left">
                 <div class="search-box">
-                    <i class="fas fa-search"></i>
-                    <input type="text" placeholder="Pesquisar por código, local ou técnico..." id="search-input">
+                    <i class="fa-solid fa-magnifying-glass"></i>
+                    <input type="text" id="searchInput" placeholder="Buscar por ponto, endereço, código..." oninput="applyFilters()">
                 </div>
-                <select class="filter-select" id="area-filter">
-                    <option value="">Todas as áreas</option>
+                <select class="filter-select" id="filterArea" onchange="applyFilters()">
+                    <option value="">Todas as Áreas</option>
                 </select>
-                <select class="filter-select" id="status-filter">
-                    <option value="">Todos os status</option>
+                <select class="filter-select" id="filterDate" onchange="applyFilters()">
+                    <option value="">Todas as Datas</option>
+                </select>
+                <select class="filter-select" id="filterStatus" onchange="applyFilters()">
+                    <option value="">Todos os Status</option>
                     <option value="pendente">Pendente</option>
                     <option value="concluido">Concluído</option>
                     <option value="atrasado">Atrasado</option>
                 </select>
             </div>
             <div class="toolbar-right">
-                <button class="btn btn-secondary btn-icon" id="import-btn" title="Importar dados"><i class="fas fa-upload"></i></button>
-                <button class="btn btn-secondary btn-icon" id="export-btn" title="Exportar dados"><i class="fas fa-download"></i></button>
-                <button class="btn btn-secondary btn-icon" id="settings-btn" title="Configurações"><i class="fas fa-cog"></i></button>
+                <button class="btn btn-secondary" onclick="openImportModal()"><i class="fa-solid fa-file-excel"></i> Importar Excel</button>
+                <button class="btn btn-secondary" onclick="exportExcel()"><i class="fa-solid fa-download"></i> Exportar</button>
+                <button class="btn btn-primary" onclick="openAddModal()"><i class="fa-solid fa-plus"></i> Adicionar</button>
             </div>
         </div>
 
         <!-- TABLE -->
         <div class="table-container">
             <div class="table-scroll">
-                <table id="data-table">
+                <table>
                     <thead>
                         <tr>
-                            <th onclick="sortTable(0)">Código <span class="sort-icon"><i class="fas fa-sort"></i></span></th>
-                            <th onclick="sortTable(1)">Data <span class="sort-icon"><i class="fas fa-sort"></i></span></th>
-                            <th onclick="sortTable(2)">Horário <span class="sort-icon"><i class="fas fa-sort"></i></span></th>
-                            <th onclick="sortTable(3)">Área <span class="sort-icon"><i class="fas fa-sort"></i></span></th>
-                            <th onclick="sortTable(4)">Local <span class="sort-icon"><i class="fas fa-sort"></i></span></th>
-                            <th onclick="sortTable(5)">Técnico <span class="sort-icon"><i class="fas fa-sort"></i></span></th>
-                            <th onclick="sortTable(6)">Status <span class="sort-icon"><i class="fas fa-sort"></i></span></th>
-                            <th style="text-align: center;">Ações</th>
+                            <th style="width:40px"><input type="checkbox" class="custom-checkbox" id="selectAll" onchange="toggleSelectAll()"></th>
+                            <th onclick="sortTable('codPonto')">Cód Ponto <i class="fa-solid fa-sort sort-icon"></i></th>
+                            <th onclick="sortTable('ponto')">Ponto <i class="fa-solid fa-sort sort-icon"></i></th>
+                            <th onclick="sortTable('endereco')">Endereço <i class="fa-solid fa-sort sort-icon"></i></th>
+                            <th onclick="sortTable('area')">Área de Trabalho <i class="fa-solid fa-sort sort-icon"></i></th>
+                            <th onclick="sortTable('modelo')">Modelo da Tela <i class="fa-solid fa-sort sort-icon"></i></th>
+                            <th onclick="sortTable('data')">Data Prevista <i class="fa-solid fa-sort sort-icon"></i></th>
+                            <th>Status</th>
+                            <th style="width:120px">Ações</th>
                         </tr>
                     </thead>
-                    <tbody id="table-body">
-                    </tbody>
+                    <tbody id="tableBody"></tbody>
                 </table>
             </div>
             <div class="table-footer">
-                <div class="table-info" id="table-info">Mostrando 0 de 0 registros</div>
+                <div class="table-info" id="tableInfo">Mostrando 0 de 0 registros</div>
                 <div class="pagination" id="pagination"></div>
+            </div>
+        </div>
+
+    </div>
+
+    <!-- ADD/EDIT MODAL -->
+    <div class="modal-overlay" id="editModal">
+        <div class="modal">
+            <div class="modal-header">
+                <div class="modal-title"><i class="fa-solid fa-pen-to-square"></i> <span id="modalTitle">Adicionar Registro</span></div>
+                <button class="modal-close" onclick="closeModal('editModal')">&times;</button>
+            </div>
+            <div class="modal-body">
+                <input type="hidden" id="editIndex" value="-1">
+                <div class="form-group">
+                    <label class="form-label">Cód Ponto</label>
+                    <input type="number" class="form-input" id="formCod" placeholder="Ex: 14335">
+                </div>
+                <div class="form-group">
+                    <label class="form-label">Ponto</label>
+                    <input type="text" class="form-input" id="formPonto" placeholder="Nome do ponto">
+                </div>
+                <div class="form-group">
+                    <label class="form-label">Endereço</label>
+                    <input type="text" class="form-input" id="formEndereco" placeholder="Endereço completo">
+                </div>
+                <div class="form-row">
+                    <div class="form-group">
+                        <label class="form-label">Área de Trabalho</label>
+                        <input type="text" class="form-input" id="formArea" placeholder="Ex: SUL - 1 - SP">
+                    </div>
+                    <div class="form-group">
+                        <label class="form-label">Modelo da Tela</label>
+                        <input type="text" class="form-input" id="formModelo" placeholder="Ex: MONITOR ALL IN ONE 21,5" value="MONITOR ALL IN ONE 21,5">
+                    </div>
+                </div>
+                <div class="form-row">
+                    <div class="form-group">
+                        <label class="form-label">Latitude</label>
+                        <input type="number" step="any" class="form-input" id="formLat" placeholder="-23.5505">
+                    </div>
+                    <div class="form-group">
+                        <label class="form-label">Longitude</label>
+                        <input type="number" step="any" class="form-input" id="formLng" placeholder="-46.6333">
+                    </div>
+                </div>
+                <div class="form-row">
+                    <div class="form-group">
+                        <label class="form-label">Data Prevista de Troca</label>
+                        <input type="date" class="form-input" id="formData">
+                    </div>
+                    <div class="form-group">
+                        <label class="form-label">Status</label>
+                        <select class="form-input" id="formStatus">
+                            <option value="pendente">Pendente</option>
+                            <option value="concluido">Concluído</option>
+                            <option value="atrasado">Atrasado</option>
+                        </select>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label class="form-label">Observação</label>
+                    <textarea class="form-input" id="formObs" rows="2" placeholder="Observações sobre esta troca (opcional)"></textarea>
+                </div>
+            </div>
+            <div class="modal-footer">
+                <button class="btn btn-secondary" onclick="closeModal('editModal')">Cancelar</button>
+                <button class="btn btn-primary" onclick="saveRecord()"><i class="fa-solid fa-floppy-disk"></i> Salvar</button>
             </div>
         </div>
     </div>
 
     <!-- IMPORT MODAL -->
-    <div class="modal-overlay" id="import-modal">
+    <div class="modal-overlay" id="importModal">
         <div class="modal">
             <div class="modal-header">
-                <div class="modal-title"><i class="fas fa-file-import"></i> Importar Base de Dados</div>
-                <button class="modal-close" onclick="closeModal('import-modal')">&times;</button>
+                <div class="modal-title"><i class="fa-solid fa-file-import"></i> Importar Planilha Excel</div>
+                <button class="modal-close" onclick="closeModal('importModal')">&times;</button>
             </div>
             <div class="modal-body">
-                <div class="upload-area" id="upload-area" onclick="document.getElementById('file-input').click()">
-                    <i class="fas fa-cloud-upload-alt"></i>
-                    <p>Arraste seu arquivo Excel aqui ou clique para selecionar</p>
-                    <span class="upload-hint">Formatos suportados: .xlsx, .xls</span>
+                <div class="upload-area" id="uploadArea" onclick="document.getElementById('fileInput').click()">
+                    <i class="fa-solid fa-cloud-arrow-up"></i>
+                    <p>Clique ou arraste o arquivo Excel aqui</p>
+                    <p class="upload-hint">Formatos aceitos: .xlsx, .xls</p>
                 </div>
-                <input type="file" id="file-input" accept=".xlsx,.xls" style="display: none;">
+                <input type="file" id="fileInput" accept=".xlsx,.xls" style="display:none" onchange="handleFile(this.files[0])">
+                <div id="importPreview" style="display:none">
+                    <p style="color:var(--success);font-size:13px;margin-bottom:8px"><i class="fa-solid fa-check-circle"></i> <span id="importCount"></span> registros encontrados</p>
+                    <div style="max-height:200px;overflow-y:auto;background:var(--bg-input);border-radius:8px;padding:12px;font-size:12px;color:var(--text-secondary)" id="importPreviewList"></div>
+                </div>
+            </div>
+            <div class="modal-footer">
+                <button class="btn btn-secondary" onclick="closeModal('importModal')">Cancelar</button>
+                <button class="btn btn-primary" id="importBtn" disabled onclick="confirmImport()"><i class="fa-solid fa-file-import"></i> Importar Dados</button>
+            </div>
+        </div>
+    </div>
+
+    <!-- DELETE CONFIRM MODAL -->
+    <div class="modal-overlay" id="deleteModal">
+        <div class="modal" style="max-width:420px">
+            <div class="modal-body">
+                <div class="confirm-dialog">
+                    <i class="fa-solid fa-triangle-exclamation"></i>
+                    <h3 style="margin-bottom:8px">Confirmar Exclusão</h3>
+                    <p id="deleteMsg">Deseja realmente excluir este registro?</p>
+                    <div class="btn-row">
+                        <button class="btn btn-secondary" onclick="closeModal('deleteModal')">Cancelar</button>
+                        <button class="btn btn-danger" onclick="confirmDelete()"><i class="fa-solid fa-trash"></i> Excluir</button>
+                    </div>
+                </div>
             </div>
         </div>
     </div>
 
     <!-- TOAST CONTAINER -->
-    <div class="toast-container" id="toast-container"></div>
+    <div class="toast-container" id="toastContainer"></div>
 
-    <!-- SCRIPTS -->
     <script>
-        // ==================== ESTADO GLOBAL ====================
+        // ============================================================
+        // STATE
+        // ============================================================
         let allData = [];
         let filteredData = [];
-        let selectedDateForMap = null;
-        let map = null;
-        let markers = [];
         let currentPage = 1;
-        const itemsPerPage = 10;
+        const pageSize = 20;
+        let sortField = 'data';
+        let sortDir = 'asc';
+        let currentWeekStart = getMonday(new Date());
+        let deleteTarget = -1;
+        let pendingImport = [];
+        let selectedRows = new Set();
+        let observations = JSON.parse(localStorage.getItem('noc_obs') || '[]');
+        let generalObs = localStorage.getItem('noc_general_obs') || '';
+        let recordStatuses = JSON.parse(localStorage.getItem('noc_statuses') || '{}');
 
-        // ==================== INICIALIZAÇÃO ====================
-        document.addEventListener('DOMContentLoaded', () => {
-            updateCurrentDate();
-            initializeMap();
-            setupEventListeners();
-            loadDataFromLocalStorage();
-            updateKPIs();
-        });
+        // Area colors
+        const areaColors = {};
+        const colorPalette = [
+            '#e8590c', '#3b82f6', '#22c55e', '#f59e0b', '#8b5cf6',
+            '#ec4899', '#06b6d4', '#84cc16', '#f97316', '#14b8a6',
+            '#6366f1', '#d946ef', '#0ea5e9', '#a3e635', '#fb923c',
+            '#2dd4bf', '#818cf8', '#f472b6', '#38bdf8', '#a78bfa'
+        ];
 
-        // ==================== FUNÇÕES DE DATA ====================
-        function updateCurrentDate() {
-            const options = { weekday: 'long', year: 'numeric', month: 'long', day: 'numeric' };
-            const today = new Date().toLocaleDateString('pt-BR', options);
-            document.getElementById('current-date').textContent = today;
+        function getAreaColor(area) {
+            if (!areaColors[area]) {
+                areaColors[area] = colorPalette[Object.keys(areaColors).length % colorPalette.length];
+            }
+            return areaColors[area];
         }
 
-        // ==================== MAPA ====================
-        function initializeMap() {
-            const mapContainer = document.getElementById('map-container');
-            map = L.map(mapContainer).setView([-15.7941, -47.8822], 13);
-            
-            L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
-                attribution: '© OpenStreetMap contributors',
-                maxZoom: 19
-            }).addTo(map);
+        // ============================================================
+        // INITIAL DATA (embedded from Excel)
+        // ============================================================
+        const INITIAL_DATA = [{"Cód Ponto": 14335, "Ponto": "Ville de Nivelles", "Endereço": "Rua Estero Belaco, 407, Vila da Saúde, São Paulo", "Área de Trabalho": "SUL - 1 - SP", "Modelo da Tela": "MONITOR ALL IN ONE 21,5", "latitude": -23.6174615, "longitude": -46.6317325, "Data prevista de troca": "2026-05-06"}, {"Cód Ponto": 14714, "Ponto": "Ambience", "Endereço": "Avenida Camilo Castelo Branco, 55, Vila Gumercindo, São Paulo", "Área de Trabalho": "SUL - 1 - SP", "Modelo da Tela": "MONITOR ALL IN ONE 21,5", "latitude": -23.6050377, "longitude": -46.6204543, "Data prevista de troca": "2026-05-06"}, {"Cód Ponto": 32702, "Ponto": "Soleil Vila Mariana - Saint Tropez", "Endereço": "Rua Pelotas, 209, Vila Mariana, São Paulo", "Área de Trabalho": "SUL - 1 - SP", "Modelo da Tela": "MONITOR ALL IN ONE 21,5", "latitude": -23.5820661, "longitude": -46.6446223, "Data prevista de troca": "2026-05-06"}, {"Cód Ponto": 19907, "Ponto": "Darius Milhaud", "Endereço": "Rua Faustolo, 645, Água Branca, São Paulo", "Área de Trabalho": "OESTE - 1 - SP", "Modelo da Tela": "MONITOR ALL IN ONE 21,5", "latitude": -23.5240356, "longitude": -46.6912341, "Data prevista de troca": "2026-05-07"}, {"Cód Ponto": 6043, "Ponto": "Ccc - Casa das Caldeiras", "Endereço": "Avenida Francisco Matarazzo, 1752, Água Branca, São Paulo", "Área de Trabalho": "OESTE - 1 - SP", "Modelo da Tela": "MONITOR ALL IN ONE 21,5", "latitude": -23.5257073, "longitude": -46.6794962, "Data prevista de troca": "2026-05-07"}, {"Cód Ponto": 19908, "Ponto": "Villa Marchetti", "Endereço": "Avenida Mercedes, 203, Alto da Lapa, São Paulo", "Área de Trabalho": "OESTE - 1 - SP", "Modelo da Tela": "MONITOR ALL IN ONE 21,5", "latitude": -23.5225206, "longitude": -46.7122289, "Data prevista de troca": "2026-05-07"}, {"Cód Ponto": 14661, "Ponto": "Palm Offices", "Endereço": "Rua Cayowaá, 759, Perdizes, São Paulo", "Área de Trabalho": "OESTE - 1 - SP", "Modelo da Tela": "MONITOR ALL IN ONE 21,5", "latitude": -23.5352935, "longitude": -46.6815871, "Data prevista de troca": "2026-05-07"}, {"Cód Ponto": 14607, "Ponto": "Fontana Di Trevi - Andréa", "Endereço": "Rua Doutor Clementino, 456, Belenzinho, São Paulo", "Área de Trabalho": "LESTE - 1 - SP", "Modelo da Tela": "MONITOR ALL IN ONE 21,5", "latitude": -23.5411981, "longitude": -46.5916333, "Data prevista de troca": "2026-05-08"}, {"Cód Ponto": 33095, "Ponto": "Portale della Mooca - Torre Siena", "Endereço": "Rua Dias Leme, 123, Mooca, São Paulo", "Área de Trabalho": "LESTE - 1 - SP", "Modelo da Tela": "MONITOR ALL IN ONE 21,5", "latitude": -23.5603075, "longitude": -46.5949206, "Data prevista de troca": "2026-05-08"}, {"Cód Ponto": 19878, "Ponto": "Portal do Tatuapé - Rio Negro", "Endereço": "Rua Ulisses Cruz, 579, Tatuapé, São Paulo", "Área de Trabalho": "LESTE - 1 - SP", "Modelo da Tela": "MONITOR ALL IN ONE 21,5", "latitude": -23.5318455, "longitude": -46.5812679, "Data prevista de troca": "2026-05-08"}, {"Cód Ponto": 27615, "Ponto": "Edifício Arthur", "Endereço": "Rua Amazonas, 140, Vila Galvão, Guarulhos", "Área de Trabalho": "Guarulhos - SP", "Modelo da Tela": "MONITOR ALL IN ONE 21,5", "latitude": -23.4531253, "longitude": -46.5566706, "Data prevista de troca": "2026-05-11"}, {"Cód Ponto": 28429, "Ponto": "Monte Líbano", "Endereço": "Rua Soldado Brasílio Pinto de Almeida, 85, Vila Almeida, Guarulhos", "Área de Trabalho": "Guarulhos - SP", "Modelo da Tela": "MONITOR ALL IN ONE 21,5", "latitude": -23.4714446, "longitude": -46.5327929, "Data prevista de troca": "2026-05-11"}, {"Cód Ponto": 28779, "Ponto": "Residencial Milano", "Endereço": "Rua São Ludgero, 33, Jardim do Triunfo, Guarulhos", "Área de Trabalho": "Guarulhos - SP", "Modelo da Tela": "MONITOR ALL IN ONE 21,5", "latitude": -23.4092107, "longitude": -46.4019699, "Data prevista de troca": "2026-05-11"}, {"Cód Ponto": 21585, "Ponto": "Altos do Butantã - Torre A", "Endereço": "Avenida Nossa Senhora da Assunção, 647, Vila Butantã, São Paulo", "Área de Trabalho": "Osasco - SP", "Modelo da Tela": "MONITOR ALL IN ONE 21,5", "latitude": -23.5706525, "longitude": -46.7447017, "Data prevista de troca": "2026-05-12"}, {"Cód Ponto": 33552, "Ponto": "Condomínio Chapecó - Torre B", "Endereço": "Rodovia Raposo Tavares, 8312, Jardim Boa Vista (Zona Oeste), São Paulo", "Área de Trabalho": "Osasco - SP", "Modelo da Tela": "MONITOR ALL IN ONE 21,5", "latitude": -23.582975, "longitude": -46.7964138, "Data prevista de troca": "2026-05-12"}, {"Cód Ponto": 12944, "Ponto": "Flex Osasco I - Torre 1", "Endereço": "Via Transversal Sul, 169, Novo Osasco, Osasco", "Área de Trabalho": "Osasco - SP", "Modelo da Tela": "MONITOR ALL IN ONE 21,5", "latitude": -23.57843, "longitude": -46.79485, "Data prevista de troca": "2026-05-12"}, {"Cód Ponto": 41631, "Ponto": "Garden São Francisco - Torre Royal", "Endereço": "Rua Doutor Paulo Ferraz da Costa Aguiar, 1418, Vila Yara, Osasco", "Área de Trabalho": "Osasco - SP", "Modelo da Tela": "MONITOR ALL IN ONE 21,5", "latitude": -23.5547475, "longitude": -46.7630573, "Data prevista de troca": "2026-05-12"}, {"Cód Ponto": 14075, "Ponto": "Parque da Cidade - Jequitiba - Hall", "Endereço": "Avenida das Nações Unidas, 14401, Vila Gertrudes, São Paulo", "Área de Trabalho": "SANTO AMARO - SP", "Modelo da Tela": "MONITOR ALL IN ONE 21,5", "latitude": -23.6248774, "longitude": -46.7065507, "Data prevista de troca": "2026-05-13"}, {"Cód Ponto": 27198, "Ponto": "Portal Marajoara - Boracéia", "Endereço": "Rua Geraldo de Mendonça Mello, 280, Vila Isa, São Paulo", "Área de Trabalho": "SANTO AMARO - SP", "Modelo da Tela": "MONITOR ALL IN ONE 21,5", "latitude": -23.6704562, "longitude": -46.6903952, "Data prevista de troca": "2026-05-13"}, {"Cód Ponto": 9023, "Ponto": "Residencial Interlagos - Fênix 05", "Endereço": "Avenida Interlagos, 871, Jardim Umuarama, São Paulo", "Área de Trabalho": "SANTO AMARO - SP", "Modelo da Tela": "MONITOR ALL IN ONE 21,5", "latitude": -23.6624342, "longitude": -46.6789504, "Data prevista de troca": "2026-05-13"}, {"Cód Ponto": 41055, "Ponto": "Residencial Need Campo Belo", "Endereço": "Rua João Álvares Soares, 1512, Campo Belo, São Paulo", "Área de Trabalho": "SANTO AMARO - SP", "Modelo da Tela": "MONITOR ALL IN ONE 21,5", "latitude": -23.6203998, "longitude": -46.6701218, "Data prevista de troca": "2026-05-13"}, {"Cód Ponto": 44158, "Ponto": "Edifício Indaiá", "Endereço": "Alameda Sarutaiá, 96, Jardim Paulista, São Paulo", "Área de Trabalho": "Paulista / Jardins - SP", "Modelo da Tela": "MONITOR ALL IN ONE 21,5", "latitude": -23.5702145, "longitude": -46.6528008, "Data prevista de troca": "2026-05-14"}, {"Cód Ponto": 29205, "Ponto": "Edifício Sobradão - Bloco A", "Endereço": "Rua Bela Cintra, 1744, Consolação, São Paulo", "Área de Trabalho": "Paulista / Jardins - SP", "Modelo da Tela": "MONITOR ALL IN ONE 21,5", "latitude": -23.5603262, "longitude": -46.6665745, "Data prevista de troca": "2026-05-14"}, {"Cód Ponto": 31705, "Ponto": "Edifício Supremus - Torre 1", "Endereço": "Rua Convenção de Itu, 57, Jardim Paulista, São Paulo", "Área de Trabalho": "Paulista / Jardins - SP", "Modelo da Tela": "MONITOR ALL IN ONE 21,5", "latitude": -23.5652386, "longitude": -46.656972, "Data prevista de troca": "2026-05-14"}, {"Cód Ponto": 59696, "Ponto": "Edifício Juliana", "Endereço": "Rua Nebraska, 189, Brooklin Novo, São Paulo", "Área de Trabalho": "Faria Lima / Itaim Bibi - SP", "Modelo da Tela": "MONITOR ALL IN ONE 21,5", "latitude": -2.36120227999999e+16, "longitude": -4.66797169e+16, "Data prevista de troca": "2026-05-15"}, {"Cód Ponto": 225, "Ponto": "Joaquim Floriano 913", "Endereço": "Rua Joaquim Floriano, 913, Itaim Bibi, São Paulo", "Área de Trabalho": "Faria Lima / Itaim Bibi - SP", "Modelo da Tela": "MONITOR ALL IN ONE 21,5", "latitude": -23.5857298, "longitude": -46.6788337, "Data prevista de troca": "2026-05-15"}, {"Cód Ponto": 44064, "Ponto": "Maison Royale", "Endereço": "Rua Tuim, 484, Vila Uberabinha, São Paulo", "Área de Trabalho": "Faria Lima / Itaim Bibi - SP", "Modelo da Tela": "MONITOR ALL IN ONE 21,5", "latitude": -23.6008189, "longitude": -46.6698248, "Data prevista de troca": "2026-05-15"}, {"Cód Ponto": 186, "Ponto": "New Century", "Endereço": "Rua Leopoldo Couto de Magalhães Júnior, 758, Itaim Bibi, São Paulo", "Área de Trabalho": "Faria Lima / Itaim Bibi - SP", "Modelo da Tela": "MONITOR ALL IN ONE 21,5", "latitude": -23.588151, "longitude": -46.68042, "Data prevista de troca": "2026-05-15"}, {"Cód Ponto": 41672, "Ponto": "Condomínio Edifício São Paulo", "Endereço": "Rua São Paulo, 671, Cerâmica, São Caetano do Sul", "Área de Trabalho": "Grande ABC - SP", "Modelo da Tela": "MONITOR ALL IN ONE 21,5", "latitude": -23.6219456, "longitude": -46.5748616, "Data prevista de troca": "2026-05-18"}, {"Cód Ponto": 40610, "Ponto": "Double deck Residence Tower", "Endereço": "Rua Amazonas, 1205, Osvaldo Cruz, São Caetano do Sul", "Área de Trabalho": "Grande ABC - SP", "Modelo da Tela": "MONITOR ALL IN ONE 21,5", "latitude": -23.6215557, "longitude": -46.5692461, "Data prevista de troca": "2026-05-18"}, {"Cód Ponto": 8689, "Ponto": "Due Belle - Asti", "Endereço": "Rua Luís Louza, 181, Olímpico, São Caetano do Sul", "Área de Trabalho": "Grande ABC - SP", "Modelo da Tela": "MONITOR ALL IN ONE 21,5", "latitude": -23.6235266, "longitude": -46.5628106, "Data prevista de troca": "2026-05-18"}, {"Cód Ponto": 33613, "Ponto": "Edifício Elizabeth", "Endereço": "Rua Rio Branco, 477, Centro, São Bernardo do Campo", "Área de Trabalho": "Grande ABC - SP", "Modelo da Tela": "MONITOR ALL IN ONE 21,5", "latitude": -23.7075091, "longitude": -46.5497742, "Data prevista de troca": "2026-05-18"}, {"Cód Ponto": 7516, "Ponto": "Absoluto 1", "Endereço": "Rua Marina Crespi, 274, Mooca, São Paulo", "Área de Trabalho": "LESTE - 1 - SP", "Modelo da Tela": "MONITOR ALL IN ONE 21,5", "latitude": -23.5574432, "longitude": -46.6046938, "Data prevista de troca": "2026-05-19"}, {"Cód Ponto": 7515, "Ponto": "Absoluto 2", "Endereço": "Rua Marina Crespi, 274, Mooca, São Paulo", "Área de Trabalho": "LESTE - 1 - SP", "Modelo da Tela": "MONITOR ALL IN ONE 21,5", "latitude": -23.5574432, "longitude": -46.6046938, "Data prevista de troca": "2026-05-19"}, {"Cód Ponto": 33705, "Ponto": "Condominio Habitacional Bresser II - Torre 2", "Endereço": "Rua Visconde de Parnaíba, 1501, Mooca, São Paulo", "Área de Trabalho": "LESTE - 1 - SP", "Modelo da Tela": "MONITOR ALL IN ONE 21,5", "latitude": -23.5478934, "longitude": -46.6114901, "Data prevista de troca": "2026-05-19"}, {"Cód Ponto": 59804, "Ponto": "Condominio Projeto Viver Celso Garcia - Torre Arara", "Endereço": "Avenida Celso Garcia, 1907, Brás, São Paulo", "Área de Trabalho": "LESTE - 1 - SP", "Modelo da Tela": "MONITOR ALL IN ONE 21,5", "latitude": -235374245.0, "longitude": -4.65943526e+16, "Data prevista de troca": "2026-05-19"}, {"Cód Ponto": 33708, "Ponto": "Condomínio Ares Santana", "Endereço": "Rua Engenheiro Mac Lean, 427, Santana, São Paulo", "Área de Trabalho": "NORTE - 1 - SP", "Modelo da Tela": "MONITOR ALL IN ONE 21,5", "latitude": -23.4981289, "longitude": -46.6358907, "Data prevista de troca": "2026-05-20"}, {"Cód Ponto": 34725, "Ponto": "Condomínio Bay Vista", "Endereço": "Rua Manuel de Almeida, 307, Vila Paiva, São Paulo", "Área de Trabalho": "NORTE - 1 - SP", "Modelo da Tela": "MONITOR ALL IN ONE 21,5", "latitude": -23.5060399, "longitude": -46.6023707, "Data prevista de troca": "2026-05-20"}, {"Cód Ponto": 39950, "Ponto": "Edifício Joan Miró", "Endereço": "Rua Soror Angélica, 521, Vila Ester (Zona Norte), São Paulo", "Área de Trabalho": "NORTE - 1 - SP", "Modelo da Tela": "MONITOR ALL IN ONE 21,5", "latitude": -23.5030602, "longitude": -46.6437554, "Data prevista de troca": "2026-05-20"}, {"Cód Ponto": 32562, "Ponto": "Edifício Marcos", "Endereço": "Rua Ana Benvinda de Andrade, 115, Santana, São Paulo", "Área de Trabalho": "NORTE - 1 - SP", "Modelo da Tela": "MONITOR ALL IN ONE 21,5", "latitude": -23.4929743, "longitude": -46.6272793, "Data prevista de troca": "2026-05-20"}, {"Cód Ponto": 14711, "Ponto": "Amazônia - Torre Belém", "Endereço": "Rua Barão do Bananal, 760, Vila Pompéia, São Paulo", "Área de Trabalho": "OESTE - 1 - SP", "Modelo da Tela": "MONITOR ALL IN ONE 21,5", "latitude": -23.5309551, "longitude": -46.6874537, "Data prevista de troca": "2026-05-21"}, {"Cód Ponto": 33121, "Ponto": "Antônio Carlos Jobim - Torre B", "Endereço": "Rua Fradique Coutinho, 332, Pinheiros, São Paulo", "Área de Trabalho": "OESTE - 1 - SP", "Modelo da Tela": "MONITOR ALL IN ONE 21,5", "latitude": -23.5636105, "longitude": -46.6859116, "Data prevista de troca": "2026-05-21"}, {"Cód Ponto": 34714, "Ponto": "Arte Arquitetura Pinheiros 2", "Endereço": "Rua Doutor Virgílio de Carvalho Pinto, 645, Pinheiros, São Paulo", "Área de Trabalho": "OESTE - 1 - SP", "Modelo da Tela": "MONITOR ALL IN ONE 21,5", "latitude": -23.5608139, "longitude": -46.6858517, "Data prevista de troca": "2026-05-21"}, {"Cód Ponto": 65152, "Ponto": "Cond. West Gardens - Torre Bristol", "Endereço": "Rua Corrientes, 135, Lapa, São Paulo", "Área de Trabalho": "OESTE - 1 - SP", "Modelo da Tela": "MONITOR ALL IN ONE 21,5", "latitude": -2.35222747e+16, "longitude": -4.67111775999999e+16, "Data prevista de troca": "2026-05-21"}, {"Cód Ponto": 49658, "Ponto": "Condomínio Algarve", "Endereço": "Avenida Ireré, 2047, Planalto Paulista, São Paulo", "Área de Trabalho": "SUL - 1 - SP", "Modelo da Tela": "MONITOR ALL IN ONE 21,5", "latitude": -23.628337, "longitude": -46.645339, "Data prevista de troca": "2026-05-22"}, {"Cód Ponto": 40846, "Ponto": "Condomínio Ipiranga Residencial - Torre I", "Endereço": "Avenida Nossa Senhora da Encarnação, 680, Jardim Maria Estela, São Paulo", "Área de Trabalho": "SUL - 1 - SP", "Modelo da Tela": "MONITOR ALL IN ONE 21,5", "latitude": -23.633357, "longitude": -46.6002956, "Data prevista de troca": "2026-05-22"}, {"Cód Ponto": 64233, "Ponto": "Costa do Atlântico II - Ubatuba", "Endereço": "Rua Adriano Racine, 147, Jardim Celeste, São Paulo", "Área de Trabalho": "SUL - 1 - SP", "Modelo da Tela": "MONITOR ALL IN ONE 21,5", "latitude": -236595336.0, "longitude": -4.66145313e+16, "Data prevista de troca": "2026-05-22"}, {"Cód Ponto": 27449, "Ponto": "Edifício Archimedes", "Endereço": "Alameda dos Aicás, 1028, Indianópolis, São Paulo", "Área de Trabalho": "SUL - 1 - SP", "Modelo da Tela": "MONITOR ALL IN ONE 21,5", "latitude": -23.6117079, "longitude": -46.6609806, "Data prevista de troca": "2026-05-22"}, {"Cód Ponto": 50688, "Ponto": "Altos do Morumbi Sul - Torre 1", "Endereço": "Rua Nossa Senhora do Bom Conselho, 320, Chácara Nossa Senhora do Bom Conselho, São Paulo", "Área de Trabalho": "SUL - 4 (MORUMBI) - SP", "Modelo da Tela": "MONITOR ALL IN ONE 21,5", "latitude": -23.6420459, "longitude": -46.7590714, "Data prevista de troca": "2026-05-25"}, {"Cód Ponto": 49007, "Ponto": "Ape Jardim Sul", "Endereço": "Rua José da Silva Ribeiro, 814, Vila Andrade, São Paulo", "Área de Trabalho": "SUL - 4 (MORUMBI) - SP", "Modelo da Tela": "MONITOR ALL IN ONE 21,5", "latitude": -23.6273991, "longitude": -46.744333, "Data prevista de troca": "2026-05-25"}, {"Cód Ponto": 41415, "Ponto": "Aquarelle - Torre 1 - Rouge", "Endereço": "Rua Iuru, 40, Vila Andrade, São Paulo", "Área de Trabalho": "SUL - 4 (MORUMBI) - SP", "Modelo da Tela": "MONITOR ALL IN ONE 21,5", "latitude": -23.6330155, "longitude": -46.7345769, "Data prevista de troca": "2026-05-25"}, {"Cód Ponto": 39378, "Ponto": "Condomínio Chácara Tangará - Torre Lago", "Endereço": "Estrada Carlos Queiroz Telles, 81, Jardim Fonte do Morumbi, São Paulo", "Área de Trabalho": "SUL - 4 (MORUMBI) - SP", "Modelo da Tela": "MONITOR ALL IN ONE 21,5", "latitude": -23.6300193, "longitude": -46.7207726, "Data prevista de troca": "2026-05-25"}, {"Cód Ponto": 14447, "Ponto": "Centro Empresarial Ipiranga", "Endereço": "Rua do Grito, 387, Ipiranga, São Paulo", "Área de Trabalho": "SUL - 2 - SP", "Modelo da Tela": "MONITOR ALL IN ONE 21,5", "latitude": -23.5990058, "longitude": -46.6010642, "Data prevista de troca": "2026-05-26"}, {"Cód Ponto": 40971, "Ponto": "Edifício Ocaporã", "Endereço": "Rua Paracatu, 846, Parque Imperial, São Paulo", "Área de Trabalho": "SUL - 2 - SP", "Modelo da Tela": "MONITOR ALL IN ONE 21,5", "latitude": -23.6222118, "longitude": -46.6333832, "Data prevista de troca": "2026-05-26"}, {"Cód Ponto": 39152, "Ponto": "Famile Anchieta 580 - Bloco B", "Endereço": "Via Anchieta, 580, Vila Moinho Velho, São Paulo", "Área de Trabalho": "SUL - 2 - SP", "Modelo da Tela": "MONITOR ALL IN ONE 21,5", "latitude": -23.6071216, "longitude": -46.599684, "Data prevista de troca": "2026-05-26"}, {"Cód Ponto": 33348, "Ponto": "Gardens Living Club - Mirabell", "Endereço": "Rua Descampado, 121, Vila Vera, São Paulo", "Área de Trabalho": "SUL - 2 - SP", "Modelo da Tela": "MONITOR ALL IN ONE 21,5", "latitude": -23.6218728, "longitude": -46.6032689, "Data prevista de troca": "2026-05-26"}, {"Cód Ponto": 42590, "Ponto": "Jardins do Brasil Mantiqueira - ADM", "Endereço": "Avenida Hilário Pereira de Souza, 492, Centro, Osasco", "Área de Trabalho": "Osasco - SP", "Modelo da Tela": "MONITOR ALL IN ONE 21,5", "latitude": -23.5346836, "longitude": -46.7687904, "Data prevista de troca": "2026-05-27"}, {"Cód Ponto": 27656, "Ponto": "Living Magic 2 - Torre 1", "Endereço": "Avenida Manoel Pedro Pimentel, 103, Continental, Osasco", "Área de Trabalho": "Osasco - SP", "Modelo da Tela": "MONITOR ALL IN ONE 21,5", "latitude": -23.5354259, "longitude": -46.7619033, "Data prevista de troca": "2026-05-27"}, {"Cód Ponto": 33306, "Ponto": "Parque Central Osasco - Reserva - Torre 3", "Endereço": "Rua Professor Luis Eulalio de Bueno Vidigal, 175, Centro, Osasco", "Área de Trabalho": "Osasco - SP", "Modelo da Tela": "MONITOR ALL IN ONE 21,5", "latitude": -23.5253521, "longitude": -46.7816523, "Data prevista de troca": "2026-05-27"}, {"Cód Ponto": 28989, "Ponto": "Príncipe de Sevilha", "Endereço": "Rua Carlos Weber, 1288, Vila Leopoldina, São Paulo", "Área de Trabalho": "Osasco - SP", "Modelo da Tela": "MONITOR ALL IN ONE 21,5", "latitude": -23.5311311, "longitude": -46.7276772, "Data prevista de troca": "2026-05-27"}, {"Cód Ponto": 43489, "Ponto": "Almagah 227 - Comercial", "Endereço": "Rua Airi, 227, Vila Gomes Cardim, São Paulo", "Área de Trabalho": "LESTE - 2 - SP", "Modelo da Tela": "MONITOR ALL IN ONE 21,5", "latitude": -23.5409617, "longitude": -46.5683831, "Data prevista de troca": "2026-05-28"}, {"Cód Ponto": 19751, "Ponto": "Beverly Hills", "Endereço": "Rua Antônio Alves Barril, 355, Jardim Anália Franco, São Paulo", "Área de Trabalho": "LESTE - 2 - SP", "Modelo da Tela": "MONITOR ALL IN ONE 21,5", "latitude": -23.559335, "longitude": -46.5612023, "Data prevista de troca": "2026-05-28"}, {"Cód Ponto": 33236, "Ponto": "Memory Anália Franco", "Endereço": "Rua Quixadá, 80, Vila Invernada, São Paulo", "Área de Trabalho": "LESTE - 2 - SP", "Modelo da Tela": "MONITOR ALL IN ONE 21,5", "latitude": -23.5665986, "longitude": -46.5672855, "Data prevista de troca": "2026-05-28"}, {"Cód Ponto": 40923, "Ponto": "Residencial Gran Canaria", "Endereço": "Rua da Meação, 224, Vila Regente Feijó, São Paulo", "Área de Trabalho": "LESTE - 2 - SP", "Modelo da Tela": "MONITOR ALL IN ONE 21,5", "latitude": -23.5546526, "longitude": -46.5688795, "Data prevista de troca": "2026-05-28"}, {"Cód Ponto": 40124, "Ponto": "Elev Barra Funda - Torre 2", "Endereço": "Rua Josef Kryss, 120, Parque Industrial Tomas Edson, São Paulo", "Área de Trabalho": "Centro - 1 - SP", "Modelo da Tela": "MONITOR ALL IN ONE 21,5", "latitude": -23.5179609, "longitude": -46.6754367, "Data prevista de troca": "2026-05-29"}, {"Cód Ponto": 43526, "Ponto": "Flow Barra Funda I", "Endereço": "Rua Federação Paulista de Futebol, 41, Várzea da Barra Funda, São Paulo", "Área de Trabalho": "Centro - 1 - SP", "Modelo da Tela": "MONITOR ALL IN ONE 21,5", "latitude": -23.5228612, "longitude": -46.6676884, "Data prevista de troca": "2026-05-29"}, {"Cód Ponto": 40049, "Ponto": "Forvm Tower", "Endereço": "Avenida Marquês de São Vicente, 182, Várzea da Barra Funda, São Paulo", "Área de Trabalho": "Centro - 1 - SP", "Modelo da Tela": "MONITOR ALL IN ONE 21,5", "latitude": -23.5220901, "longitude": -46.6614921, "Data prevista de troca": "2026-05-29"}, {"Cód Ponto": 44201, "Ponto": "Reserva Barra Funda - Torre A", "Endereço": "Rua Rubens Porta Nova, 166, Parque Industrial Tomas Edson, São Paulo", "Área de Trabalho": "Centro - 1 - SP", "Modelo da Tela": "MONITOR ALL IN ONE 21,5", "latitude": -23.5197388, "longitude": -46.6648109, "Data prevista de troca": "2026-05-29"}, {"Cód Ponto": 20398, "Ponto": "Setin downtown São Luís", "Endereço": "Viaduto Nove de Julho, 200, Centro, São Paulo", "Área de Trabalho": "Centro - 1 - SP", "Modelo da Tela": "MONITOR ALL IN ONE 21,5", "latitude": -23.5482457, "longitude": -46.6423309, "Data prevista de troca": "2026-06-01"}, {"Cód Ponto": 49154, "Ponto": "Viva Barra Funda - Torre B", "Endereço": "Rua do Bosque, 804, Barra Funda, São Paulo", "Área de Trabalho": "Centro - 1 - SP", "Modelo da Tela": "MONITOR ALL IN ONE 21,5", "latitude": -23.5248877, "longitude": -46.6564948, "Data prevista de troca": "2026-06-01"}, {"Cód Ponto": 41000, "Ponto": "Condomínio Edifício Andrea", "Endereço": "Rua Adolfo Gordo, 100, Campos Elíseos, São Paulo", "Área de Trabalho": "Centro - 2 - SP", "Modelo da Tela": "MONITOR ALL IN ONE 21,5", "latitude": -23.5335428, "longitude": -46.6494988, "Data prevista de troca": "2026-06-01"}, {"Cód Ponto": 41742, "Ponto": "Condomínio Silvana", "Endereço": "Avenida Paulista, 639, Bela Vista, São Paulo", "Área de Trabalho": "Centro - 2 - SP", "Modelo da Tela": "MONITOR ALL IN ONE 21,5", "latitude": -23.5675034, "longitude": -46.6494689, "Data prevista de troca": "2026-06-01"}, {"Cód Ponto": 44329, "Ponto": "Condomínio Wonder By Praças da Cidade", "Endereço": "Rua Ernesto de Castro, 139, Brás, São Paulo", "Área de Trabalho": "LESTE - 1 - SP", "Modelo da Tela": "MONITOR ALL IN ONE 21,5", "latitude": -23.551411, "longitude": -46.6144755, "Data prevista de troca": "2026-06-02"}, {"Cód Ponto": 32588, "Ponto": "Edifício Concepto", "Endereço": "Rua Ilansa, 274, Vila Prudente, São Paulo", "Área de Trabalho": "LESTE - 1 - SP", "Modelo da Tela": "MONITOR ALL IN ONE 21,5", "latitude": -23.5796138, "longitude": -46.5888306, "Data prevista de troca": "2026-06-02"}, {"Cód Ponto": 11660, "Ponto": "In São Paulo Vilaboim A", "Endereço": "Rua Ibitirama, 2300, Vila Prudente, São Paulo", "Área de Trabalho": "LESTE - 1 - SP", "Modelo da Tela": "MONITOR ALL IN ONE 21,5", "latitude": -23.59953506812, "longitude": -46.576435809787, "Data prevista de troca": "2026-06-02"}, {"Cód Ponto": 41687, "Ponto": "Residencial - Edificios Renoir e Monet - Torre A", "Endereço": "Rua Campo Largo, 190, Vila Bertioga, São Paulo", "Área de Trabalho": "LESTE - 1 - SP", "Modelo da Tela": "MONITOR ALL IN ONE 21,5", "latitude": -23.5674741, "longitude": -46.5839517, "Data prevista de troca": "2026-06-02"}, {"Cód Ponto": 65150, "Ponto": "Cond. West Gardens - Torre Windsor", "Endereço": "Rua Corrientes, 135, Lapa, São Paulo", "Área de Trabalho": "OESTE - 1 - SP", "Modelo da Tela": "MONITOR ALL IN ONE 21,5", "latitude": -2.35222747e+16, "longitude": -4.67111775999999e+16, "Data prevista de troca": "2026-06-03"}, {"Cód Ponto": 32201, "Ponto": "Condomínio Trio Perdizes", "Endereço": "Rua Desembargador Guimarães, 92, Água Branca, São Paulo", "Área de Trabalho": "OESTE - 1 - SP", "Modelo da Tela": "MONITOR ALL IN ONE 21,5", "latitude": -23.5298918, "longitude": -46.674277, "Data prevista de troca": "2026-06-03"}, {"Cód Ponto": 21778, "Ponto": "Edifício Affonso Aliperti", "Endereço": "Rua Bianchi Bertoldi, 129, Pinheiros, São Paulo", "Área de Trabalho": "OESTE - 1 - SP", "Modelo da Tela": "MONITOR ALL IN ONE 21,5", "latitude": -23.5687854, "longitude": -46.6912248, "Data prevista de troca": "2026-06-03"}, {"Cód Ponto": 30672, "Ponto": "Edifício Ville Bayard", "Endereço": "Rua Francisco Bayardo, 551, Perdizes, São Paulo", "Área de Trabalho": "OESTE - 1 - SP", "Modelo da Tela": "MONITOR ALL IN ONE 21,5", "latitude": -23.5381087, "longitude": -46.6894857, "Data prevista de troca": "2026-06-03"}, {"Cód Ponto": 44397, "Ponto": "Green Loadd Saúde", "Endereço": "Avenida Jabaquara, 1744, Mirandópolis, São Paulo", "Área de Trabalho": "SUL - 1 - SP", "Modelo da Tela": "MONITOR ALL IN ONE 21,5", "latitude": -23.619526, "longitude": -46.63975, "Data prevista de troca": "2026-06-05"}, {"Cód Ponto": 20034, "Ponto": "Jardim Botânico - Bloco 11", "Endereço": "Rua Isabel de Góis, 8, Jardim Botucatu, São Paulo", "Área de Trabalho": "SUL - 1 - SP", "Modelo da Tela": "MONITOR ALL IN ONE 21,5", "latitude": -23.6360913, "longitude": -46.6098002, "Data prevista de troca": "2026-06-05"}, {"Cód Ponto": 7797, "Ponto": "Jardin de Mermier", "Endereço": "Avenida Itaboraí, 109, Bosque da Saúde, São Paulo", "Área de Trabalho": "SUL - 1 - SP", "Modelo da Tela": "MONITOR ALL IN ONE 21,5", "latitude": -23.6109584, "longitude": -46.6303892, "Data prevista de troca": "2026-06-05"}, {"Cód Ponto": 39324, "Ponto": "On Paulista - TR", "Endereço": "Avenida Bernardino de Campos, 1340, Paraíso, São Paulo", "Área de Trabalho": "SUL - 1 - SP", "Modelo da Tela": "MONITOR ALL IN ONE 21,5", "latitude": -23.576159, "longitude": -46.641496, "Data prevista de troca": "2026-06-05"}, {"Cód Ponto": 50948, "Ponto": "Edificio Caravelle", "Endereço": "Rua Paim, 223, Bela Vista, São Paulo", "Área de Trabalho": "Centro - 2 - SP", "Modelo da Tela": "MONITOR ALL IN ONE 21,5", "latitude": -23.5543288, "longitude": -46.6502525, "Data prevista de troca": "2026-06-08"}, {"Cód Ponto": 49486, "Ponto": "Edifício Suzana", "Endereço": "Rua Itacolomi, 596, Higienópolis, São Paulo", "Área de Trabalho": "Centro - 2 - SP", "Modelo da Tela": "MONITOR ALL IN ONE 21,5", "latitude": -23.5490557, "longitude": -46.6579171, "Data prevista de troca": "2026-06-08"}, {"Cód Ponto": 7719, "Ponto": "Nathalie", "Endereço": "Rua Conselheiro Brotero, 1140, Santa Cecília, São Paulo", "Área de Trabalho": "Centro - 2 - SP", "Modelo da Tela": "MONITOR ALL IN ONE 21,5", "latitude": -23.5363745, "longitude": -46.6609366, "Data prevista de troca": "2026-06-08"}, {"Cód Ponto": 39284, "Ponto": "Think Home Republica", "Endereço": "Rua Bento Freitas, 420, República, São Paulo", "Área de Trabalho": "Centro - 2 - SP", "Modelo da Tela": "MONITOR ALL IN ONE 21,5", "latitude": -23.545786, "longitude": -46.6456974, "Data prevista de troca": "2026-06-08"}, {"Cód Ponto": 8674, "Ponto": "San Genaro", "Endereço": "Praça do Centenário de Vila Prudente, 139, Vila Prudente, São Paulo", "Área de Trabalho": "LESTE - 1 - SP", "Modelo da Tela": "MONITOR ALL IN ONE 21,5", "latitude": -23.5816097, "longitude": -46.5825367, "Data prevista de troca": "2026-06-09"}, {"Cód Ponto": 34219, "Ponto": "Urban Mooca 2", "Endereço": "Rua Frei Gaspar, 66, Mooca, São Paulo", "Área de Trabalho": "LESTE - 1 - SP", "Modelo da Tela": "MONITOR ALL IN ONE 21,5", "latitude": -23.5506205, "longitude": -46.6101499, "Data prevista de troca": "2026-06-09"}, {"Cód Ponto": 7932, "Ponto": "Vallore Brás - Veneza", "Endereço": "Rua do Lucas, 225, Brás, São Paulo", "Área de Trabalho": "LESTE - 1 - SP", "Modelo da Tela": "MONITOR ALL IN ONE 21,5", "latitude": -23.5425173, "longitude": -46.6253977, "Data prevista de troca": "2026-06-09"}, {"Cód Ponto": 41707, "Ponto": "Verone Family Club", "Endereço": "Rua Celso de Azevedo Marques, 360, Parque da Mooca, São Paulo", "Área de Trabalho": "LESTE - 1 - SP", "Modelo da Tela": "MONITOR ALL IN ONE 21,5", "latitude": -23.568717, "longitude": -46.5947973, "Data prevista de troca": "2026-06-09"}, {"Cód Ponto": 41597, "Ponto": "Living da Vila Guilherme", "Endereço": "Rua Amazonas da Silva, 813, Vila Guilherme, São Paulo", "Área de Trabalho": "NORTE - 1 - SP", "Modelo da Tela": "MONITOR ALL IN ONE 21,5", "latitude": -23.5125097, "longitude": -46.6090784, "Data prevista de troca": "2026-06-10"}, {"Cód Ponto": 28865, "Ponto": "Novo Andarai - Torre C", "Endereço": "Rua Manguari, 501, Jardim Andaraí, São Paulo", "Área de Trabalho": "NORTE - 1 - SP", "Modelo da Tela": "MONITOR ALL IN ONE 21,5", "latitude": -23.5226336, "longitude": -46.58209, "Data prevista de troca": "2026-06-10"}, {"Cód Ponto": 44606, "Ponto": "Port De La Rochelle", "Endereço": "Rua Doutor João Batista Soares de Faria, 103, Santana, São Paulo", "Área de Trabalho": "NORTE - 1 - SP", "Modelo da Tela": "MONITOR ALL IN ONE 21,5", "latitude": -23.4953677, "longitude": -46.6287578, "Data prevista de troca": "2026-06-10"}, {"Cód Ponto": 21471, "Ponto": "Praça D Amoreira", "Endereço": "Rua Conselheiro Moreira de Barros, 2399, Lauzane Paulista, São Paulo", "Área de Trabalho": "NORTE - 1 - SP", "Modelo da Tela": "MONITOR ALL IN ONE 21,5", "latitude": -23.4842254, "longitude": -46.6425537, "Data prevista de troca": "2026-06-10"}, {"Cód Ponto": 63531, "Ponto": "Res. Villa Park Osasco - Torre 1", "Endereço": "Avenida Edmundo Amaral, 904, Piratininga, Osasco", "Área de Trabalho": "Osasco - SP", "Modelo da Tela": "MONITOR ALL IN ONE 21,5", "latitude": -2.35118520999999e+16, "longitude": -4.68074559999999e+16, "Data prevista de troca": "2026-06-11"}, {"Cód Ponto": 28120, "Ponto": "Residencial Repletto - Torre A", "Endereço": "Rua Justino Alves Batista, 779, Vila Yolanda, Osasco", "Área de Trabalho": "Osasco - SP", "Modelo da Tela": "MONITOR ALL IN ONE 21,5", "latitude": -23.5529236, "longitude": -46.7936294, "Data prevista de troca": "2026-06-11"}, {"Cód Ponto": 20249, "Ponto": "Resort Ecovida - Torre 2", "Endereço": "Rua Vicente Alves da Silva, 700, Jardim Roberto, Osasco", "Área de Trabalho": "Osasco - SP", "Modelo da Tela": "MONITOR ALL IN ONE 21,5", "latitude": -23.5473375, "longitude": -46.8013068, "Data prevista de troca": "2026-06-11"}, {"Cód Ponto": 49709, "Ponto": "San Diego", "Endereço": "Rua Doutor Manoel de Paiva Ramos, 60, Cidade São Francisco, São Paulo", "Área de Trabalho": "Osasco - SP", "Modelo da Tela": "MONITOR ALL IN ONE 21,5", "latitude": -23.5596581, "longitude": -46.7554626, "Data prevista de troca": "2026-06-11"}, {"Cód Ponto": 40441, "Ponto": "Condomínio Edifício Airosa", "Endereço": "Rua Palacete das Águias, 610, Vila Alexandria, São Paulo", "Área de Trabalho": "SANTO AMARO - SP", "Modelo da Tela": "MONITOR ALL IN ONE 21,5", "latitude": -23.6423554, "longitude": -46.6681226, "Data prevista de troca": "2026-06-12"}, {"Cód Ponto": 68087, "Ponto": "Condomínio Edifício Carlos Eduardo", "Endereço": "Rua Vera Cruz, 70, Santo Amaro, São Paulo", "Área de Trabalho": "SANTO AMARO - SP", "Modelo da Tela": "MONITOR ALL IN ONE 21,5", "latitude": -236493404.0, "longitude": -4.67062426999999e+16, "Data prevista de troca": "2026-06-12"}, {"Cód Ponto": 40151, "Ponto": "Connection Brooklin", "Endereço": "Rua Professor José Leite e Oiticica, 125, Vila Gertrudes, São Paulo", "Área de Trabalho": "SANTO AMARO - SP", "Modelo da Tela": "MONITOR ALL IN ONE 21,5", "latitude": -23.6215978, "longitude": -46.6943768, "Data prevista de troca": "2026-06-12"}, {"Cód Ponto": 19587, "Ponto": "New Home Chacara Flora - Begonha", "Endereço": "Avenida Interlagos, 1880, Jardim Marajoara, São Paulo", "Área de Trabalho": "SANTO AMARO - SP", "Modelo da Tela": "MONITOR ALL IN ONE 21,5", "latitude": -23.6703796, "longitude": -46.6782731, "Data prevista de troca": "2026-06-12"}, {"Cód Ponto": 51205, "Ponto": "Edifício Cintia", "Endereço": "Rua Doutor Francisco José Longo, 281, Chácara Inglesa, São Paulo", "Área de Trabalho": "SUL - 1 - SP", "Modelo da Tela": "MONITOR ALL IN ONE 21,5", "latitude": -23.6066595, "longitude": -46.6298878, "Data prevista de troca": "2026-06-15"}, {"Cód Ponto": 33554, "Ponto": "Edifício NEO", "Endereço": "Rua Traituba, 71, Saúde, São Paulo", "Área de Trabalho": "SUL - 1 - SP", "Modelo da Tela": "MONITOR ALL IN ONE 21,5", "latitude": -23.6130327, "longitude": -46.6324194, "Data prevista de troca": "2026-06-15"}, {"Cód Ponto": 59293, "Ponto": "Florear Studio", "Endereço": "Rua dos Crisântemos, 77, Mirandópolis, São Paulo", "Área de Trabalho": "SUL - 1 - SP", "Modelo da Tela": "MONITOR ALL IN ONE 21,5", "latitude": -23606472.0, "longitude": -4.66393768999999e+16, "Data prevista de troca": "2026-06-15"}, {"Cód Ponto": 34218, "Ponto": "Gaivotas", "Endereço": "Rua Guiratinga, 931, Chácara Inglesa, São Paulo", "Área de Trabalho": "SUL - 1 - SP", "Modelo da Tela": "MONITOR ALL IN ONE 21,5", "latitude": -23.6100416, "longitude": -46.6310774, "Data prevista de troca": "2026-06-15"}, {"Cód Ponto": 63614, "Ponto": "Abdon", "Endereço": "Rua Abdon Batista, 175, Parque das Paineiras, São Paulo", "Área de Trabalho": "LESTE - 3 - SP", "Modelo da Tela": "MONITOR ALL IN ONE 21,5", "latitude": -235376285.0, "longitude": -4.64823610999999e+16, "Data prevista de troca": "2026-06-16"}, {"Cód Ponto": 8338, "Ponto": "Camuri - Torre 2", "Endereço": "Rua Renzo Baldini, 901, Parada XV de Novembro, São Paulo", "Área de Trabalho": "LESTE - 3 - SP", "Modelo da Tela": "MONITOR ALL IN ONE 21,5", "latitude": -23.5258105, "longitude": -46.4347666, "Data prevista de troca": "2026-06-16"}, {"Cód Ponto": 59772, "Ponto": "Condomínio Forte São Mateus - Bloco 5", "Endereço": "Rua Forte da Ribeira, 250, Parque São Lourenço, São Paulo", "Área de Trabalho": "LESTE - 3 - SP", "Modelo da Tela": "MONITOR ALL IN ONE 21,5", "latitude": -2.36044045999999e+16, "longitude": -4.64664120999999e+16, "Data prevista de troca": "2026-06-16"}, {"Cód Ponto": 28823, "Ponto": "Edifício Colinas Di Napoli", "Endereço": "Rua João Tomé, 60, Vila Buenos Aires, São Paulo", "Área de Trabalho": "LESTE - 3 - SP", "Modelo da Tela": "MONITOR ALL IN ONE 21,5", "latitude": -23.5118184, "longitude": -46.5028028, "Data prevista de troca": "2026-06-16"}, {"Cód Ponto": 8153, "Ponto": "Via Paulista Home Stay", "Endereço": "Rua Martiniano de Carvalho, 807, Bela Vista, São Paulo", "Área de Trabalho": "Centro - 2 - SP", "Modelo da Tela": "MONITOR ALL IN ONE 21,5", "latitude": -23.5657496, "longitude": -46.6424708, "Data prevista de troca": "2026-06-17"}, {"Cód Ponto": 21856, "Ponto": "Caravelas - Torre B", "Endereço": "Rua Paulo Orozimbo, 530, Cambuci, São Paulo", "Área de Trabalho": "Centro - 3 - SP", "Modelo da Tela": "MONITOR ALL IN ONE 21,5", "latitude": -23.5719579, "longitude": -46.6255326, "Data prevista de troca": "2026-06-17"}, {"Cód Ponto": 29143, "Ponto": "Edifício Joy Cambucy II", "Endereço": "Rua Clímaco Barbosa, 494, Cambuci, São Paulo", "Área de Trabalho": "Centro - 3 - SP", "Modelo da Tela": "MONITOR ALL IN ONE 21,5", "latitude": -23.5652309, "longitude": -46.6159214, "Data prevista de troca": "2026-06-17"}, {"Cód Ponto": 19818, "Ponto": "Morada da Primavera - Lírios", "Endereço": "Rua São Joaquim, 309, Liberdade, São Paulo", "Área de Trabalho": "Centro - 3 - SP", "Modelo da Tela": "MONITOR ALL IN ONE 21,5", "latitude": -23.561322, "longitude": -46.6357284, "Data prevista de troca": "2026-06-17"}, {"Cód Ponto": 49273, "Ponto": "Sinfonia Vila Mascote", "Endereço": "Avenida Santa Catarina, 1374, Vila Mascote, São Paulo", "Área de Trabalho": "SUL - 2 - SP", "Modelo da Tela": "MONITOR ALL IN ONE 21,5", "latitude": -23.6471274, "longitude": -46.6628888, "Data prevista de troca": "2026-06-18"}, {"Cód Ponto": 14731, "Ponto": "St. Germain-des-Pres", "Endereço": "Rua Praia do Castelo, 170, Vila Mascote, São Paulo", "Área de Trabalho": "SUL - 2 - SP", "Modelo da Tela": "MONITOR ALL IN ONE 21,5", "latitude": -23.6468889, "longitude": -46.6682944, "Data prevista de troca": "2026-06-18"}, {"Cód Ponto": 28756, "Ponto": "Viva Benx Vila Mascote", "Endereço": "Avenida Túlio Teodoro de Campos, 6, Vila Paulista, São Paulo", "Área de Trabalho": "SUL - 2 - SP", "Modelo da Tela": "MONITOR ALL IN ONE 21,5", "latitude": -23.639345, "longitude": -46.6626987, "Data prevista de troca": "2026-06-18"}, {"Cód Ponto": 59904, "Ponto": "Írio Golf Garden", "Endereço": "Avenida Nossa Senhora do Sabará, 409, Vila Sofia, São Paulo", "Área de Trabalho": "SUL - 3 - SP", "Modelo da Tela": "MONITOR ALL IN ONE 21,5", "latitude": -2.36604093e+16, "longitude": -4.66950768e+16, "Data prevista de troca": "2026-06-18"}, {"Cód Ponto": 29610, "Ponto": "Residencial Cádiz", "Endereço": "Rua Antônio de Barros, 2501, Vila Carrão, São Paulo", "Área de Trabalho": "LESTE - 3 - SP", "Modelo da Tela": "MONITOR ALL IN ONE 21,5", "latitude": -23.55205, "longitude": -46.554, "Data prevista de troca": "2026-06-19"}, {"Cód Ponto": 49189, "Ponto": "Residencial Plano & Vila Carmosina Victorio Santim - Torre A", "Endereço": "Rua Victório Santim, 2776, Itaquera, São Paulo", "Área de Trabalho": "LESTE - 3 - SP", "Modelo da Tela": "MONITOR ALL IN ONE 21,5", "latitude": -23.5585034, "longitude": -46.4496, "Data prevista de troca": "2026-06-19"}, {"Cód Ponto": 41064, "Ponto": "Spazio San domingos - Bloco I", "Endereço": "Rua Olga Fadel Abarca, 430, Jardim Santa Terezinha (Zona Leste), São Paulo", "Área de Trabalho": "LESTE - 3 - SP", "Modelo da Tela": "MONITOR ALL IN ONE 21,5", "latitude": -23.573698, "longitude": -46.5024219, "Data prevista de troca": "2026-06-19"}, {"Cód Ponto": 40487, "Ponto": "Villaggio di Anália Franco - Torre Veneto", "Endereço": "Rua Visconde de Balsemão, 191, Vila Mafra, São Paulo", "Área de Trabalho": "LESTE - 3 - SP", "Modelo da Tela": "MONITOR ALL IN ONE 21,5", "latitude": -23.5590319, "longitude": -46.5483503, "Data prevista de troca": "2026-06-19"}, {"Cód Ponto": 63686, "Ponto": "Mix Aricanduva 1", "Endereço": "Rua Olga Fadel Abarca, 320, Jardim Santa Terezinha (Zona Leste), São Paulo", "Área de Trabalho": "LESTE - 3 - SP", "Modelo da Tela": "MONITOR ALL IN ONE 21,5", "latitude": -2.35728304e+16, "longitude": -4.65033166999999e+16, "Data prevista de troca": "2026-06-22"}, {"Cód Ponto": 41653, "Ponto": "Plano & Jacu Pessego Augusto Carlos Bauman II - Torre B", "Endereço": "Rua Augusto Carlos Bauman, 266, Itaquera, São Paulo", "Área de Trabalho": "LESTE - 3 - SP", "Modelo da Tela": "MONITOR ALL IN ONE 21,5", "latitude": -23.5349707, "longitude": -46.4514481, "Data prevista de troca": "2026-06-22"}, {"Cód Ponto": 39236, "Ponto": "Plano Estação Patriarca", "Endereço": "Rua Aldeia Paracanti, 38, Vila Ré, São Paulo", "Área de Trabalho": "LESTE - 3 - SP", "Modelo da Tela": "MONITOR ALL IN ONE 21,5", "latitude": -23.5333679, "longitude": -46.4968717, "Data prevista de troca": "2026-06-22"}, {"Cód Ponto": 40809, "Ponto": "Raízes Guilhermina Esperança - Torre A", "Endereço": "Rua Tapari, 158, Vila Esperança, São Paulo", "Área de Trabalho": "LESTE - 3 - SP", "Modelo da Tela": "MONITOR ALL IN ONE 21,5", "latitude": -23.5293149, "longitude": -46.5190637, "Data prevista de troca": "2026-06-22"}, {"Cód Ponto": 33620, "Ponto": "Vista Real", "Endereço": "Rua Bela Vista, 377, Santo Amaro, São Paulo", "Área de Trabalho": "SANTO AMARO - SP", "Modelo da Tela": "MONITOR ALL IN ONE 21,5", "latitude": -23.6336071, "longitude": -46.6919797, "Data prevista de troca": "2026-06-23"}, {"Cód Ponto": 28720, "Ponto": "Residencial Eucaliptos - C", "Endereço": "Avenida Padre Arlindo Vieira, 2895, Jardim Vergueiro (Sacomã), São Paulo", "Área de Trabalho": "SUL - 1 - SP", "Modelo da Tela": "MONITOR ALL IN ONE 21,5", "latitude": -23.6449126, "longitude": -46.6061975, "Data prevista de troca": "2026-06-23"}, {"Cód Ponto": 20175, "Ponto": "Upper Side", "Endereço": "Rua Salvador de Edra, 03, Saúde, São Paulo", "Área de Trabalho": "SUL - 1 - SP", "Modelo da Tela": "MONITOR ALL IN ONE 21,5", "latitude": -23.6159782, "longitude": -46.6425369, "Data prevista de troca": "2026-06-23"}, {"Cód Ponto": 20422, "Ponto": "Mares do Norte - Guaratuba", "Endereço": "Avenida Lauro Gomes, 5901, Vila Vivaldi, São Bernardo do Campo", "Área de Trabalho": "Grande ABC - SP", "Modelo da Tela": "MONITOR ALL IN ONE 21,5", "latitude": -23.6503094, "longitude": -46.5749418, "Data prevista de troca": "2026-06-24"}, {"Cód Ponto": 29402, "Ponto": "Square Garden I - Torre 3", "Endereço": "Rua Jorge Beretta, 282, Parque Erasmo Assunção, Santo André", "Área de Trabalho": "Grande ABC - SP", "Modelo da Tela": "MONITOR ALL IN ONE 21,5", "latitude": -23.6388136, "longitude": -46.5038255, "Data prevista de troca": "2026-06-24"}, {"Cód Ponto": 49712, "Ponto": "KZ Conecta Capão - Bloco A", "Endereço": "Rua Cabo Estácio da Conceição, 406, Parque Maria Helena, São Paulo", "Área de Trabalho": "SUL - 4 (MORUMBI) - SP", "Modelo da Tela": "MONITOR ALL IN ONE 21,5", "latitude": -23.6622244, "longitude": -46.7651125, "Data prevista de troca": "2026-06-24"}, {"Cód Ponto": 49713, "Ponto": "KZ Conecta Capão - Bloco B", "Endereço": "Rua Cabo Estácio da Conceição, 406, Parque Maria Helena, São Paulo", "Área de Trabalho": "SUL - 4 (MORUMBI) - SP", "Modelo da Tela": "MONITOR ALL IN ONE 21,5", "latitude": -23.6622244, "longitude": -46.7651125, "Data prevista de troca": "2026-06-24"}, {"Cód Ponto": 27666, "Ponto": "Terra Nova - Torre 3", "Endereço": "Avenida Novo Osasco, 481, Bussocaba, Osasco", "Área de Trabalho": "Osasco - SP", "Modelo da Tela": "MONITOR ALL IN ONE 21,5", "latitude": -23.5642096, "longitude": -46.7858763, "Data prevista de troca": "2026-06-25"}, {"Cód Ponto": 27391, "Ponto": "Via Nações - Torre 3", "Endereço": "Rua Jubair Celestino, 195, Presidente Altino, Osasco", "Área de Trabalho": "Osasco - SP", "Modelo da Tela": "MONITOR ALL IN ONE 21,5", "latitude": -23.52259, "longitude": -46.7710472, "Data prevista de troca": "2026-06-25"}, {"Cód Ponto": 39475, "Ponto": "Vila Mazzei - Torre 4", "Endereço": "Avenida Mário Pernambuco, 626, Vila Mazzei, São Paulo", "Área de Trabalho": "NORTE - 1 - SP", "Modelo da Tela": "MONITOR ALL IN ONE 21,5", "latitude": -23.4609641, "longitude": -46.6011109, "Data prevista de troca": "2026-06-25"}, {"Cód Ponto": 49359, "Ponto": "Helbor Patteo São Paulo - Torre 3", "Endereço": "Rua Balsa, 1301, Freguesia do Ó, São Paulo", "Área de Trabalho": "NORTE - 2 - SP", "Modelo da Tela": "MONITOR ALL IN ONE 21,5", "latitude": -23.5067081, "longitude": -46.7037691, "Data prevista de troca": "2026-06-25"}, {"Cód Ponto": 10301, "Ponto": "Good Life Vila Romana - Cantareira", "Endereço": "Rua Aurélia, 300, Vila Romana, São Paulo", "Área de Trabalho": "OESTE - 1 - SP", "Modelo da Tela": "MONITOR ALL IN ONE 21,5", "latitude": -23.5244636, "longitude": -46.6981099, "Data prevista de troca": "2026-06-26"}, {"Cód Ponto": 19801, "Ponto": "Jardim das Azaleias - Aquarella", "Endereço": "Rua Francisco Luís de Souza Júnior, 350, Água Branca, São Paulo", "Área de Trabalho": "OESTE - 1 - SP", "Modelo da Tela": "MONITOR ALL IN ONE 21,5", "latitude": -23.5135657, "longitude": -46.6891139, "Data prevista de troca": "2026-06-26"}];
 
-            setTimeout(() => map.invalidateSize(), 100);
-        }
+        // ============================================================
+        // INITIALIZATION
+        // ============================================================
+        function init() {
+            // Set header date
+            const now = new Date();
+            document.getElementById('headerDate').textContent = now.toLocaleDateString('pt-BR', {
+                weekday: 'long', day: '2-digit', month: 'long', year: 'numeric'
+            });
 
-        function updateMapMarkers() {
-            // Limpar marcadores antigos
-            markers.forEach(marker => map.removeLayer(marker));
-            markers = [];
+            // Load data
+            const saved = localStorage.getItem('noc_data');
+            if (saved) {
+                allData = JSON.parse(saved);
+            } else {
+                allData = INITIAL_DATA.map((r, i) => ({
+                    id: i + 1,
+                    codPonto: r['Cód Ponto'],
+                    ponto: r['Ponto'],
+                    endereco: r['Endereço'],
+                    area: r['Área de Trabalho'],
+                    modelo: r['Modelo da Tela'],
+                    latitude: r['latitude'],
+                    longitude: r['longitude'],
+                    data: r['Data prevista de troca'],
+                    obs: '',
+                    status: getAutoStatus(r['Data prevista de troca'])
+                }));
+                saveData();
+            }
 
-            // Determinar dados a mostrar
-            const dataToShow = selectedDateForMap 
-                ? allData.filter(item => item.data === selectedDateForMap)
-                : allData;
-
-            // Adicionar novos marcadores
-            dataToShow.forEach(item => {
-                if (item.latitude && item.longitude) {
-                    const statusColors = {
-                        'concluido': '#22c55e',
-                        'pendente': '#f59e0b',
-                        'atrasado': '#ef4444'
-                    };
-
-                    const color = statusColors[item.status] || '#e8590c';
-
-                    const marker = L.circleMarker([item.latitude, item.longitude], {
-                        radius: 8,
-                        fillColor: color,
-                        color: color,
-                        weight: 2,
-                        opacity: 0.8,
-                        fillOpacity: 0.7
-                    }).addTo(map);
-
-                    const popupContent = `
-                        <div class="popup-title">${item.codigo}</div>
-                        <div class="popup-row">
-                            <span class="popup-label">Data:</span>
-                            <span class="popup-value">${item.data}</span>
-                        </div>
-                        <div class="popup-row">
-                            <span class="popup-label">Local:</span>
-                            <span class="popup-value">${item.local}</span>
-                        </div>
-                        <div class="popup-row">
-                            <span class="popup-label">Técnico:</span>
-                            <span class="popup-value">${item.tecnico}</span>
-                        </div>
-                        <div class="popup-row">
-                            <span class="popup-label">Status:</span>
-                            <span class="popup-value">${item.status.toUpperCase()}</span>
-                        </div>
-                    `;
-
-                    marker.bindPopup(popupContent);
-                    markers.push(marker);
+            // Apply saved statuses
+            allData.forEach(r => {
+                if (recordStatuses[r.id]) {
+                    r.status = recordStatuses[r.id];
                 }
             });
 
-            // Atualizar contador de marcadores
-            document.getElementById('map-markers-count').textContent = markers.length;
+            populateFilters();
+            applyFilters();
+            renderWeek();
+            renderObs();
+            document.getElementById('obsGeneral').value = generalObs;
 
-            // Ajustar zoom ao mostrar dados
-            if (markers.length > 0) {
-                const group = new L.featureGroup(markers);
-                map.fitBounds(group.getBounds().pad(0.1));
+            // Drag & Drop for import
+            const ua = document.getElementById('uploadArea');
+            ua.addEventListener('dragover', e => { e.preventDefault(); ua.classList.add('dragover'); });
+            ua.addEventListener('dragleave', () => ua.classList.remove('dragover'));
+            ua.addEventListener('drop', e => {
+                e.preventDefault();
+                ua.classList.remove('dragover');
+                if (e.dataTransfer.files.length) handleFile(e.dataTransfer.files[0]);
+            });
+        }
+
+        function getAutoStatus(dateStr) {
+            if (!dateStr) return 'pendente';
+            const today = new Date();
+            today.setHours(0, 0, 0, 0);
+            const d = new Date(dateStr + 'T00:00:00');
+            if (d < today) return 'atrasado';
+            return 'pendente';
+        }
+
+        function saveData() {
+            localStorage.setItem('noc_data', JSON.stringify(allData));
+        }
+
+        // ============================================================
+        // FILTERS & SEARCH
+        // ============================================================
+        function populateFilters() {
+            const areas = [...new Set(allData.map(r => r.area).filter(Boolean))].sort();
+            const dates = [...new Set(allData.map(r => r.data).filter(Boolean))].sort();
+
+            const areaSelect = document.getElementById('filterArea');
+            areaSelect.innerHTML = '<option value="">Todas as Áreas</option>';
+            areas.forEach(a => {
+                areaSelect.innerHTML += `<option value="${a}">${a}</option>`;
+            });
+
+            const dateSelect = document.getElementById('filterDate');
+            dateSelect.innerHTML = '<option value="">Todas as Datas</option>';
+            dates.forEach(d => {
+                const formatted = new Date(d + 'T00:00:00').toLocaleDateString('pt-BR');
+                dateSelect.innerHTML += `<option value="${d}">${formatted}</option>`;
+            });
+        }
+
+        function applyFilters() {
+            const search = document.getElementById('searchInput').value.toLowerCase();
+            const area = document.getElementById('filterArea').value;
+            const date = document.getElementById('filterDate').value;
+            const status = document.getElementById('filterStatus').value;
+
+            filteredData = allData.filter(r => {
+                if (search) {
+                    const hay = `${r.codPonto} ${r.ponto} ${r.endereco} ${r.area} ${r.modelo}`.toLowerCase();
+                    if (!hay.includes(search)) return false;
+                }
+                if (area && r.area !== area) return false;
+                if (date && r.data !== date) return false;
+                if (status && r.status !== status) return false;
+                return true;
+            });
+
+            sortData();
+            currentPage = 1;
+            renderTable();
+            updateKPIs();
+        }
+
+        // ============================================================
+        // SORTING
+        // ============================================================
+        function sortTable(field) {
+            if (sortField === field) {
+                sortDir = sortDir === 'asc' ? 'desc' : 'asc';
+            } else {
+                sortField = field;
+                sortDir = 'asc';
             }
+            sortData();
+            renderTable();
         }
 
-        // ==================== IMPORTAÇÃO ====================
-        function setupEventListeners() {
-            // Botão importar
-            document.getElementById('import-btn').addEventListener('click', () => {
-                document.getElementById('import-modal').classList.add('show');
+        function sortData() {
+            filteredData.sort((a, b) => {
+                let va = a[sortField] || '';
+                let vb = b[sortField] || '';
+                if (typeof va === 'number' && typeof vb === 'number') {
+                    return sortDir === 'asc' ? va - vb : vb - va;
+                }
+                va = String(va).toLowerCase();
+                vb = String(vb).toLowerCase();
+                if (va < vb) return sortDir === 'asc' ? -1 : 1;
+                if (va > vb) return sortDir === 'asc' ? 1 : -1;
+                return 0;
             });
-
-            // Upload area drag and drop
-            const uploadArea = document.getElementById('upload-area');
-            uploadArea.addEventListener('dragover', (e) => {
-                e.preventDefault();
-                uploadArea.classList.add('dragover');
-            });
-            uploadArea.addEventListener('dragleave', () => {
-                uploadArea.classList.remove('dragover');
-            });
-            uploadArea.addEventListener('drop', (e) => {
-                e.preventDefault();
-                uploadArea.classList.remove('dragover');
-                handleFileUpload(e.dataTransfer.files[0]);
-            });
-
-            document.getElementById('file-input').addEventListener('change', (e) => {
-                handleFileUpload(e.target.files[0]);
-            });
-
-            // Exportar
-            document.getElementById('export-btn').addEventListener('click', exportToExcel);
-
-            // Filtro de data do mapa
-            document.getElementById('map-date-filter').addEventListener('change', (e) => {
-                selectedDateForMap = e.target.value;
-                document.getElementById('btn-clear-date').style.display = e.target.value ? 'block' : 'none';
-                updateMapMarkers();
-                filterAndUpdateTable();
-            });
-
-            document.getElementById('btn-clear-date').addEventListener('click', () => {
-                selectedDateForMap = null;
-                document.getElementById('map-date-filter').value = '';
-                document.getElementById('btn-clear-date').style.display = 'none';
-                updateMapMarkers();
-                filterAndUpdateTable();
-            });
-
-            // Outros filtros
-            document.getElementById('search-input').addEventListener('input', filterAndUpdateTable);
-            document.getElementById('area-filter').addEventListener('change', filterAndUpdateTable);
-            document.getElementById('status-filter').addEventListener('change', filterAndUpdateTable);
         }
 
-        function handleFileUpload(file) {
+        // ============================================================
+        // TABLE RENDERING
+        // ============================================================
+        function renderTable() {
+            const tbody = document.getElementById('tableBody');
+            const start = (currentPage - 1) * pageSize;
+            const end = start + pageSize;
+            const pageData = filteredData.slice(start, end);
+
+            tbody.innerHTML = pageData.map(r => {
+                const dateFormatted = r.data ? new Date(r.data + 'T00:00:00').toLocaleDateString('pt-BR') : '-';
+                const statusClass = r.status || 'pendente';
+                const statusLabel = {pendente: 'Pendente', concluido: 'Concluído', atrasado: 'Atrasado'}[statusClass] || 'Pendente';
+                const statusIcon = {pendente: 'fa-clock', concluido: 'fa-check-circle', atrasado: 'fa-exclamation-circle'}[statusClass] || 'fa-clock';
+                const checked = selectedRows.has(r.id) ? 'checked' : '';
+                const idx = allData.findIndex(d => d.id === r.id);
+
+                return `<tr class="${selectedRows.has(r.id) ? 'selected' : ''}">
+                    <td><input type="checkbox" class="custom-checkbox" ${checked} onchange="toggleSelect(${r.id})"></td>
+                    <td class="td-cod">${r.codPonto || '-'}</td>
+                    <td>${r.ponto || '-'}</td>
+                    <td title="${r.endereco || ''}">${truncate(r.endereco, 50)}</td>
+                    <td><span class="td-area"><span class="area-dot" style="background:${getAreaColor(r.area)}"></span>${r.area || '-'}</span></td>
+                    <td>${r.modelo || '-'}</td>
+                    <td class="td-date">${dateFormatted}</td>
+                    <td><span class="status-badge status-${statusClass}"><i class="fa-solid ${statusIcon}"></i> ${statusLabel}</span></td>
+                    <td>
+                        <div class="td-actions">
+                            <button class="btn-icon btn-secondary" title="Editar" onclick="openEditModal(${idx})"><i class="fa-solid fa-pen"></i></button>
+                            <button class="btn-icon btn-secondary" title="Status" onclick="cycleStatus(${idx})"><i class="fa-solid fa-arrows-rotate"></i></button>
+                            <button class="btn-icon btn-danger" title="Excluir" onclick="openDeleteModal(${idx})"><i class="fa-solid fa-trash-can"></i></button>
+                        </div>
+                    </td>
+                </tr>`;
+            }).join('');
+
+            // Table info
+            const totalFiltered = filteredData.length;
+            const showing = Math.min(end, totalFiltered);
+            document.getElementById('tableInfo').textContent =
+                `Mostrando ${start + 1}-${showing} de ${totalFiltered} registros (total: ${allData.length})`;
+
+            // Pagination
+            const totalPages = Math.ceil(totalFiltered / pageSize);
+            const pag = document.getElementById('pagination');
+            let pagHTML = '';
+            if (totalPages > 1) {
+                pagHTML += `<button class="page-btn" onclick="goPage(${currentPage - 1})" ${currentPage === 1 ? 'disabled' : ''}><i class="fa-solid fa-chevron-left"></i></button>`;
+                for (let i = 1; i <= totalPages; i++) {
+                    if (totalPages <= 7 || i === 1 || i === totalPages || Math.abs(i - currentPage) <= 1) {
+                        pagHTML += `<button class="page-btn ${i === currentPage ? 'active' : ''}" onclick="goPage(${i})">${i}</button>`;
+                    } else if (Math.abs(i - currentPage) === 2) {
+                        pagHTML += `<button class="page-btn" disabled>...</button>`;
+                    }
+                }
+                pagHTML += `<button class="page-btn" onclick="goPage(${currentPage + 1})" ${currentPage === totalPages ? 'disabled' : ''}><i class="fa-solid fa-chevron-right"></i></button>`;
+            }
+            pag.innerHTML = pagHTML;
+        }
+
+        function goPage(p) {
+            const totalPages = Math.ceil(filteredData.length / pageSize);
+            if (p < 1 || p > totalPages) return;
+            currentPage = p;
+            renderTable();
+        }
+
+        function truncate(str, len) {
+            if (!str) return '-';
+            return str.length > len ? str.substring(0, len) + '...' : str;
+        }
+
+        // ============================================================
+        // KPIs
+        // ============================================================
+        function updateKPIs() {
+            const today = new Date();
+            today.setHours(0, 0, 0, 0);
+            const todayStr = today.toISOString().slice(0, 10);
+
+            document.getElementById('kpiTotal').textContent = allData.length;
+            document.getElementById('kpiToday').textContent = allData.filter(r => r.data === todayStr).length;
+            document.getElementById('kpiTodayDate').textContent = today.toLocaleDateString('pt-BR');
+
+            // Week
+            const weekEnd = new Date(currentWeekStart);
+            weekEnd.setDate(weekEnd.getDate() + 4);
+            const wsStr = formatDateISO(currentWeekStart);
+            const weStr = formatDateISO(weekEnd);
+            const weekCount = allData.filter(r => r.data >= wsStr && r.data <= weStr).length;
+            document.getElementById('kpiWeek').textContent = weekCount;
+
+            // Areas
+            const areas = new Set(allData.map(r => r.area).filter(Boolean));
+            document.getElementById('kpiAreas').textContent = areas.size;
+
+            // Progress
+            const done = allData.filter(r => r.status === 'concluido').length;
+            const pct = allData.length ? Math.round((done / allData.length) * 100) : 0;
+            document.getElementById('kpiProgress').textContent = pct + '%';
+            document.getElementById('kpiProgressBar').style.width = pct + '%';
+        }
+
+        // ============================================================
+        // WEEK SCHEDULE
+        // ============================================================
+        function getMonday(d) {
+            const date = new Date(d);
+            const day = date.getDay();
+            const diff = date.getDate() - day + (day === 0 ? -6 : 1);
+            date.setDate(diff);
+            date.setHours(0, 0, 0, 0);
+            return date;
+        }
+
+        function formatDateISO(d) {
+            return d.toISOString().slice(0, 10);
+        }
+
+        function changeWeek(dir) {
+            currentWeekStart.setDate(currentWeekStart.getDate() + dir * 7);
+            renderWeek();
+            updateKPIs();
+        }
+
+        function renderWeek() {
+            const days = ['Seg', 'Ter', 'Qua', 'Qui', 'Sex'];
+            const grid = document.getElementById('weekGrid');
+            const today = new Date();
+            today.setHours(0, 0, 0, 0);
+
+            const weekEnd = new Date(currentWeekStart);
+            weekEnd.setDate(weekEnd.getDate() + 4);
+            document.getElementById('weekLabel').textContent =
+                `${currentWeekStart.toLocaleDateString('pt-BR', {day:'2-digit',month:'short'})} - ${weekEnd.toLocaleDateString('pt-BR', {day:'2-digit',month:'short'})}`;
+
+            let totalWeek = 0;
+            let doneWeek = 0;
+            let pendingWeek = 0;
+
+            grid.innerHTML = '';
+            for (let i = 0; i < 5; i++) {
+                const d = new Date(currentWeekStart);
+                d.setDate(d.getDate() + i);
+                const dStr = formatDateISO(d);
+                const count = allData.filter(r => r.data === dStr).length;
+                const doneCount = allData.filter(r => r.data === dStr && r.status === 'concluido').length;
+                const isToday = formatDateISO(today) === dStr;
+
+                totalWeek += count;
+                doneWeek += doneCount;
+                pendingWeek += (count - doneCount);
+
+                grid.innerHTML += `
+                    <div class="week-day ${isToday ? 'today' : ''}" onclick="filterByDate('${dStr}')">
+                        <div class="week-day-name">${days[i]}</div>
+                        <div class="week-day-date">${d.getDate().toString().padStart(2, '0')}/${(d.getMonth() + 1).toString().padStart(2, '0')}</div>
+                        <div class="week-day-count">${count}</div>
+                        <div class="week-day-label">troca${count !== 1 ? 's' : ''}</div>
+                    </div>`;
+            }
+
+            document.getElementById('weekStats').innerHTML = `
+                <div class="week-stat-item">
+                    <div class="week-stat-value" style="color:var(--accent)">${totalWeek}</div>
+                    <div class="week-stat-label">Total Semana</div>
+                </div>
+                <div class="week-stat-item">
+                    <div class="week-stat-value" style="color:var(--success)">${doneWeek}</div>
+                    <div class="week-stat-label">Concluídas</div>
+                </div>
+                <div class="week-stat-item">
+                    <div class="week-stat-value" style="color:var(--warning)">${pendingWeek}</div>
+                    <div class="week-stat-label">Pendentes</div>
+                </div>
+            `;
+        }
+
+        function filterByDate(dateStr) {
+            document.getElementById('filterDate').value = dateStr;
+            applyFilters();
+        }
+
+        // ============================================================
+        // CRUD OPERATIONS
+        // ============================================================
+        function openAddModal() {
+            document.getElementById('modalTitle').textContent = 'Adicionar Registro';
+            document.getElementById('editIndex').value = -1;
+            document.getElementById('formCod').value = '';
+            document.getElementById('formPonto').value = '';
+            document.getElementById('formEndereco').value = '';
+            document.getElementById('formArea').value = '';
+            document.getElementById('formModelo').value = 'MONITOR ALL IN ONE 21,5';
+            document.getElementById('formLat').value = '';
+            document.getElementById('formLng').value = '';
+            document.getElementById('formData').value = '';
+            document.getElementById('formStatus').value = 'pendente';
+            document.getElementById('formObs').value = '';
+            openModal('editModal');
+        }
+
+        function openEditModal(idx) {
+            const r = allData[idx];
+            document.getElementById('modalTitle').textContent = 'Editar Registro';
+            document.getElementById('editIndex').value = idx;
+            document.getElementById('formCod').value = r.codPonto || '';
+            document.getElementById('formPonto').value = r.ponto || '';
+            document.getElementById('formEndereco').value = r.endereco || '';
+            document.getElementById('formArea').value = r.area || '';
+            document.getElementById('formModelo').value = r.modelo || '';
+            document.getElementById('formLat').value = r.latitude || '';
+            document.getElementById('formLng').value = r.longitude || '';
+            document.getElementById('formData').value = r.data || '';
+            document.getElementById('formStatus').value = r.status || 'pendente';
+            document.getElementById('formObs').value = r.obs || '';
+            openModal('editModal');
+        }
+
+        function saveRecord() {
+            const idx = parseInt(document.getElementById('editIndex').value);
+            const record = {
+                codPonto: parseInt(document.getElementById('formCod').value) || '',
+                ponto: document.getElementById('formPonto').value,
+                endereco: document.getElementById('formEndereco').value,
+                area: document.getElementById('formArea').value,
+                modelo: document.getElementById('formModelo').value,
+                latitude: parseFloat(document.getElementById('formLat').value) || '',
+                longitude: parseFloat(document.getElementById('formLng').value) || '',
+                data: document.getElementById('formData').value,
+                status: document.getElementById('formStatus').value,
+                obs: document.getElementById('formObs').value
+            };
+
+            if (!record.ponto) {
+                showToast('Preencha o nome do ponto', 'error');
+                return;
+            }
+
+            if (idx >= 0) {
+                record.id = allData[idx].id;
+                allData[idx] = record;
+                recordStatuses[record.id] = record.status;
+                showToast('Registro atualizado com sucesso', 'success');
+            } else {
+                record.id = allData.length ? Math.max(...allData.map(r => r.id)) + 1 : 1;
+                allData.push(record);
+                showToast('Registro adicionado com sucesso', 'success');
+            }
+
+            saveData();
+            localStorage.setItem('noc_statuses', JSON.stringify(recordStatuses));
+            populateFilters();
+            applyFilters();
+            renderWeek();
+            closeModal('editModal');
+        }
+
+        function cycleStatus(idx) {
+            const statuses = ['pendente', 'concluido', 'atrasado'];
+            const current = allData[idx].status || 'pendente';
+            const next = statuses[(statuses.indexOf(current) + 1) % statuses.length];
+            allData[idx].status = next;
+            recordStatuses[allData[idx].id] = next;
+            saveData();
+            localStorage.setItem('noc_statuses', JSON.stringify(recordStatuses));
+            applyFilters();
+            renderWeek();
+            updateKPIs();
+            showToast(`Status alterado para: ${next === 'concluido' ? 'Concluído' : next === 'atrasado' ? 'Atrasado' : 'Pendente'}`, 'info');
+        }
+
+        function openDeleteModal(idx) {
+            deleteTarget = idx;
+            const r = allData[idx];
+            document.getElementById('deleteMsg').textContent =
+                `Deseja realmente excluir o registro "${r.ponto}" (Cód: ${r.codPonto})?`;
+            openModal('deleteModal');
+        }
+
+        function confirmDelete() {
+            if (deleteTarget >= 0) {
+                const removed = allData.splice(deleteTarget, 1);
+                saveData();
+                populateFilters();
+                applyFilters();
+                renderWeek();
+                showToast('Registro excluído com sucesso', 'success');
+            }
+            closeModal('deleteModal');
+            deleteTarget = -1;
+        }
+
+        function deleteSelected() {
+            if (selectedRows.size === 0) return;
+            allData = allData.filter(r => !selectedRows.has(r.id));
+            selectedRows.clear();
+            document.getElementById('selectAll').checked = false;
+            saveData();
+            populateFilters();
+            applyFilters();
+            renderWeek();
+            showToast('Registros selecionados excluídos', 'success');
+        }
+
+        function toggleSelect(id) {
+            if (selectedRows.has(id)) selectedRows.delete(id);
+            else selectedRows.add(id);
+            renderTable();
+        }
+
+        function toggleSelectAll() {
+            const checked = document.getElementById('selectAll').checked;
+            const start = (currentPage - 1) * pageSize;
+            const end = start + pageSize;
+            const pageData = filteredData.slice(start, end);
+            if (checked) {
+                pageData.forEach(r => selectedRows.add(r.id));
+            } else {
+                pageData.forEach(r => selectedRows.delete(r.id));
+            }
+            renderTable();
+        }
+
+        // ============================================================
+        // EXCEL IMPORT/EXPORT
+        // ============================================================
+        function openImportModal() {
+            document.getElementById('importPreview').style.display = 'none';
+            document.getElementById('importBtn').disabled = true;
+            document.getElementById('fileInput').value = '';
+            pendingImport = [];
+            openModal('importModal');
+        }
+
+        function handleFile(file) {
             if (!file) return;
-
             const reader = new FileReader();
-            reader.onload = (e) => {
+            reader.onload = function(e) {
                 try {
-                    const data = new Uint8Array(e.target.result);
-                    const workbook = XLSX.read(data, { type: 'array' });
-                    const firstSheet = workbook.Sheets[workbook.SheetNames[0]];
-                    const jsonData = XLSX.utils.sheet_to_json(firstSheet);
+                    const wb = XLSX.read(e.target.result, {type: 'array', cellDates: true});
+                    const ws = wb.Sheets[wb.SheetNames[0]];
+                    const json = XLSX.utils.sheet_to_json(ws);
 
-                    // Mapear dados do Excel
-                    allData = jsonData.map(row => ({
-                        codigo: row.codigo || row['Código'] || '',
-                        data: row.data || row['Data'] || '',
-                        horario: row.horario || row['Horário'] || '',
-                        area: row.area || row['Área'] || '',
-                        local: row.local || row['Local'] || '',
-                        tecnico: row.tecnico || row['Técnico'] || '',
-                        status: (row.status || row['Status'] || '').toLowerCase(),
-                        latitude: parseFloat(row.latitude || row['Latitude']) || null,
-                        longitude: parseFloat(row.longitude || row['Longitude']) || null
-                    }));
+                    pendingImport = json.map((r, i) => {
+                        let dateVal = '';
+                        const rawDate = r['Data prevista de troca'];
+                        if (rawDate instanceof Date) {
+                            dateVal = rawDate.toISOString().slice(0, 10);
+                        } else if (typeof rawDate === 'string') {
+                            dateVal = rawDate;
+                        }
 
-                    localStorage.setItem('trocaTelas_data', JSON.stringify(allData));
-                    filteredData = [...allData];
-                    
-                    updateTable();
-                    updateMapMarkers();
-                    updateKPIs();
-                    closeModal('import-modal');
-                    showToast(`✅ ${allData.length} registros importados com sucesso!`, 'success');
-                } catch (error) {
-                    showToast('❌ Erro ao importar arquivo: ' + error.message, 'error');
+                        return {
+                            id: (allData.length ? Math.max(...allData.map(d => d.id)) : 0) + i + 1,
+                            codPonto: r['Cód Ponto'] || '',
+                            ponto: r['Ponto'] || '',
+                            endereco: r['Endereço'] || '',
+                            area: r['Área de Trabalho'] || '',
+                            modelo: r['Modelo da Tela'] || '',
+                            latitude: r['latitude'] || '',
+                            longitude: r['longitude'] || '',
+                            data: dateVal,
+                            status: getAutoStatus(dateVal),
+                            obs: ''
+                        };
+                    }).filter(r => r.ponto);
+
+                    document.getElementById('importCount').textContent = pendingImport.length;
+                    const preview = pendingImport.slice(0, 5).map(r =>
+                        `${r.codPonto} - ${r.ponto} (${r.data})`
+                    ).join('<br>');
+                    document.getElementById('importPreviewList').innerHTML = preview +
+                        (pendingImport.length > 5 ? `<br>... e mais ${pendingImport.length - 5} registros` : '');
+                    document.getElementById('importPreview').style.display = 'block';
+                    document.getElementById('importBtn').disabled = false;
+                } catch (err) {
+                    showToast('Erro ao ler arquivo: ' + err.message, 'error');
                 }
             };
             reader.readAsArrayBuffer(file);
         }
 
-        function loadDataFromLocalStorage() {
-            const stored = localStorage.getItem('trocaTelas_data');
-            if (stored) {
-                allData = JSON.parse(stored);
-                filteredData = [...allData];
-                updateTable();
-                updateMapMarkers();
+        function confirmImport() {
+            if (!pendingImport.length) return;
+            allData = pendingImport;
+            saveData();
+            populateFilters();
+            applyFilters();
+            renderWeek();
+            showToast(`${pendingImport.length} registros importados com sucesso`, 'success');
+            closeModal('importModal');
+            pendingImport = [];
+        }
+
+        function exportExcel() {
+            const exportData = filteredData.map(r => ({
+                'Cód Ponto': r.codPonto,
+                'Ponto': r.ponto,
+                'Endereço': r.endereco,
+                'Área de Trabalho': r.area,
+                'Modelo da Tela': r.modelo,
+                'latitude': r.latitude,
+                'longitude': r.longitude,
+                'Data prevista de troca': r.data,
+                'Status': r.status,
+                'Observação': r.obs
+            }));
+
+            const ws = XLSX.utils.json_to_sheet(exportData);
+            const wb = XLSX.utils.book_new();
+            XLSX.utils.book_append_sheet(wb, ws, 'Agenda N2');
+            XLSX.writeFile(wb, 'Agenda_N2_Export.xlsx');
+            showToast('Arquivo exportado com sucesso', 'success');
+        }
+
+        // ============================================================
+        // OBSERVATIONS
+        // ============================================================
+        function renderObs() {
+            const list = document.getElementById('obsList');
+            if (observations.length === 0) {
+                list.innerHTML = '<p style="color:var(--text-muted);font-size:13px;padding:12px 0">Nenhuma observação adicionada.</p>';
+                return;
+            }
+            list.innerHTML = observations.map((o, i) => `
+                <div class="obs-item">
+                    <span class="obs-item-text">${escapeHtml(o.text)}</span>
+                    <span class="obs-item-date">${o.date}</span>
+                    <button class="obs-item-delete" onclick="removeObs(${i})"><i class="fa-solid fa-xmark"></i></button>
+                </div>
+            `).join('');
+        }
+
+        function addObs() {
+            const input = document.getElementById('obsInput');
+            const text = input.value.trim();
+            if (!text) return;
+            observations.unshift({
+                text: text,
+                date: new Date().toLocaleDateString('pt-BR', {day:'2-digit',month:'2-digit',hour:'2-digit',minute:'2-digit'})
+            });
+            localStorage.setItem('noc_obs', JSON.stringify(observations));
+            input.value = '';
+            renderObs();
+            showToast('Observação adicionada', 'success');
+        }
+
+        function removeObs(idx) {
+            observations.splice(idx, 1);
+            localStorage.setItem('noc_obs', JSON.stringify(observations));
+            renderObs();
+        }
+
+        function clearObs() {
+            observations = [];
+            localStorage.setItem('noc_obs', '[]');
+            renderObs();
+            showToast('Observações limpas', 'info');
+        }
+
+        function saveGeneralObs() {
+            generalObs = document.getElementById('obsGeneral').value;
+            localStorage.setItem('noc_general_obs', generalObs);
+            showToast('Observações gerais salvas', 'success');
+        }
+
+        function switchObsTab(tab, el) {
+            document.querySelectorAll('.obs-tab').forEach(t => t.classList.remove('active'));
+            el.classList.add('active');
+            document.getElementById('obsNotesTab').style.display = tab === 'notes' ? 'block' : 'none';
+            document.getElementById('obsGeneralTab').style.display = tab === 'general' ? 'block' : 'none';
+        }
+
+        // ============================================================
+        // MODALS
+        // ============================================================
+        function openModal(id) {
+            document.getElementById(id).classList.add('show');
+        }
+
+        function closeModal(id) {
+            document.getElementById(id).classList.remove('show');
+        }
+
+        // Close modals on overlay click
+        document.addEventListener('click', e => {
+            if (e.target.classList.contains('modal-overlay')) {
+                e.target.classList.remove('show');
+            }
+        });
+
+        // Close modals on Escape
+        document.addEventListener('keydown', e => {
+            if (e.key === 'Escape') {
+                document.querySelectorAll('.modal-overlay.show').forEach(m => m.classList.remove('show'));
+            }
+        });
+
+        // ============================================================
+        // TOAST
+        // ============================================================
+        function showToast(msg, type = 'info') {
+            const container = document.getElementById('toastContainer');
+            const icons = {success: 'fa-check-circle', error: 'fa-times-circle', info: 'fa-info-circle'};
+            const toast = document.createElement('div');
+            toast.className = `toast ${type}`;
+            toast.innerHTML = `<i class="fa-solid ${icons[type] || icons.info}"></i> ${msg}`;
+            container.appendChild(toast);
+            setTimeout(() => {
+                toast.style.opacity = '0';
+                toast.style.transform = 'translateX(100%)';
+                toast.style.transition = 'all 0.3s ease';
+                setTimeout(() => toast.remove(), 300);
+            }, 3000);
+        }
+
+        function escapeHtml(str) {
+            const div = document.createElement('div');
+            div.textContent = str;
+            return div.innerHTML;
+        }
+
+        // ============================================================
+        // MAP (Leaflet)
+        // ============================================================
+        let map = null;
+        let mapMarkers = [];
+        let routeLine = null;
+        let showingRoute = false;
+
+        function initMap() {
+            map = L.map('mapContainer', {
+                zoomControl: true,
+                attributionControl: true
+            }).setView([-23.55, -46.63], 12);
+
+            L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
+                attribution: '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a>',
+                maxZoom: 18
+            }).addTo(map);
+
+            // Set today's date
+            const today = new Date().toISOString().slice(0, 10);
+            document.getElementById('mapDate').value = today;
+
+            // Populate map area filter
+            const areas = [...new Set(allData.map(r => r.area).filter(Boolean))].sort();
+            const sel = document.getElementById('mapAreaFilter');
+            sel.innerHTML = '<option value="">Todas as Áreas</option>';
+            areas.forEach(a => sel.innerHTML += `<option value="${a}">${a}</option>`);
+
+            updateMap();
+        }
+
+        function createCustomIcon(color) {
+            return L.divIcon({
+                className: 'custom-map-marker',
+                html: `<div style="
+                    width: 28px; height: 28px;
+                    background: ${color};
+                    border: 3px solid #fff;
+                    border-radius: 50%;
+                    box-shadow: 0 2px 8px rgba(0,0,0,0.5);
+                    display: flex; align-items: center; justify-content: center;
+                "><i class='fa-solid fa-display' style='color:#fff;font-size:12px'></i></div>`,
+                iconSize: [28, 28],
+                iconAnchor: [14, 14],
+                popupAnchor: [0, -16]
+            });
+        }
+
+        function updateMap() {
+            if (!map) return;
+
+            // Clear existing markers
+            mapMarkers.forEach(m => map.removeLayer(m));
+            mapMarkers = [];
+            if (routeLine) { map.removeLayer(routeLine); routeLine = null; }
+            showingRoute = false;
+            document.getElementById('routeBtn').innerHTML = '<i class="fa-solid fa-route"></i> Mostrar Rota';
+
+            const selectedDate = document.getElementById('mapDate').value;
+            const selectedArea = document.getElementById('mapAreaFilter').value;
+
+            let points = allData.filter(r => {
+                if (!r.latitude || !r.longitude) return false;
+                if (selectedDate && r.data !== selectedDate) return false;
+                if (selectedArea && r.area !== selectedArea) return false;
+                return true;
+            });
+
+            // Add markers
+            const areasOnMap = new Set();
+            points.forEach((r, idx) => {
+                const color = getAreaColor(r.area);
+                areasOnMap.add(r.area);
+                const statusLabel = {pendente: 'Pendente', concluido: 'Concluído', atrasado: 'Atrasado'}[r.status] || 'Pendente';
+                const statusColor = {pendente: 'var(--warning)', concluido: 'var(--success)', atrasado: 'var(--danger)'}[r.status] || '#f59e0b';
+                const dateFormatted = r.data ? new Date(r.data + 'T00:00:00').toLocaleDateString('pt-BR') : '-';
+
+                const marker = L.marker([r.latitude, r.longitude], {
+                    icon: createCustomIcon(color)
+                }).addTo(map);
+
+                marker.bindPopup(`
+                    <div class="popup-title">${r.ponto}</div>
+                    <div class="popup-row"><span class="popup-label">Cód:</span> <span class="popup-value">${r.codPonto}</span></div>
+                    <div class="popup-row"><span class="popup-label">Endereço:</span> <span class="popup-value">${r.endereco}</span></div>
+                    <div class="popup-row"><span class="popup-label">Área:</span> <span class="popup-value"><span style="display:inline-block;width:8px;height:8px;border-radius:50%;background:${color};margin-right:4px"></span>${r.area}</span></div>
+                    <div class="popup-row"><span class="popup-label">Data:</span> <span class="popup-value">${dateFormatted}</span></div>
+                    <div class="popup-row"><span class="popup-label">Status:</span> <span class="popup-value" style="color:${statusColor};font-weight:600">${statusLabel}</span></div>
+                    <div class="popup-row"><span class="popup-label">Modelo:</span> <span class="popup-value">${r.modelo}</span></div>
+                `, {maxWidth: 300});
+
+                marker.pointData = r;
+                mapMarkers.push(marker);
+            });
+
+            // Update stats
+            document.getElementById('mapPointCount').textContent = points.length;
+            document.getElementById('mapAreaCount').textContent = areasOnMap.size;
+            document.getElementById('mapDistance').textContent = points.length > 1 ? calcTotalDistance(points) : '-';
+
+            // Update legend
+            const legend = document.getElementById('mapLegend');
+            legend.innerHTML = '';
+            areasOnMap.forEach(a => {
+                legend.innerHTML += `<div class="map-legend-item"><span class="map-legend-dot" style="background:${getAreaColor(a)}"></span>${a}</div>`;
+            });
+
+            // Fit bounds
+            if (points.length > 0) {
+                fitMapBounds();
             }
         }
 
-        function exportToExcel() {
-            if (allData.length === 0) {
-                showToast('Nenhum dado para exportar', 'info');
+        function fitMapBounds() {
+            if (mapMarkers.length === 0) return;
+            const group = L.featureGroup(mapMarkers);
+            map.fitBounds(group.getBounds().pad(0.15));
+        }
+
+        function toggleRoute() {
+            if (showingRoute) {
+                if (routeLine) { map.removeLayer(routeLine); routeLine = null; }
+                showingRoute = false;
+                document.getElementById('routeBtn').innerHTML = '<i class="fa-solid fa-route"></i> Mostrar Rota';
                 return;
             }
 
-            const worksheet = XLSX.utils.json_to_sheet(allData);
-            const workbook = XLSX.utils.book_new();
-            XLSX.utils.book_append_sheet(workbook, worksheet, 'Dados');
-            XLSX.writeFile(workbook, 'agenda_trocas.xlsx');
-            showToast('✅ Dados exportados com sucesso!', 'success');
-        }
-
-        // ==================== FILTROS E TABELA ====================
-        function filterAndUpdateTable() {
-            const searchTerm = document.getElementById('search-input').value.toLowerCase();
-            const selectedArea = document.getElementById('area-filter').value;
-            const selectedStatus = document.getElementById('status-filter').value;
-
-            filteredData = allData.filter(item => {
-                const matchesSearch = item.codigo.toLowerCase().includes(searchTerm) ||
-                                    item.local.toLowerCase().includes(searchTerm) ||
-                                    item.tecnico.toLowerCase().includes(searchTerm);
-                
-                const matchesArea = !selectedArea || item.area === selectedArea;
-                const matchesStatus = !selectedStatus || item.status === selectedStatus;
-                const matchesDate = !selectedDateForMap || item.data === selectedDateForMap;
-
-                return matchesSearch && matchesArea && matchesStatus && matchesDate;
-            });
-
-            currentPage = 1;
-            updateTable();
-            updateKPIs();
-        }
-
-        function updateTable() {
-            const tableBody = document.getElementById('table-body');
-            tableBody.innerHTML = '';
-
-            const statusBadgeClass = {
-                'pendente': 'status-pendente',
-                'concluido': 'status-concluido',
-                'atrasado': 'status-atrasado'
-            };
-
-            const statusText = {
-                'pendente': 'Pendente',
-                'concluido': 'Concluído',
-                'atrasado': 'Atrasado'
-            };
-
-            const areaColors = {
-                'N/Rádio': '#e8590c',
-                'Fibra Óptica': '#22c55e',
-                'Microondas': '#3b82f6'
-            };
-
-            const start = (currentPage - 1) * itemsPerPage;
-            const end = start + itemsPerPage;
-            const pageData = filteredData.slice(start, end);
-
-            pageData.forEach(item => {
-                const row = document.createElement('tr');
-                row.innerHTML = `
-                    <td class="td-cod">${item.codigo}</td>
-                    <td class="td-date">${item.data}</td>
-                    <td>${item.horario}</td>
-                    <td>
-                        <div class="td-area">
-                            <div class="area-dot" style="background: ${areaColors[item.area] || '#999'};"></div>
-                            ${item.area}
-                        </div>
-                    </td>
-                    <td>${item.local}</td>
-                    <td>${item.tecnico}</td>
-                    <td>
-                        <span class="status-badge ${statusBadgeClass[item.status]}">
-                            <i class="fas fa-circle" style="font-size: 6px;"></i>
-                            ${statusText[item.status] || 'Desconhecido'}
-                        </span>
-                    </td>
-                    <td class="td-actions" style="text-align: center;">
-                        <button class="btn btn-icon" style="background: var(--accent-light); color: var(--accent);" title="Editar">
-                            <i class="fas fa-edit"></i>
-                        </button>
-                        <button class="btn btn-icon" style="background: rgba(239, 68, 68, 0.15); color: var(--danger);" title="Deletar">
-                            <i class="fas fa-trash"></i>
-                        </button>
-                    </td>
-                `;
-                tableBody.appendChild(row);
-            });
-
-            updateTableInfo();
-            updatePagination();
-        }
-
-        function updateTableInfo() {
-            const info = document.getElementById('table-info');
-            info.textContent = `Mostrando ${filteredData.length > 0 ? (currentPage - 1) * itemsPerPage + 1 : 0} a ${Math.min(currentPage * itemsPerPage, filteredData.length)} de ${filteredData.length} registros`;
-        }
-
-        function updatePagination() {
-            const pagination = document.getElementById('pagination');
-            pagination.innerHTML = '';
-            const totalPages = Math.ceil(filteredData.length / itemsPerPage);
-
-            for (let i = 1; i <= totalPages; i++) {
-                const btn = document.createElement('button');
-                btn.className = `page-btn ${i === currentPage ? 'active' : ''}`;
-                btn.textContent = i;
-                btn.onclick = () => {
-                    currentPage = i;
-                    updateTable();
-                    document.querySelector('.table-scroll').scrollTop = 0;
-                };
-                pagination.appendChild(btn);
+            const points = mapMarkers.map(m => m.pointData).filter(r => r.latitude && r.longitude);
+            if (points.length < 2) {
+                showToast('Precisa de pelo menos 2 pontos para traçar rota', 'info');
+                return;
             }
+
+            // Nearest-neighbor greedy route optimization
+            const ordered = nearestNeighborRoute(points);
+            const latlngs = ordered.map(p => [p.latitude, p.longitude]);
+
+            routeLine = L.polyline(latlngs, {
+                color: '#e8590c',
+                weight: 3,
+                opacity: 0.8,
+                dashArray: '8, 8',
+                className: 'route-line'
+            }).addTo(map);
+
+            // Add numbered labels along route
+            ordered.forEach((p, idx) => {
+                const numIcon = L.divIcon({
+                    className: 'route-number',
+                    html: `<div style="
+                        background: #e8590c; color: #fff; width: 20px; height: 20px;
+                        border-radius: 50%; display: flex; align-items: center;
+                        justify-content: center; font-size: 11px; font-weight: 700;
+                        box-shadow: 0 2px 6px rgba(0,0,0,0.4); border: 2px solid #fff;
+                        margin-top: -30px; margin-left: 10px;
+                    ">${idx + 1}</div>`,
+                    iconSize: [20, 20],
+                    iconAnchor: [10, 10]
+                });
+                const numMarker = L.marker([p.latitude, p.longitude], {icon: numIcon, interactive: false}).addTo(map);
+                mapMarkers.push(numMarker);
+            });
+
+            showingRoute = true;
+            document.getElementById('routeBtn').innerHTML = '<i class="fa-solid fa-xmark"></i> Esconder Rota';
+            document.getElementById('mapDistance').textContent = calcTotalDistance(ordered);
+            showToast(`Rota otimizada: ${ordered.length} pontos`, 'success');
         }
 
-        // ==================== KPIs ====================
-        function updateKPIs() {
-            const total = filteredData.length;
-            const pendentes = filteredData.filter(d => d.status === 'pendente').length;
-            const concluidos = filteredData.filter(d => d.status === 'concluido').length;
-            const atrasados = filteredData.filter(d => d.status === 'atrasado').length;
-            const taxa = total > 0 ? Math.round((concluidos / total) * 100) : 0;
+        function nearestNeighborRoute(points) {
+            if (points.length <= 1) return [...points];
+            const remaining = [...points];
+            const route = [remaining.shift()];
 
-            document.getElementById('kpi-total').textContent = total;
-            document.getElementById('kpi-pendentes').textContent = pendentes;
-            document.getElementById('kpi-concluidos').textContent = concluidos;
-            document.getElementById('kpi-atrasados').textContent = atrasados;
-            document.getElementById('kpi-taxa').textContent = taxa + '%';
+            while (remaining.length > 0) {
+                const last = route[route.length - 1];
+                let minDist = Infinity;
+                let nearestIdx = 0;
+                remaining.forEach((p, i) => {
+                    const d = haversine(last.latitude, last.longitude, p.latitude, p.longitude);
+                    if (d < minDist) { minDist = d; nearestIdx = i; }
+                });
+                route.push(remaining.splice(nearestIdx, 1)[0]);
+            }
+            return route;
         }
 
-        // ==================== MODAIS ====================
-        function closeModal(modalId) {
-            document.getElementById(modalId).classList.remove('show');
+        function haversine(lat1, lon1, lat2, lon2) {
+            const R = 6371;
+            const dLat = (lat2 - lat1) * Math.PI / 180;
+            const dLon = (lon2 - lon1) * Math.PI / 180;
+            const a = Math.sin(dLat/2) * Math.sin(dLat/2) +
+                      Math.cos(lat1 * Math.PI / 180) * Math.cos(lat2 * Math.PI / 180) *
+                      Math.sin(dLon/2) * Math.sin(dLon/2);
+            return R * 2 * Math.atan2(Math.sqrt(a), Math.sqrt(1 - a));
         }
 
-        // ==================== ORDENAÇÃO ====================
-        function sortTable(columnIndex) {
-            const headers = document.querySelectorAll('thead th');
-            headers.forEach(h => h.classList.remove('sorted'));
-            headers[columnIndex].classList.add('sorted');
+        function calcTotalDistance(points) {
+            let total = 0;
+            for (let i = 1; i < points.length; i++) {
+                total += haversine(
+                    points[i-1].latitude, points[i-1].longitude,
+                    points[i].latitude, points[i].longitude
+                );
+            }
+            return total < 1 ? `${Math.round(total * 1000)} m` : `${total.toFixed(1)} km`;
         }
 
-        // ==================== UTILIDADES ====================
-        function showToast(message, type = 'info') {
-            const toast = document.createElement('div');
-            toast.className = `toast ${type}`;
-            
-            toast.textContent = message;
-            document.getElementById('toast-container').appendChild(toast);
-
-            setTimeout(() => toast.remove(), 3000);
-        }
+        // ============================================================
+        // INIT
+        // ============================================================
+        init();
+        initMap();
     </script>
 </body>
 </html>
