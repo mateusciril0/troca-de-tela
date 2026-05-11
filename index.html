@@ -1445,7 +1445,7 @@
             <div class="kpi-card">
                 <div class="kpi-label"><i class="fa-solid fa-list-check"></i> Total de Trocas</div>
                 <div class="kpi-value" id="kpiTotal">0</div>
-                <div class="kpi-sub">Programadas no período</div>
+                <div class="kpi-sub">Programadas no perÃ­odo</div>
             </div>
             <div class="kpi-card">
                 <div class="kpi-label"><i class="fa-solid fa-calendar-day"></i> Hoje</div>
@@ -1458,9 +1458,9 @@
                 <div class="kpi-sub">Trocas agendadas</div>
             </div>
             <div class="kpi-card">
-                <div class="kpi-label"><i class="fa-solid fa-map-location-dot"></i> Áreas</div>
+                <div class="kpi-label"><i class="fa-solid fa-map-location-dot"></i> Ãreas</div>
                 <div class="kpi-value" id="kpiAreas">0</div>
-                <div class="kpi-sub">Regiões de atuação</div>
+                <div class="kpi-sub">RegiÃµes de atuaÃ§Ã£o</div>
             </div>
             <div class="kpi-card">
                 <div class="kpi-label"><i class="fa-solid fa-chart-bar"></i> Progresso</div>
@@ -1490,27 +1490,11 @@
             <!-- OBSERVATIONS -->
             <div class="panel">
                 <div class="panel-header">
-                    <div class="panel-title"><i class="fa-solid fa-clipboard-list"></i> Observações & Notas</div>
-                    <button class="btn btn-sm btn-secondary" onclick="clearObs()"><i class="fa-solid fa-trash-can"></i> Limpar</button>
+                    <div class="panel-title"><i class="fa-solid fa-clipboard-list"></i> Observacoes dos Pendentes</div>
+                    <button class="btn btn-sm btn-secondary" onclick="renderObs()"><i class="fa-solid fa-rotate"></i> Atualizar</button>
                 </div>
                 <div class="panel-body">
-                    <div class="obs-tabs">
-                        <button class="obs-tab active" onclick="switchObsTab('notes', this)">Notas Rápidas</button>
-                        <button class="obs-tab" onclick="switchObsTab('general', this)">Observações Gerais</button>
-                    </div>
-                    <div id="obsNotesTab">
-                        <div class="obs-list" id="obsList"></div>
-                        <div class="obs-add-row">
-                            <input type="text" id="obsInput" placeholder="Adicionar nova observação..." onkeydown="if(event.key==='Enter')addObs()">
-                            <button class="btn btn-sm btn-primary" onclick="addObs()"><i class="fa-solid fa-plus"></i></button>
-                        </div>
-                    </div>
-                    <div id="obsGeneralTab" style="display:none">
-                        <textarea class="obs-textarea" id="obsGeneral" placeholder="Escreva observações gerais sobre o período de trocas..."></textarea>
-                        <div class="obs-actions">
-                            <button class="btn btn-sm btn-primary" onclick="saveGeneralObs()"><i class="fa-solid fa-floppy-disk"></i> Salvar</button>
-                        </div>
-                    </div>
+                    <div class="obs-list" id="obsList"></div>
                 </div>
             </div>
         </div>
@@ -1519,11 +1503,11 @@
         <div class="map-section">
             <div class="map-panel">
                 <div class="panel-header">
-                    <div class="panel-title"><i class="fa-solid fa-map-location-dot"></i> Mapa de Chamados — Otimização de Rota</div>
+                    <div class="panel-title"><i class="fa-solid fa-map-location-dot"></i> Mapa de Chamados â€” OtimizaÃ§Ã£o de Rota</div>
                     <div class="map-controls">
                         <input type="date" class="map-date-input" id="mapDate" onchange="syncDateFromMap()">
                         <select class="filter-select" id="mapAreaFilter" onchange="updateMap()" style="min-width:150px;padding:8px 12px;font-size:12px">
-                            <option value="">Todas as Áreas</option>
+                            <option value="">Todas as Ãreas</option>
                         </select>
                         <button class="btn btn-sm btn-secondary" onclick="fitMapBounds()" title="Centralizar mapa"><i class="fa-solid fa-expand"></i> Centralizar</button>
                         <button class="btn btn-sm btn-primary" onclick="toggleRoute()" id="routeBtn"><i class="fa-solid fa-route"></i> Mostrar Rota</button>
@@ -1533,8 +1517,8 @@
                 <div class="map-info-bar">
                     <div class="map-stats">
                         <div class="map-stat"><i class="fa-solid fa-location-dot"></i> <span class="map-stat-value" id="mapPointCount">0</span>&nbsp;pontos no mapa</div>
-                        <div class="map-stat"><i class="fa-solid fa-ruler"></i> Distância estimada: <span class="map-stat-value" id="mapDistance">-</span></div>
-                        <div class="map-stat"><i class="fa-solid fa-map-pin"></i> <span class="map-stat-value" id="mapAreaCount">0</span>&nbsp;áreas</div>
+                        <div class="map-stat"><i class="fa-solid fa-ruler"></i> DistÃ¢ncia estimada: <span class="map-stat-value" id="mapDistance">-</span></div>
+                        <div class="map-stat"><i class="fa-solid fa-map-pin"></i> <span class="map-stat-value" id="mapAreaCount">0</span>&nbsp;Ã¡reas</div>
                     </div>
                     <div class="map-legend" id="mapLegend"></div>
                 </div>
@@ -1546,10 +1530,10 @@
             <div class="toolbar-left">
                 <div class="search-box">
                     <i class="fa-solid fa-magnifying-glass"></i>
-                    <input type="text" id="searchInput" placeholder="Buscar por ponto, endereço, código..." oninput="applyFilters()">
+                    <input type="text" id="searchInput" placeholder="Buscar por ponto, endereÃ§o, cÃ³digo..." oninput="applyFilters()">
                 </div>
                 <select class="filter-select" id="filterArea" onchange="applyFilters()">
-                    <option value="">Todas as Áreas</option>
+                    <option value="">Todas as Ãreas</option>
                 </select>
                 <select class="filter-select" id="filterDate" onchange="syncDateFromTable()">
                     <option value="">Todas as Datas</option>
@@ -1557,7 +1541,7 @@
                 <select class="filter-select" id="filterStatus" onchange="applyFilters()">
                     <option value="">Todos os Status</option>
                     <option value="pendente">Pendente</option>
-                    <option value="concluido">Concluído</option>
+                    <option value="concluido">ConcluÃ­do</option>
                     <option value="atrasado">Atrasado</option>
                 </select>
             </div>
@@ -1575,14 +1559,14 @@
                     <thead>
                         <tr>
                             <th style="width:40px"><input type="checkbox" class="custom-checkbox" id="selectAll" onchange="toggleSelectAll()"></th>
-                            <th onclick="sortTable('codPonto')">Cód Ponto <i class="fa-solid fa-sort sort-icon"></i></th>
+                            <th onclick="sortTable('codPonto')">CÃ³d Ponto <i class="fa-solid fa-sort sort-icon"></i></th>
                             <th onclick="sortTable('ponto')">Ponto <i class="fa-solid fa-sort sort-icon"></i></th>
-                            <th onclick="sortTable('endereco')">Endereço <i class="fa-solid fa-sort sort-icon"></i></th>
-                            <th onclick="sortTable('area')">Área de Trabalho <i class="fa-solid fa-sort sort-icon"></i></th>
+                            <th onclick="sortTable('endereco')">EndereÃ§o <i class="fa-solid fa-sort sort-icon"></i></th>
+                            <th onclick="sortTable('area')">Ãrea de Trabalho <i class="fa-solid fa-sort sort-icon"></i></th>
                             <th onclick="sortTable('modelo')">Modelo da Tela <i class="fa-solid fa-sort sort-icon"></i></th>
                             <th onclick="sortTable('data')">Data Prevista <i class="fa-solid fa-sort sort-icon"></i></th>
                             <th>Status</th>
-                            <th style="width:120px">Ações</th>
+                            <th style="width:120px">AÃ§Ãµes</th>
                         </tr>
                     </thead>
                     <tbody id="tableBody"></tbody>
@@ -1606,7 +1590,7 @@
             <div class="modal-body">
                 <input type="hidden" id="editIndex" value="-1">
                 <div class="form-group">
-                    <label class="form-label">Cód Ponto</label>
+                    <label class="form-label">CÃ³d Ponto</label>
                     <input type="number" class="form-input" id="formCod" placeholder="Ex: 14335">
                 </div>
                 <div class="form-group">
@@ -1614,12 +1598,12 @@
                     <input type="text" class="form-input" id="formPonto" placeholder="Nome do ponto">
                 </div>
                 <div class="form-group">
-                    <label class="form-label">Endereço</label>
-                    <input type="text" class="form-input" id="formEndereco" placeholder="Endereço completo">
+                    <label class="form-label">EndereÃ§o</label>
+                    <input type="text" class="form-input" id="formEndereco" placeholder="EndereÃ§o completo">
                 </div>
                 <div class="form-row">
                     <div class="form-group">
-                        <label class="form-label">Área de Trabalho</label>
+                        <label class="form-label">Ãrea de Trabalho</label>
                         <input type="text" class="form-input" id="formArea" placeholder="Ex: SUL - 1 - SP">
                     </div>
                     <div class="form-group">
@@ -1646,14 +1630,14 @@
                         <label class="form-label">Status</label>
                         <select class="form-input" id="formStatus">
                             <option value="pendente">Pendente</option>
-                            <option value="concluido">Concluído</option>
+                            <option value="concluido">ConcluÃ­do</option>
                             <option value="atrasado">Atrasado</option>
                         </select>
                     </div>
                 </div>
                 <div class="form-group">
-                    <label class="form-label">Observação</label>
-                    <textarea class="form-input" id="formObs" rows="2" placeholder="Observações sobre esta troca (opcional)"></textarea>
+                    <label class="form-label">ObservaÃ§Ã£o</label>
+                    <textarea class="form-input" id="formObs" rows="2" placeholder="ObservaÃ§Ãµes sobre esta troca (opcional)"></textarea>
                 </div>
             </div>
             <div class="modal-footer">
@@ -1695,7 +1679,7 @@
             <div class="modal-body">
                 <div class="confirm-dialog">
                     <i class="fa-solid fa-triangle-exclamation"></i>
-                    <h3 style="margin-bottom:8px">Confirmar Exclusão</h3>
+                    <h3 style="margin-bottom:8px">Confirmar ExclusÃ£o</h3>
                     <p id="deleteMsg">Deseja realmente excluir este registro?</p>
                     <div class="btn-row">
                         <button class="btn btn-secondary" onclick="closeModal('deleteModal')">Cancelar</button>
@@ -1782,6 +1766,7 @@
         let sheetsUrl = localStorage.getItem('noc_sheets_url') || '';
         let sheetsConnected = false;
         let isSyncing = false;
+        let autoSyncTimer = null;
  
         function setSyncStatus(status, text) {
             const el = document.getElementById('syncIndicator');
@@ -1900,6 +1885,17 @@
             if (m) return m[3] + '/' + m[2] + '/' + m[1];
             return str;
         }
+
+        function normalizeStatusValue(value) {
+            var status = String(value || 'pendente')
+                .normalize('NFD')
+                .replace(/[\u0300-\u036f]/g, '')
+                .toLowerCase()
+                .trim();
+            if (status.includes('conclu')) return 'concluido';
+            if (status.includes('atras')) return 'atrasado';
+            return 'pendente';
+        }
  
         function findField(r, names) {
             for (var i = 0; i < names.length; i++) {
@@ -1907,41 +1903,72 @@
             }
             // Fallback: search keys case-insensitively
             var keys = Object.keys(r);
+            function normKey(v) { return String(v || '').normalize('NFD').replace(/[\u0300-\u036f]/g, '').toLowerCase(); }
             for (var i = 0; i < names.length; i++) {
-                var lower = names[i].toLowerCase();
+                var lower = normKey(names[i]);
                 for (var j = 0; j < keys.length; j++) {
-                    if (keys[j].toLowerCase() === lower) return r[keys[j]];
+                    if (normKey(keys[j]) === lower) return r[keys[j]];
                 }
             }
             // Partial match fallback
             for (var i = 0; i < names.length; i++) {
-                var lower = names[i].toLowerCase();
+                var lower = normKey(names[i]);
                 for (var j = 0; j < keys.length; j++) {
-                    if (keys[j].toLowerCase().includes(lower) || lower.includes(keys[j].toLowerCase())) return r[keys[j]];
+                    var keyLower = normKey(keys[j]);
+                    if (keyLower.includes(lower) || lower.includes(keyLower)) return r[keys[j]];
                 }
             }
             return '';
         }
+
+        function findFieldByColumn(r, index) {
+            if (Array.isArray(r)) return r[index] || '';
+
+            var directKeys = [
+                'col' + index,
+                'col' + (index + 1),
+                'Column ' + (index + 1),
+                String(index),
+                String(index + 1)
+            ];
+
+            for (var i = 0; i < directKeys.length; i++) {
+                if (r[directKeys[i]] !== undefined && r[directKeys[i]] !== '') return r[directKeys[i]];
+            }
+
+            var keys = Object.keys(r).filter(k => k !== '_row');
+            return keys[index] !== undefined ? r[keys[index]] : '';
+        }
+
+        function getSheetStatus(r) {
+            return findField(r, ['Status', 'status', 'Situacao', 'SituaÃ§Ã£o']) || findFieldByColumn(r, 8);
+        }
+
+        function getSheetObservation(r) {
+            return findField(r, ['Observacao', 'ObservaÃ§Ã£o', 'observacao', 'Obs', 'destino da observacao', 'destino da observaÃ§Ã£o']) || findFieldByColumn(r, 9);
+        }
  
         function mapSheetRow(r) {
-            var lat = findField(r, ['latitude', 'Latitude', 'lat']);
-            var lng = findField(r, ['longitude', 'Longitude', 'lng', 'long']);
+            var lat = findField(r, ['latitude', 'Latitude', 'lat']) || findFieldByColumn(r, 5);
+            var lng = findField(r, ['longitude', 'Longitude', 'lng', 'long']) || findFieldByColumn(r, 6);
             if (lat) lat = parseFloat(lat) || '';
             if (lng) lng = parseFloat(lng) || '';
-            var rawDate = findField(r, ['Data prevista de troca', 'Data Prevista de Troca', 'data prevista de troca', 'Data prevista', 'data']);
+            var rawDate = findField(r, ['Data prevista de troca', 'Data Prevista de Troca', 'data prevista de troca', 'Data prevista', 'data']) || findFieldByColumn(r, 7);
+            var dateValue = normalizeDate(rawDate);
+            var rawStatus = getSheetStatus(r);
             return {
                 id: r['_row'] || 0,
                 _row: r['_row'] || 0,
-                codPonto: findField(r, ['Cód Ponto', 'Cod Ponto', 'cod ponto', 'CodPonto']),
-                ponto: findField(r, ['Ponto', 'ponto']),
-                endereco: findField(r, ['Endereço', 'Endereco', 'endereco']),
-                area: findField(r, ['Área de Trabalho', 'Area de Trabalho', 'area de trabalho']),
-                modelo: findField(r, ['Modelo da Tela', 'modelo da tela']),
+                codPonto: findField(r, ['codPonto', 'CÃ³d Ponto', 'Cod Ponto', 'cod ponto', 'CodPonto']) || findFieldByColumn(r, 0),
+                ponto: findField(r, ['ponto', 'Ponto']) || findFieldByColumn(r, 1),
+                endereco: findField(r, ['endereco', 'EndereÃ§o', 'Endereco']) || findFieldByColumn(r, 2),
+                area: findField(r, ['area', 'Ãrea de Trabalho', 'Area de Trabalho', 'area de trabalho']) || findFieldByColumn(r, 3),
+                modelo: findField(r, ['modelo', 'Modelo da Tela', 'modelo da tela']) || findFieldByColumn(r, 4),
                 latitude: lat,
                 longitude: lng,
-                data: normalizeDate(rawDate),
-                status: (findField(r, ['Status', 'status']) || 'pendente').toLowerCase().trim(),
-                obs: findField(r, ['Observação', 'Observacao', 'observacao', 'Obs'])
+                data: dateValue,
+                status: rawStatus ? normalizeStatusValue(rawStatus) : getAutoStatus(dateValue),
+                obs: getSheetObservation(r)
             };
         }
  
@@ -1985,6 +2012,7 @@
                     payload.record.data = toSheetsDate(payload.record.data);
                 }
                 await sheetsRequest(action, payload);
+                await forceSync(true);
                 setSyncStatus('synced', 'Google Sheets');
             } catch (err) {
                 setSyncStatus('error', 'Erro ao salvar');
@@ -2021,11 +2049,8 @@
                     statusEl.className = 'config-status success';
                     statusEl.textContent = 'Conectado com sucesso! ' + allData.length + ' registros carregados do Sheets.';
                     updateConfigUI();
-                    populateFilters();
-                    applyFilters();
-                    renderWeek();
-                    updateKPIs();
-                    if (typeof updateMap === 'function') updateMap();
+                    setupAutoSync();
+                    refreshViews();
                 } else {
                     statusEl.className = 'config-status error';
                     statusEl.textContent = 'Falha ao conectar. Verifique a URL e tente novamente.';
@@ -2040,23 +2065,40 @@
             localStorage.removeItem('noc_sheets_url');
             sheetsUrl = '';
             sheetsConnected = false;
+            if (autoSyncTimer) clearInterval(autoSyncTimer);
             document.getElementById('configStatus').className = 'config-status';
             document.getElementById('sheetsUrlInput').value = '';
             updateConfigUI();
             showToast('Google Sheets desconectado. Usando dados locais.', 'info');
         }
  
-        async function forceSync() {
+        function refreshViews() {
+            populateFilters();
+            applyFilters();
+            renderWeek();
+            updateKPIs();
+            renderObs();
+            if (typeof updateMap === 'function') updateMap();
+        }
+
+        async function forceSync(silent) {
             if (!sheetsUrl) return;
             const ok = await loadFromSheets();
             if (ok) {
-                populateFilters();
-                applyFilters();
-                renderWeek();
-                updateKPIs();
-                if (typeof updateMap === 'function') updateMap();
-                showToast('Dados sincronizados do Google Sheets (' + allData.length + ' registros)', 'success');
+                refreshViews();
+                if (!silent) showToast('Dados sincronizados do Google Sheets (' + allData.length + ' registros)', 'success');
             }
+        }
+
+        function setupAutoSync() {
+            if (autoSyncTimer) clearInterval(autoSyncTimer);
+            if (!sheetsUrl) return;
+
+            autoSyncTimer = setInterval(() => {
+                if (sheetsConnected && !isSyncing && !document.hidden) {
+                    forceSync(true);
+                }
+            }, 60000);
         }
  
         async function pushToSheets() {
@@ -2069,6 +2111,7 @@
                     return copy;
                 });
                 await sheetsRequest('sync', { records: converted });
+                await forceSync(true);
                 setSyncStatus('synced', 'Google Sheets');
                 showToast('Dados enviados para o Google Sheets com sucesso!', 'success');
             } catch (err) {
@@ -2096,7 +2139,7 @@
         // ============================================================
         // INITIAL DATA (embedded from Excel)
         // ============================================================
-        const INITIAL_DATA = [{"Cód Ponto": 14335, "Ponto": "Ville de Nivelles", "Endereço": "Rua Estero Belaco, 407, Vila da Saúde, São Paulo", "Área de Trabalho": "SUL - 1 - SP", "Modelo da Tela": "MONITOR ALL IN ONE 21,5", "latitude": -23.6174615, "longitude": -46.6317325, "Data prevista de troca": "2026-05-06"}, {"Cód Ponto": 14714, "Ponto": "Ambience", "Endereço": "Avenida Camilo Castelo Branco, 55, Vila Gumercindo, São Paulo", "Área de Trabalho": "SUL - 1 - SP", "Modelo da Tela": "MONITOR ALL IN ONE 21,5", "latitude": -23.6050377, "longitude": -46.6204543, "Data prevista de troca": "2026-05-06"}, {"Cód Ponto": 32702, "Ponto": "Soleil Vila Mariana - Saint Tropez", "Endereço": "Rua Pelotas, 209, Vila Mariana, São Paulo", "Área de Trabalho": "SUL - 1 - SP", "Modelo da Tela": "MONITOR ALL IN ONE 21,5", "latitude": -23.5820661, "longitude": -46.6446223, "Data prevista de troca": "2026-05-06"}, {"Cód Ponto": 19907, "Ponto": "Darius Milhaud", "Endereço": "Rua Faustolo, 645, Água Branca, São Paulo", "Área de Trabalho": "OESTE - 1 - SP", "Modelo da Tela": "MONITOR ALL IN ONE 21,5", "latitude": -23.5240356, "longitude": -46.6912341, "Data prevista de troca": "2026-05-07"}, {"Cód Ponto": 6043, "Ponto": "Ccc - Casa das Caldeiras", "Endereço": "Avenida Francisco Matarazzo, 1752, Água Branca, São Paulo", "Área de Trabalho": "OESTE - 1 - SP", "Modelo da Tela": "MONITOR ALL IN ONE 21,5", "latitude": -23.5257073, "longitude": -46.6794962, "Data prevista de troca": "2026-05-07"}, {"Cód Ponto": 19908, "Ponto": "Villa Marchetti", "Endereço": "Avenida Mercedes, 203, Alto da Lapa, São Paulo", "Área de Trabalho": "OESTE - 1 - SP", "Modelo da Tela": "MONITOR ALL IN ONE 21,5", "latitude": -23.5225206, "longitude": -46.7122289, "Data prevista de troca": "2026-05-07"}, {"Cód Ponto": 14661, "Ponto": "Palm Offices", "Endereço": "Rua Cayowaá, 759, Perdizes, São Paulo", "Área de Trabalho": "OESTE - 1 - SP", "Modelo da Tela": "MONITOR ALL IN ONE 21,5", "latitude": -23.5352935, "longitude": -46.6815871, "Data prevista de troca": "2026-05-07"}, {"Cód Ponto": 14607, "Ponto": "Fontana Di Trevi - Andréa", "Endereço": "Rua Doutor Clementino, 456, Belenzinho, São Paulo", "Área de Trabalho": "LESTE - 1 - SP", "Modelo da Tela": "MONITOR ALL IN ONE 21,5", "latitude": -23.5411981, "longitude": -46.5916333, "Data prevista de troca": "2026-05-08"}, {"Cód Ponto": 33095, "Ponto": "Portale della Mooca - Torre Siena", "Endereço": "Rua Dias Leme, 123, Mooca, São Paulo", "Área de Trabalho": "LESTE - 1 - SP", "Modelo da Tela": "MONITOR ALL IN ONE 21,5", "latitude": -23.5603075, "longitude": -46.5949206, "Data prevista de troca": "2026-05-08"}, {"Cód Ponto": 19878, "Ponto": "Portal do Tatuapé - Rio Negro", "Endereço": "Rua Ulisses Cruz, 579, Tatuapé, São Paulo", "Área de Trabalho": "LESTE - 1 - SP", "Modelo da Tela": "MONITOR ALL IN ONE 21,5", "latitude": -23.5318455, "longitude": -46.5812679, "Data prevista de troca": "2026-05-08"}, {"Cód Ponto": 27615, "Ponto": "Edifício Arthur", "Endereço": "Rua Amazonas, 140, Vila Galvão, Guarulhos", "Área de Trabalho": "Guarulhos - SP", "Modelo da Tela": "MONITOR ALL IN ONE 21,5", "latitude": -23.4531253, "longitude": -46.5566706, "Data prevista de troca": "2026-05-11"}, {"Cód Ponto": 28429, "Ponto": "Monte Líbano", "Endereço": "Rua Soldado Brasílio Pinto de Almeida, 85, Vila Almeida, Guarulhos", "Área de Trabalho": "Guarulhos - SP", "Modelo da Tela": "MONITOR ALL IN ONE 21,5", "latitude": -23.4714446, "longitude": -46.5327929, "Data prevista de troca": "2026-05-11"}, {"Cód Ponto": 28779, "Ponto": "Residencial Milano", "Endereço": "Rua São Ludgero, 33, Jardim do Triunfo, Guarulhos", "Área de Trabalho": "Guarulhos - SP", "Modelo da Tela": "MONITOR ALL IN ONE 21,5", "latitude": -23.4092107, "longitude": -46.4019699, "Data prevista de troca": "2026-05-11"}, {"Cód Ponto": 21585, "Ponto": "Altos do Butantã - Torre A", "Endereço": "Avenida Nossa Senhora da Assunção, 647, Vila Butantã, São Paulo", "Área de Trabalho": "Osasco - SP", "Modelo da Tela": "MONITOR ALL IN ONE 21,5", "latitude": -23.5706525, "longitude": -46.7447017, "Data prevista de troca": "2026-05-12"}, {"Cód Ponto": 33552, "Ponto": "Condomínio Chapecó - Torre B", "Endereço": "Rodovia Raposo Tavares, 8312, Jardim Boa Vista (Zona Oeste), São Paulo", "Área de Trabalho": "Osasco - SP", "Modelo da Tela": "MONITOR ALL IN ONE 21,5", "latitude": -23.582975, "longitude": -46.7964138, "Data prevista de troca": "2026-05-12"}, {"Cód Ponto": 12944, "Ponto": "Flex Osasco I - Torre 1", "Endereço": "Via Transversal Sul, 169, Novo Osasco, Osasco", "Área de Trabalho": "Osasco - SP", "Modelo da Tela": "MONITOR ALL IN ONE 21,5", "latitude": -23.57843, "longitude": -46.79485, "Data prevista de troca": "2026-05-12"}, {"Cód Ponto": 41631, "Ponto": "Garden São Francisco - Torre Royal", "Endereço": "Rua Doutor Paulo Ferraz da Costa Aguiar, 1418, Vila Yara, Osasco", "Área de Trabalho": "Osasco - SP", "Modelo da Tela": "MONITOR ALL IN ONE 21,5", "latitude": -23.5547475, "longitude": -46.7630573, "Data prevista de troca": "2026-05-12"}, {"Cód Ponto": 14075, "Ponto": "Parque da Cidade - Jequitiba - Hall", "Endereço": "Avenida das Nações Unidas, 14401, Vila Gertrudes, São Paulo", "Área de Trabalho": "SANTO AMARO - SP", "Modelo da Tela": "MONITOR ALL IN ONE 21,5", "latitude": -23.6248774, "longitude": -46.7065507, "Data prevista de troca": "2026-05-13"}, {"Cód Ponto": 27198, "Ponto": "Portal Marajoara - Boracéia", "Endereço": "Rua Geraldo de Mendonça Mello, 280, Vila Isa, São Paulo", "Área de Trabalho": "SANTO AMARO - SP", "Modelo da Tela": "MONITOR ALL IN ONE 21,5", "latitude": -23.6704562, "longitude": -46.6903952, "Data prevista de troca": "2026-05-13"}, {"Cód Ponto": 9023, "Ponto": "Residencial Interlagos - Fênix 05", "Endereço": "Avenida Interlagos, 871, Jardim Umuarama, São Paulo", "Área de Trabalho": "SANTO AMARO - SP", "Modelo da Tela": "MONITOR ALL IN ONE 21,5", "latitude": -23.6624342, "longitude": -46.6789504, "Data prevista de troca": "2026-05-13"}, {"Cód Ponto": 41055, "Ponto": "Residencial Need Campo Belo", "Endereço": "Rua João Álvares Soares, 1512, Campo Belo, São Paulo", "Área de Trabalho": "SANTO AMARO - SP", "Modelo da Tela": "MONITOR ALL IN ONE 21,5", "latitude": -23.6203998, "longitude": -46.6701218, "Data prevista de troca": "2026-05-13"}, {"Cód Ponto": 44158, "Ponto": "Edifício Indaiá", "Endereço": "Alameda Sarutaiá, 96, Jardim Paulista, São Paulo", "Área de Trabalho": "Paulista / Jardins - SP", "Modelo da Tela": "MONITOR ALL IN ONE 21,5", "latitude": -23.5702145, "longitude": -46.6528008, "Data prevista de troca": "2026-05-14"}, {"Cód Ponto": 29205, "Ponto": "Edifício Sobradão - Bloco A", "Endereço": "Rua Bela Cintra, 1744, Consolação, São Paulo", "Área de Trabalho": "Paulista / Jardins - SP", "Modelo da Tela": "MONITOR ALL IN ONE 21,5", "latitude": -23.5603262, "longitude": -46.6665745, "Data prevista de troca": "2026-05-14"}, {"Cód Ponto": 31705, "Ponto": "Edifício Supremus - Torre 1", "Endereço": "Rua Convenção de Itu, 57, Jardim Paulista, São Paulo", "Área de Trabalho": "Paulista / Jardins - SP", "Modelo da Tela": "MONITOR ALL IN ONE 21,5", "latitude": -23.5652386, "longitude": -46.656972, "Data prevista de troca": "2026-05-14"}, {"Cód Ponto": 59696, "Ponto": "Edifício Juliana", "Endereço": "Rua Nebraska, 189, Brooklin Novo, São Paulo", "Área de Trabalho": "Faria Lima / Itaim Bibi - SP", "Modelo da Tela": "MONITOR ALL IN ONE 21,5", "latitude": -2.36120227999999e+16, "longitude": -4.66797169e+16, "Data prevista de troca": "2026-05-15"}, {"Cód Ponto": 225, "Ponto": "Joaquim Floriano 913", "Endereço": "Rua Joaquim Floriano, 913, Itaim Bibi, São Paulo", "Área de Trabalho": "Faria Lima / Itaim Bibi - SP", "Modelo da Tela": "MONITOR ALL IN ONE 21,5", "latitude": -23.5857298, "longitude": -46.6788337, "Data prevista de troca": "2026-05-15"}, {"Cód Ponto": 44064, "Ponto": "Maison Royale", "Endereço": "Rua Tuim, 484, Vila Uberabinha, São Paulo", "Área de Trabalho": "Faria Lima / Itaim Bibi - SP", "Modelo da Tela": "MONITOR ALL IN ONE 21,5", "latitude": -23.6008189, "longitude": -46.6698248, "Data prevista de troca": "2026-05-15"}, {"Cód Ponto": 186, "Ponto": "New Century", "Endereço": "Rua Leopoldo Couto de Magalhães Júnior, 758, Itaim Bibi, São Paulo", "Área de Trabalho": "Faria Lima / Itaim Bibi - SP", "Modelo da Tela": "MONITOR ALL IN ONE 21,5", "latitude": -23.588151, "longitude": -46.68042, "Data prevista de troca": "2026-05-15"}, {"Cód Ponto": 41672, "Ponto": "Condomínio Edifício São Paulo", "Endereço": "Rua São Paulo, 671, Cerâmica, São Caetano do Sul", "Área de Trabalho": "Grande ABC - SP", "Modelo da Tela": "MONITOR ALL IN ONE 21,5", "latitude": -23.6219456, "longitude": -46.5748616, "Data prevista de troca": "2026-05-18"}, {"Cód Ponto": 40610, "Ponto": "Double deck Residence Tower", "Endereço": "Rua Amazonas, 1205, Osvaldo Cruz, São Caetano do Sul", "Área de Trabalho": "Grande ABC - SP", "Modelo da Tela": "MONITOR ALL IN ONE 21,5", "latitude": -23.6215557, "longitude": -46.5692461, "Data prevista de troca": "2026-05-18"}, {"Cód Ponto": 8689, "Ponto": "Due Belle - Asti", "Endereço": "Rua Luís Louza, 181, Olímpico, São Caetano do Sul", "Área de Trabalho": "Grande ABC - SP", "Modelo da Tela": "MONITOR ALL IN ONE 21,5", "latitude": -23.6235266, "longitude": -46.5628106, "Data prevista de troca": "2026-05-18"}, {"Cód Ponto": 33613, "Ponto": "Edifício Elizabeth", "Endereço": "Rua Rio Branco, 477, Centro, São Bernardo do Campo", "Área de Trabalho": "Grande ABC - SP", "Modelo da Tela": "MONITOR ALL IN ONE 21,5", "latitude": -23.7075091, "longitude": -46.5497742, "Data prevista de troca": "2026-05-18"}, {"Cód Ponto": 7516, "Ponto": "Absoluto 1", "Endereço": "Rua Marina Crespi, 274, Mooca, São Paulo", "Área de Trabalho": "LESTE - 1 - SP", "Modelo da Tela": "MONITOR ALL IN ONE 21,5", "latitude": -23.5574432, "longitude": -46.6046938, "Data prevista de troca": "2026-05-19"}, {"Cód Ponto": 7515, "Ponto": "Absoluto 2", "Endereço": "Rua Marina Crespi, 274, Mooca, São Paulo", "Área de Trabalho": "LESTE - 1 - SP", "Modelo da Tela": "MONITOR ALL IN ONE 21,5", "latitude": -23.5574432, "longitude": -46.6046938, "Data prevista de troca": "2026-05-19"}, {"Cód Ponto": 33705, "Ponto": "Condominio Habitacional Bresser II - Torre 2", "Endereço": "Rua Visconde de Parnaíba, 1501, Mooca, São Paulo", "Área de Trabalho": "LESTE - 1 - SP", "Modelo da Tela": "MONITOR ALL IN ONE 21,5", "latitude": -23.5478934, "longitude": -46.6114901, "Data prevista de troca": "2026-05-19"}, {"Cód Ponto": 59804, "Ponto": "Condominio Projeto Viver Celso Garcia - Torre Arara", "Endereço": "Avenida Celso Garcia, 1907, Brás, São Paulo", "Área de Trabalho": "LESTE - 1 - SP", "Modelo da Tela": "MONITOR ALL IN ONE 21,5", "latitude": -235374245.0, "longitude": -4.65943526e+16, "Data prevista de troca": "2026-05-19"}, {"Cód Ponto": 33708, "Ponto": "Condomínio Ares Santana", "Endereço": "Rua Engenheiro Mac Lean, 427, Santana, São Paulo", "Área de Trabalho": "NORTE - 1 - SP", "Modelo da Tela": "MONITOR ALL IN ONE 21,5", "latitude": -23.4981289, "longitude": -46.6358907, "Data prevista de troca": "2026-05-20"}, {"Cód Ponto": 34725, "Ponto": "Condomínio Bay Vista", "Endereço": "Rua Manuel de Almeida, 307, Vila Paiva, São Paulo", "Área de Trabalho": "NORTE - 1 - SP", "Modelo da Tela": "MONITOR ALL IN ONE 21,5", "latitude": -23.5060399, "longitude": -46.6023707, "Data prevista de troca": "2026-05-20"}, {"Cód Ponto": 39950, "Ponto": "Edifício Joan Miró", "Endereço": "Rua Soror Angélica, 521, Vila Ester (Zona Norte), São Paulo", "Área de Trabalho": "NORTE - 1 - SP", "Modelo da Tela": "MONITOR ALL IN ONE 21,5", "latitude": -23.5030602, "longitude": -46.6437554, "Data prevista de troca": "2026-05-20"}, {"Cód Ponto": 32562, "Ponto": "Edifício Marcos", "Endereço": "Rua Ana Benvinda de Andrade, 115, Santana, São Paulo", "Área de Trabalho": "NORTE - 1 - SP", "Modelo da Tela": "MONITOR ALL IN ONE 21,5", "latitude": -23.4929743, "longitude": -46.6272793, "Data prevista de troca": "2026-05-20"}, {"Cód Ponto": 14711, "Ponto": "Amazônia - Torre Belém", "Endereço": "Rua Barão do Bananal, 760, Vila Pompéia, São Paulo", "Área de Trabalho": "OESTE - 1 - SP", "Modelo da Tela": "MONITOR ALL IN ONE 21,5", "latitude": -23.5309551, "longitude": -46.6874537, "Data prevista de troca": "2026-05-21"}, {"Cód Ponto": 33121, "Ponto": "Antônio Carlos Jobim - Torre B", "Endereço": "Rua Fradique Coutinho, 332, Pinheiros, São Paulo", "Área de Trabalho": "OESTE - 1 - SP", "Modelo da Tela": "MONITOR ALL IN ONE 21,5", "latitude": -23.5636105, "longitude": -46.6859116, "Data prevista de troca": "2026-05-21"}, {"Cód Ponto": 34714, "Ponto": "Arte Arquitetura Pinheiros 2", "Endereço": "Rua Doutor Virgílio de Carvalho Pinto, 645, Pinheiros, São Paulo", "Área de Trabalho": "OESTE - 1 - SP", "Modelo da Tela": "MONITOR ALL IN ONE 21,5", "latitude": -23.5608139, "longitude": -46.6858517, "Data prevista de troca": "2026-05-21"}, {"Cód Ponto": 65152, "Ponto": "Cond. West Gardens - Torre Bristol", "Endereço": "Rua Corrientes, 135, Lapa, São Paulo", "Área de Trabalho": "OESTE - 1 - SP", "Modelo da Tela": "MONITOR ALL IN ONE 21,5", "latitude": -2.35222747e+16, "longitude": -4.67111775999999e+16, "Data prevista de troca": "2026-05-21"}, {"Cód Ponto": 49658, "Ponto": "Condomínio Algarve", "Endereço": "Avenida Ireré, 2047, Planalto Paulista, São Paulo", "Área de Trabalho": "SUL - 1 - SP", "Modelo da Tela": "MONITOR ALL IN ONE 21,5", "latitude": -23.628337, "longitude": -46.645339, "Data prevista de troca": "2026-05-22"}, {"Cód Ponto": 40846, "Ponto": "Condomínio Ipiranga Residencial - Torre I", "Endereço": "Avenida Nossa Senhora da Encarnação, 680, Jardim Maria Estela, São Paulo", "Área de Trabalho": "SUL - 1 - SP", "Modelo da Tela": "MONITOR ALL IN ONE 21,5", "latitude": -23.633357, "longitude": -46.6002956, "Data prevista de troca": "2026-05-22"}, {"Cód Ponto": 64233, "Ponto": "Costa do Atlântico II - Ubatuba", "Endereço": "Rua Adriano Racine, 147, Jardim Celeste, São Paulo", "Área de Trabalho": "SUL - 1 - SP", "Modelo da Tela": "MONITOR ALL IN ONE 21,5", "latitude": -236595336.0, "longitude": -4.66145313e+16, "Data prevista de troca": "2026-05-22"}, {"Cód Ponto": 27449, "Ponto": "Edifício Archimedes", "Endereço": "Alameda dos Aicás, 1028, Indianópolis, São Paulo", "Área de Trabalho": "SUL - 1 - SP", "Modelo da Tela": "MONITOR ALL IN ONE 21,5", "latitude": -23.6117079, "longitude": -46.6609806, "Data prevista de troca": "2026-05-22"}, {"Cód Ponto": 50688, "Ponto": "Altos do Morumbi Sul - Torre 1", "Endereço": "Rua Nossa Senhora do Bom Conselho, 320, Chácara Nossa Senhora do Bom Conselho, São Paulo", "Área de Trabalho": "SUL - 4 (MORUMBI) - SP", "Modelo da Tela": "MONITOR ALL IN ONE 21,5", "latitude": -23.6420459, "longitude": -46.7590714, "Data prevista de troca": "2026-05-25"}, {"Cód Ponto": 49007, "Ponto": "Ape Jardim Sul", "Endereço": "Rua José da Silva Ribeiro, 814, Vila Andrade, São Paulo", "Área de Trabalho": "SUL - 4 (MORUMBI) - SP", "Modelo da Tela": "MONITOR ALL IN ONE 21,5", "latitude": -23.6273991, "longitude": -46.744333, "Data prevista de troca": "2026-05-25"}, {"Cód Ponto": 41415, "Ponto": "Aquarelle - Torre 1 - Rouge", "Endereço": "Rua Iuru, 40, Vila Andrade, São Paulo", "Área de Trabalho": "SUL - 4 (MORUMBI) - SP", "Modelo da Tela": "MONITOR ALL IN ONE 21,5", "latitude": -23.6330155, "longitude": -46.7345769, "Data prevista de troca": "2026-05-25"}, {"Cód Ponto": 39378, "Ponto": "Condomínio Chácara Tangará - Torre Lago", "Endereço": "Estrada Carlos Queiroz Telles, 81, Jardim Fonte do Morumbi, São Paulo", "Área de Trabalho": "SUL - 4 (MORUMBI) - SP", "Modelo da Tela": "MONITOR ALL IN ONE 21,5", "latitude": -23.6300193, "longitude": -46.7207726, "Data prevista de troca": "2026-05-25"}, {"Cód Ponto": 14447, "Ponto": "Centro Empresarial Ipiranga", "Endereço": "Rua do Grito, 387, Ipiranga, São Paulo", "Área de Trabalho": "SUL - 2 - SP", "Modelo da Tela": "MONITOR ALL IN ONE 21,5", "latitude": -23.5990058, "longitude": -46.6010642, "Data prevista de troca": "2026-05-26"}, {"Cód Ponto": 40971, "Ponto": "Edifício Ocaporã", "Endereço": "Rua Paracatu, 846, Parque Imperial, São Paulo", "Área de Trabalho": "SUL - 2 - SP", "Modelo da Tela": "MONITOR ALL IN ONE 21,5", "latitude": -23.6222118, "longitude": -46.6333832, "Data prevista de troca": "2026-05-26"}, {"Cód Ponto": 39152, "Ponto": "Famile Anchieta 580 - Bloco B", "Endereço": "Via Anchieta, 580, Vila Moinho Velho, São Paulo", "Área de Trabalho": "SUL - 2 - SP", "Modelo da Tela": "MONITOR ALL IN ONE 21,5", "latitude": -23.6071216, "longitude": -46.599684, "Data prevista de troca": "2026-05-26"}, {"Cód Ponto": 33348, "Ponto": "Gardens Living Club - Mirabell", "Endereço": "Rua Descampado, 121, Vila Vera, São Paulo", "Área de Trabalho": "SUL - 2 - SP", "Modelo da Tela": "MONITOR ALL IN ONE 21,5", "latitude": -23.6218728, "longitude": -46.6032689, "Data prevista de troca": "2026-05-26"}, {"Cód Ponto": 42590, "Ponto": "Jardins do Brasil Mantiqueira - ADM", "Endereço": "Avenida Hilário Pereira de Souza, 492, Centro, Osasco", "Área de Trabalho": "Osasco - SP", "Modelo da Tela": "MONITOR ALL IN ONE 21,5", "latitude": -23.5346836, "longitude": -46.7687904, "Data prevista de troca": "2026-05-27"}, {"Cód Ponto": 27656, "Ponto": "Living Magic 2 - Torre 1", "Endereço": "Avenida Manoel Pedro Pimentel, 103, Continental, Osasco", "Área de Trabalho": "Osasco - SP", "Modelo da Tela": "MONITOR ALL IN ONE 21,5", "latitude": -23.5354259, "longitude": -46.7619033, "Data prevista de troca": "2026-05-27"}, {"Cód Ponto": 33306, "Ponto": "Parque Central Osasco - Reserva - Torre 3", "Endereço": "Rua Professor Luis Eulalio de Bueno Vidigal, 175, Centro, Osasco", "Área de Trabalho": "Osasco - SP", "Modelo da Tela": "MONITOR ALL IN ONE 21,5", "latitude": -23.5253521, "longitude": -46.7816523, "Data prevista de troca": "2026-05-27"}, {"Cód Ponto": 28989, "Ponto": "Príncipe de Sevilha", "Endereço": "Rua Carlos Weber, 1288, Vila Leopoldina, São Paulo", "Área de Trabalho": "Osasco - SP", "Modelo da Tela": "MONITOR ALL IN ONE 21,5", "latitude": -23.5311311, "longitude": -46.7276772, "Data prevista de troca": "2026-05-27"}, {"Cód Ponto": 43489, "Ponto": "Almagah 227 - Comercial", "Endereço": "Rua Airi, 227, Vila Gomes Cardim, São Paulo", "Área de Trabalho": "LESTE - 2 - SP", "Modelo da Tela": "MONITOR ALL IN ONE 21,5", "latitude": -23.5409617, "longitude": -46.5683831, "Data prevista de troca": "2026-05-28"}, {"Cód Ponto": 19751, "Ponto": "Beverly Hills", "Endereço": "Rua Antônio Alves Barril, 355, Jardim Anália Franco, São Paulo", "Área de Trabalho": "LESTE - 2 - SP", "Modelo da Tela": "MONITOR ALL IN ONE 21,5", "latitude": -23.559335, "longitude": -46.5612023, "Data prevista de troca": "2026-05-28"}, {"Cód Ponto": 33236, "Ponto": "Memory Anália Franco", "Endereço": "Rua Quixadá, 80, Vila Invernada, São Paulo", "Área de Trabalho": "LESTE - 2 - SP", "Modelo da Tela": "MONITOR ALL IN ONE 21,5", "latitude": -23.5665986, "longitude": -46.5672855, "Data prevista de troca": "2026-05-28"}, {"Cód Ponto": 40923, "Ponto": "Residencial Gran Canaria", "Endereço": "Rua da Meação, 224, Vila Regente Feijó, São Paulo", "Área de Trabalho": "LESTE - 2 - SP", "Modelo da Tela": "MONITOR ALL IN ONE 21,5", "latitude": -23.5546526, "longitude": -46.5688795, "Data prevista de troca": "2026-05-28"}, {"Cód Ponto": 40124, "Ponto": "Elev Barra Funda - Torre 2", "Endereço": "Rua Josef Kryss, 120, Parque Industrial Tomas Edson, São Paulo", "Área de Trabalho": "Centro - 1 - SP", "Modelo da Tela": "MONITOR ALL IN ONE 21,5", "latitude": -23.5179609, "longitude": -46.6754367, "Data prevista de troca": "2026-05-29"}, {"Cód Ponto": 43526, "Ponto": "Flow Barra Funda I", "Endereço": "Rua Federação Paulista de Futebol, 41, Várzea da Barra Funda, São Paulo", "Área de Trabalho": "Centro - 1 - SP", "Modelo da Tela": "MONITOR ALL IN ONE 21,5", "latitude": -23.5228612, "longitude": -46.6676884, "Data prevista de troca": "2026-05-29"}, {"Cód Ponto": 40049, "Ponto": "Forvm Tower", "Endereço": "Avenida Marquês de São Vicente, 182, Várzea da Barra Funda, São Paulo", "Área de Trabalho": "Centro - 1 - SP", "Modelo da Tela": "MONITOR ALL IN ONE 21,5", "latitude": -23.5220901, "longitude": -46.6614921, "Data prevista de troca": "2026-05-29"}, {"Cód Ponto": 44201, "Ponto": "Reserva Barra Funda - Torre A", "Endereço": "Rua Rubens Porta Nova, 166, Parque Industrial Tomas Edson, São Paulo", "Área de Trabalho": "Centro - 1 - SP", "Modelo da Tela": "MONITOR ALL IN ONE 21,5", "latitude": -23.5197388, "longitude": -46.6648109, "Data prevista de troca": "2026-05-29"}, {"Cód Ponto": 20398, "Ponto": "Setin downtown São Luís", "Endereço": "Viaduto Nove de Julho, 200, Centro, São Paulo", "Área de Trabalho": "Centro - 1 - SP", "Modelo da Tela": "MONITOR ALL IN ONE 21,5", "latitude": -23.5482457, "longitude": -46.6423309, "Data prevista de troca": "2026-06-01"}, {"Cód Ponto": 49154, "Ponto": "Viva Barra Funda - Torre B", "Endereço": "Rua do Bosque, 804, Barra Funda, São Paulo", "Área de Trabalho": "Centro - 1 - SP", "Modelo da Tela": "MONITOR ALL IN ONE 21,5", "latitude": -23.5248877, "longitude": -46.6564948, "Data prevista de troca": "2026-06-01"}, {"Cód Ponto": 41000, "Ponto": "Condomínio Edifício Andrea", "Endereço": "Rua Adolfo Gordo, 100, Campos Elíseos, São Paulo", "Área de Trabalho": "Centro - 2 - SP", "Modelo da Tela": "MONITOR ALL IN ONE 21,5", "latitude": -23.5335428, "longitude": -46.6494988, "Data prevista de troca": "2026-06-01"}, {"Cód Ponto": 41742, "Ponto": "Condomínio Silvana", "Endereço": "Avenida Paulista, 639, Bela Vista, São Paulo", "Área de Trabalho": "Centro - 2 - SP", "Modelo da Tela": "MONITOR ALL IN ONE 21,5", "latitude": -23.5675034, "longitude": -46.6494689, "Data prevista de troca": "2026-06-01"}, {"Cód Ponto": 44329, "Ponto": "Condomínio Wonder By Praças da Cidade", "Endereço": "Rua Ernesto de Castro, 139, Brás, São Paulo", "Área de Trabalho": "LESTE - 1 - SP", "Modelo da Tela": "MONITOR ALL IN ONE 21,5", "latitude": -23.551411, "longitude": -46.6144755, "Data prevista de troca": "2026-06-02"}, {"Cód Ponto": 32588, "Ponto": "Edifício Concepto", "Endereço": "Rua Ilansa, 274, Vila Prudente, São Paulo", "Área de Trabalho": "LESTE - 1 - SP", "Modelo da Tela": "MONITOR ALL IN ONE 21,5", "latitude": -23.5796138, "longitude": -46.5888306, "Data prevista de troca": "2026-06-02"}, {"Cód Ponto": 11660, "Ponto": "In São Paulo Vilaboim A", "Endereço": "Rua Ibitirama, 2300, Vila Prudente, São Paulo", "Área de Trabalho": "LESTE - 1 - SP", "Modelo da Tela": "MONITOR ALL IN ONE 21,5", "latitude": -23.59953506812, "longitude": -46.576435809787, "Data prevista de troca": "2026-06-02"}, {"Cód Ponto": 41687, "Ponto": "Residencial - Edificios Renoir e Monet - Torre A", "Endereço": "Rua Campo Largo, 190, Vila Bertioga, São Paulo", "Área de Trabalho": "LESTE - 1 - SP", "Modelo da Tela": "MONITOR ALL IN ONE 21,5", "latitude": -23.5674741, "longitude": -46.5839517, "Data prevista de troca": "2026-06-02"}, {"Cód Ponto": 65150, "Ponto": "Cond. West Gardens - Torre Windsor", "Endereço": "Rua Corrientes, 135, Lapa, São Paulo", "Área de Trabalho": "OESTE - 1 - SP", "Modelo da Tela": "MONITOR ALL IN ONE 21,5", "latitude": -2.35222747e+16, "longitude": -4.67111775999999e+16, "Data prevista de troca": "2026-06-03"}, {"Cód Ponto": 32201, "Ponto": "Condomínio Trio Perdizes", "Endereço": "Rua Desembargador Guimarães, 92, Água Branca, São Paulo", "Área de Trabalho": "OESTE - 1 - SP", "Modelo da Tela": "MONITOR ALL IN ONE 21,5", "latitude": -23.5298918, "longitude": -46.674277, "Data prevista de troca": "2026-06-03"}, {"Cód Ponto": 21778, "Ponto": "Edifício Affonso Aliperti", "Endereço": "Rua Bianchi Bertoldi, 129, Pinheiros, São Paulo", "Área de Trabalho": "OESTE - 1 - SP", "Modelo da Tela": "MONITOR ALL IN ONE 21,5", "latitude": -23.5687854, "longitude": -46.6912248, "Data prevista de troca": "2026-06-03"}, {"Cód Ponto": 30672, "Ponto": "Edifício Ville Bayard", "Endereço": "Rua Francisco Bayardo, 551, Perdizes, São Paulo", "Área de Trabalho": "OESTE - 1 - SP", "Modelo da Tela": "MONITOR ALL IN ONE 21,5", "latitude": -23.5381087, "longitude": -46.6894857, "Data prevista de troca": "2026-06-03"}, {"Cód Ponto": 44397, "Ponto": "Green Loadd Saúde", "Endereço": "Avenida Jabaquara, 1744, Mirandópolis, São Paulo", "Área de Trabalho": "SUL - 1 - SP", "Modelo da Tela": "MONITOR ALL IN ONE 21,5", "latitude": -23.619526, "longitude": -46.63975, "Data prevista de troca": "2026-06-05"}, {"Cód Ponto": 20034, "Ponto": "Jardim Botânico - Bloco 11", "Endereço": "Rua Isabel de Góis, 8, Jardim Botucatu, São Paulo", "Área de Trabalho": "SUL - 1 - SP", "Modelo da Tela": "MONITOR ALL IN ONE 21,5", "latitude": -23.6360913, "longitude": -46.6098002, "Data prevista de troca": "2026-06-05"}, {"Cód Ponto": 7797, "Ponto": "Jardin de Mermier", "Endereço": "Avenida Itaboraí, 109, Bosque da Saúde, São Paulo", "Área de Trabalho": "SUL - 1 - SP", "Modelo da Tela": "MONITOR ALL IN ONE 21,5", "latitude": -23.6109584, "longitude": -46.6303892, "Data prevista de troca": "2026-06-05"}, {"Cód Ponto": 39324, "Ponto": "On Paulista - TR", "Endereço": "Avenida Bernardino de Campos, 1340, Paraíso, São Paulo", "Área de Trabalho": "SUL - 1 - SP", "Modelo da Tela": "MONITOR ALL IN ONE 21,5", "latitude": -23.576159, "longitude": -46.641496, "Data prevista de troca": "2026-06-05"}, {"Cód Ponto": 50948, "Ponto": "Edificio Caravelle", "Endereço": "Rua Paim, 223, Bela Vista, São Paulo", "Área de Trabalho": "Centro - 2 - SP", "Modelo da Tela": "MONITOR ALL IN ONE 21,5", "latitude": -23.5543288, "longitude": -46.6502525, "Data prevista de troca": "2026-06-08"}, {"Cód Ponto": 49486, "Ponto": "Edifício Suzana", "Endereço": "Rua Itacolomi, 596, Higienópolis, São Paulo", "Área de Trabalho": "Centro - 2 - SP", "Modelo da Tela": "MONITOR ALL IN ONE 21,5", "latitude": -23.5490557, "longitude": -46.6579171, "Data prevista de troca": "2026-06-08"}, {"Cód Ponto": 7719, "Ponto": "Nathalie", "Endereço": "Rua Conselheiro Brotero, 1140, Santa Cecília, São Paulo", "Área de Trabalho": "Centro - 2 - SP", "Modelo da Tela": "MONITOR ALL IN ONE 21,5", "latitude": -23.5363745, "longitude": -46.6609366, "Data prevista de troca": "2026-06-08"}, {"Cód Ponto": 39284, "Ponto": "Think Home Republica", "Endereço": "Rua Bento Freitas, 420, República, São Paulo", "Área de Trabalho": "Centro - 2 - SP", "Modelo da Tela": "MONITOR ALL IN ONE 21,5", "latitude": -23.545786, "longitude": -46.6456974, "Data prevista de troca": "2026-06-08"}, {"Cód Ponto": 8674, "Ponto": "San Genaro", "Endereço": "Praça do Centenário de Vila Prudente, 139, Vila Prudente, São Paulo", "Área de Trabalho": "LESTE - 1 - SP", "Modelo da Tela": "MONITOR ALL IN ONE 21,5", "latitude": -23.5816097, "longitude": -46.5825367, "Data prevista de troca": "2026-06-09"}, {"Cód Ponto": 34219, "Ponto": "Urban Mooca 2", "Endereço": "Rua Frei Gaspar, 66, Mooca, São Paulo", "Área de Trabalho": "LESTE - 1 - SP", "Modelo da Tela": "MONITOR ALL IN ONE 21,5", "latitude": -23.5506205, "longitude": -46.6101499, "Data prevista de troca": "2026-06-09"}, {"Cód Ponto": 7932, "Ponto": "Vallore Brás - Veneza", "Endereço": "Rua do Lucas, 225, Brás, São Paulo", "Área de Trabalho": "LESTE - 1 - SP", "Modelo da Tela": "MONITOR ALL IN ONE 21,5", "latitude": -23.5425173, "longitude": -46.6253977, "Data prevista de troca": "2026-06-09"}, {"Cód Ponto": 41707, "Ponto": "Verone Family Club", "Endereço": "Rua Celso de Azevedo Marques, 360, Parque da Mooca, São Paulo", "Área de Trabalho": "LESTE - 1 - SP", "Modelo da Tela": "MONITOR ALL IN ONE 21,5", "latitude": -23.568717, "longitude": -46.5947973, "Data prevista de troca": "2026-06-09"}, {"Cód Ponto": 41597, "Ponto": "Living da Vila Guilherme", "Endereço": "Rua Amazonas da Silva, 813, Vila Guilherme, São Paulo", "Área de Trabalho": "NORTE - 1 - SP", "Modelo da Tela": "MONITOR ALL IN ONE 21,5", "latitude": -23.5125097, "longitude": -46.6090784, "Data prevista de troca": "2026-06-10"}, {"Cód Ponto": 28865, "Ponto": "Novo Andarai - Torre C", "Endereço": "Rua Manguari, 501, Jardim Andaraí, São Paulo", "Área de Trabalho": "NORTE - 1 - SP", "Modelo da Tela": "MONITOR ALL IN ONE 21,5", "latitude": -23.5226336, "longitude": -46.58209, "Data prevista de troca": "2026-06-10"}, {"Cód Ponto": 44606, "Ponto": "Port De La Rochelle", "Endereço": "Rua Doutor João Batista Soares de Faria, 103, Santana, São Paulo", "Área de Trabalho": "NORTE - 1 - SP", "Modelo da Tela": "MONITOR ALL IN ONE 21,5", "latitude": -23.4953677, "longitude": -46.6287578, "Data prevista de troca": "2026-06-10"}, {"Cód Ponto": 21471, "Ponto": "Praça D Amoreira", "Endereço": "Rua Conselheiro Moreira de Barros, 2399, Lauzane Paulista, São Paulo", "Área de Trabalho": "NORTE - 1 - SP", "Modelo da Tela": "MONITOR ALL IN ONE 21,5", "latitude": -23.4842254, "longitude": -46.6425537, "Data prevista de troca": "2026-06-10"}, {"Cód Ponto": 63531, "Ponto": "Res. Villa Park Osasco - Torre 1", "Endereço": "Avenida Edmundo Amaral, 904, Piratininga, Osasco", "Área de Trabalho": "Osasco - SP", "Modelo da Tela": "MONITOR ALL IN ONE 21,5", "latitude": -2.35118520999999e+16, "longitude": -4.68074559999999e+16, "Data prevista de troca": "2026-06-11"}, {"Cód Ponto": 28120, "Ponto": "Residencial Repletto - Torre A", "Endereço": "Rua Justino Alves Batista, 779, Vila Yolanda, Osasco", "Área de Trabalho": "Osasco - SP", "Modelo da Tela": "MONITOR ALL IN ONE 21,5", "latitude": -23.5529236, "longitude": -46.7936294, "Data prevista de troca": "2026-06-11"}, {"Cód Ponto": 20249, "Ponto": "Resort Ecovida - Torre 2", "Endereço": "Rua Vicente Alves da Silva, 700, Jardim Roberto, Osasco", "Área de Trabalho": "Osasco - SP", "Modelo da Tela": "MONITOR ALL IN ONE 21,5", "latitude": -23.5473375, "longitude": -46.8013068, "Data prevista de troca": "2026-06-11"}, {"Cód Ponto": 49709, "Ponto": "San Diego", "Endereço": "Rua Doutor Manoel de Paiva Ramos, 60, Cidade São Francisco, São Paulo", "Área de Trabalho": "Osasco - SP", "Modelo da Tela": "MONITOR ALL IN ONE 21,5", "latitude": -23.5596581, "longitude": -46.7554626, "Data prevista de troca": "2026-06-11"}, {"Cód Ponto": 40441, "Ponto": "Condomínio Edifício Airosa", "Endereço": "Rua Palacete das Águias, 610, Vila Alexandria, São Paulo", "Área de Trabalho": "SANTO AMARO - SP", "Modelo da Tela": "MONITOR ALL IN ONE 21,5", "latitude": -23.6423554, "longitude": -46.6681226, "Data prevista de troca": "2026-06-12"}, {"Cód Ponto": 68087, "Ponto": "Condomínio Edifício Carlos Eduardo", "Endereço": "Rua Vera Cruz, 70, Santo Amaro, São Paulo", "Área de Trabalho": "SANTO AMARO - SP", "Modelo da Tela": "MONITOR ALL IN ONE 21,5", "latitude": -236493404.0, "longitude": -4.67062426999999e+16, "Data prevista de troca": "2026-06-12"}, {"Cód Ponto": 40151, "Ponto": "Connection Brooklin", "Endereço": "Rua Professor José Leite e Oiticica, 125, Vila Gertrudes, São Paulo", "Área de Trabalho": "SANTO AMARO - SP", "Modelo da Tela": "MONITOR ALL IN ONE 21,5", "latitude": -23.6215978, "longitude": -46.6943768, "Data prevista de troca": "2026-06-12"}, {"Cód Ponto": 19587, "Ponto": "New Home Chacara Flora - Begonha", "Endereço": "Avenida Interlagos, 1880, Jardim Marajoara, São Paulo", "Área de Trabalho": "SANTO AMARO - SP", "Modelo da Tela": "MONITOR ALL IN ONE 21,5", "latitude": -23.6703796, "longitude": -46.6782731, "Data prevista de troca": "2026-06-12"}, {"Cód Ponto": 51205, "Ponto": "Edifício Cintia", "Endereço": "Rua Doutor Francisco José Longo, 281, Chácara Inglesa, São Paulo", "Área de Trabalho": "SUL - 1 - SP", "Modelo da Tela": "MONITOR ALL IN ONE 21,5", "latitude": -23.6066595, "longitude": -46.6298878, "Data prevista de troca": "2026-06-15"}, {"Cód Ponto": 33554, "Ponto": "Edifício NEO", "Endereço": "Rua Traituba, 71, Saúde, São Paulo", "Área de Trabalho": "SUL - 1 - SP", "Modelo da Tela": "MONITOR ALL IN ONE 21,5", "latitude": -23.6130327, "longitude": -46.6324194, "Data prevista de troca": "2026-06-15"}, {"Cód Ponto": 59293, "Ponto": "Florear Studio", "Endereço": "Rua dos Crisântemos, 77, Mirandópolis, São Paulo", "Área de Trabalho": "SUL - 1 - SP", "Modelo da Tela": "MONITOR ALL IN ONE 21,5", "latitude": -23606472.0, "longitude": -4.66393768999999e+16, "Data prevista de troca": "2026-06-15"}, {"Cód Ponto": 34218, "Ponto": "Gaivotas", "Endereço": "Rua Guiratinga, 931, Chácara Inglesa, São Paulo", "Área de Trabalho": "SUL - 1 - SP", "Modelo da Tela": "MONITOR ALL IN ONE 21,5", "latitude": -23.6100416, "longitude": -46.6310774, "Data prevista de troca": "2026-06-15"}, {"Cód Ponto": 63614, "Ponto": "Abdon", "Endereço": "Rua Abdon Batista, 175, Parque das Paineiras, São Paulo", "Área de Trabalho": "LESTE - 3 - SP", "Modelo da Tela": "MONITOR ALL IN ONE 21,5", "latitude": -235376285.0, "longitude": -4.64823610999999e+16, "Data prevista de troca": "2026-06-16"}, {"Cód Ponto": 8338, "Ponto": "Camuri - Torre 2", "Endereço": "Rua Renzo Baldini, 901, Parada XV de Novembro, São Paulo", "Área de Trabalho": "LESTE - 3 - SP", "Modelo da Tela": "MONITOR ALL IN ONE 21,5", "latitude": -23.5258105, "longitude": -46.4347666, "Data prevista de troca": "2026-06-16"}, {"Cód Ponto": 59772, "Ponto": "Condomínio Forte São Mateus - Bloco 5", "Endereço": "Rua Forte da Ribeira, 250, Parque São Lourenço, São Paulo", "Área de Trabalho": "LESTE - 3 - SP", "Modelo da Tela": "MONITOR ALL IN ONE 21,5", "latitude": -2.36044045999999e+16, "longitude": -4.64664120999999e+16, "Data prevista de troca": "2026-06-16"}, {"Cód Ponto": 28823, "Ponto": "Edifício Colinas Di Napoli", "Endereço": "Rua João Tomé, 60, Vila Buenos Aires, São Paulo", "Área de Trabalho": "LESTE - 3 - SP", "Modelo da Tela": "MONITOR ALL IN ONE 21,5", "latitude": -23.5118184, "longitude": -46.5028028, "Data prevista de troca": "2026-06-16"}, {"Cód Ponto": 8153, "Ponto": "Via Paulista Home Stay", "Endereço": "Rua Martiniano de Carvalho, 807, Bela Vista, São Paulo", "Área de Trabalho": "Centro - 2 - SP", "Modelo da Tela": "MONITOR ALL IN ONE 21,5", "latitude": -23.5657496, "longitude": -46.6424708, "Data prevista de troca": "2026-06-17"}, {"Cód Ponto": 21856, "Ponto": "Caravelas - Torre B", "Endereço": "Rua Paulo Orozimbo, 530, Cambuci, São Paulo", "Área de Trabalho": "Centro - 3 - SP", "Modelo da Tela": "MONITOR ALL IN ONE 21,5", "latitude": -23.5719579, "longitude": -46.6255326, "Data prevista de troca": "2026-06-17"}, {"Cód Ponto": 29143, "Ponto": "Edifício Joy Cambucy II", "Endereço": "Rua Clímaco Barbosa, 494, Cambuci, São Paulo", "Área de Trabalho": "Centro - 3 - SP", "Modelo da Tela": "MONITOR ALL IN ONE 21,5", "latitude": -23.5652309, "longitude": -46.6159214, "Data prevista de troca": "2026-06-17"}, {"Cód Ponto": 19818, "Ponto": "Morada da Primavera - Lírios", "Endereço": "Rua São Joaquim, 309, Liberdade, São Paulo", "Área de Trabalho": "Centro - 3 - SP", "Modelo da Tela": "MONITOR ALL IN ONE 21,5", "latitude": -23.561322, "longitude": -46.6357284, "Data prevista de troca": "2026-06-17"}, {"Cód Ponto": 49273, "Ponto": "Sinfonia Vila Mascote", "Endereço": "Avenida Santa Catarina, 1374, Vila Mascote, São Paulo", "Área de Trabalho": "SUL - 2 - SP", "Modelo da Tela": "MONITOR ALL IN ONE 21,5", "latitude": -23.6471274, "longitude": -46.6628888, "Data prevista de troca": "2026-06-18"}, {"Cód Ponto": 14731, "Ponto": "St. Germain-des-Pres", "Endereço": "Rua Praia do Castelo, 170, Vila Mascote, São Paulo", "Área de Trabalho": "SUL - 2 - SP", "Modelo da Tela": "MONITOR ALL IN ONE 21,5", "latitude": -23.6468889, "longitude": -46.6682944, "Data prevista de troca": "2026-06-18"}, {"Cód Ponto": 28756, "Ponto": "Viva Benx Vila Mascote", "Endereço": "Avenida Túlio Teodoro de Campos, 6, Vila Paulista, São Paulo", "Área de Trabalho": "SUL - 2 - SP", "Modelo da Tela": "MONITOR ALL IN ONE 21,5", "latitude": -23.639345, "longitude": -46.6626987, "Data prevista de troca": "2026-06-18"}, {"Cód Ponto": 59904, "Ponto": "Írio Golf Garden", "Endereço": "Avenida Nossa Senhora do Sabará, 409, Vila Sofia, São Paulo", "Área de Trabalho": "SUL - 3 - SP", "Modelo da Tela": "MONITOR ALL IN ONE 21,5", "latitude": -2.36604093e+16, "longitude": -4.66950768e+16, "Data prevista de troca": "2026-06-18"}, {"Cód Ponto": 29610, "Ponto": "Residencial Cádiz", "Endereço": "Rua Antônio de Barros, 2501, Vila Carrão, São Paulo", "Área de Trabalho": "LESTE - 3 - SP", "Modelo da Tela": "MONITOR ALL IN ONE 21,5", "latitude": -23.55205, "longitude": -46.554, "Data prevista de troca": "2026-06-19"}, {"Cód Ponto": 49189, "Ponto": "Residencial Plano & Vila Carmosina Victorio Santim - Torre A", "Endereço": "Rua Victório Santim, 2776, Itaquera, São Paulo", "Área de Trabalho": "LESTE - 3 - SP", "Modelo da Tela": "MONITOR ALL IN ONE 21,5", "latitude": -23.5585034, "longitude": -46.4496, "Data prevista de troca": "2026-06-19"}, {"Cód Ponto": 41064, "Ponto": "Spazio San domingos - Bloco I", "Endereço": "Rua Olga Fadel Abarca, 430, Jardim Santa Terezinha (Zona Leste), São Paulo", "Área de Trabalho": "LESTE - 3 - SP", "Modelo da Tela": "MONITOR ALL IN ONE 21,5", "latitude": -23.573698, "longitude": -46.5024219, "Data prevista de troca": "2026-06-19"}, {"Cód Ponto": 40487, "Ponto": "Villaggio di Anália Franco - Torre Veneto", "Endereço": "Rua Visconde de Balsemão, 191, Vila Mafra, São Paulo", "Área de Trabalho": "LESTE - 3 - SP", "Modelo da Tela": "MONITOR ALL IN ONE 21,5", "latitude": -23.5590319, "longitude": -46.5483503, "Data prevista de troca": "2026-06-19"}, {"Cód Ponto": 63686, "Ponto": "Mix Aricanduva 1", "Endereço": "Rua Olga Fadel Abarca, 320, Jardim Santa Terezinha (Zona Leste), São Paulo", "Área de Trabalho": "LESTE - 3 - SP", "Modelo da Tela": "MONITOR ALL IN ONE 21,5", "latitude": -2.35728304e+16, "longitude": -4.65033166999999e+16, "Data prevista de troca": "2026-06-22"}, {"Cód Ponto": 41653, "Ponto": "Plano & Jacu Pessego Augusto Carlos Bauman II - Torre B", "Endereço": "Rua Augusto Carlos Bauman, 266, Itaquera, São Paulo", "Área de Trabalho": "LESTE - 3 - SP", "Modelo da Tela": "MONITOR ALL IN ONE 21,5", "latitude": -23.5349707, "longitude": -46.4514481, "Data prevista de troca": "2026-06-22"}, {"Cód Ponto": 39236, "Ponto": "Plano Estação Patriarca", "Endereço": "Rua Aldeia Paracanti, 38, Vila Ré, São Paulo", "Área de Trabalho": "LESTE - 3 - SP", "Modelo da Tela": "MONITOR ALL IN ONE 21,5", "latitude": -23.5333679, "longitude": -46.4968717, "Data prevista de troca": "2026-06-22"}, {"Cód Ponto": 40809, "Ponto": "Raízes Guilhermina Esperança - Torre A", "Endereço": "Rua Tapari, 158, Vila Esperança, São Paulo", "Área de Trabalho": "LESTE - 3 - SP", "Modelo da Tela": "MONITOR ALL IN ONE 21,5", "latitude": -23.5293149, "longitude": -46.5190637, "Data prevista de troca": "2026-06-22"}, {"Cód Ponto": 33620, "Ponto": "Vista Real", "Endereço": "Rua Bela Vista, 377, Santo Amaro, São Paulo", "Área de Trabalho": "SANTO AMARO - SP", "Modelo da Tela": "MONITOR ALL IN ONE 21,5", "latitude": -23.6336071, "longitude": -46.6919797, "Data prevista de troca": "2026-06-23"}, {"Cód Ponto": 28720, "Ponto": "Residencial Eucaliptos - C", "Endereço": "Avenida Padre Arlindo Vieira, 2895, Jardim Vergueiro (Sacomã), São Paulo", "Área de Trabalho": "SUL - 1 - SP", "Modelo da Tela": "MONITOR ALL IN ONE 21,5", "latitude": -23.6449126, "longitude": -46.6061975, "Data prevista de troca": "2026-06-23"}, {"Cód Ponto": 20175, "Ponto": "Upper Side", "Endereço": "Rua Salvador de Edra, 03, Saúde, São Paulo", "Área de Trabalho": "SUL - 1 - SP", "Modelo da Tela": "MONITOR ALL IN ONE 21,5", "latitude": -23.6159782, "longitude": -46.6425369, "Data prevista de troca": "2026-06-23"}, {"Cód Ponto": 20422, "Ponto": "Mares do Norte - Guaratuba", "Endereço": "Avenida Lauro Gomes, 5901, Vila Vivaldi, São Bernardo do Campo", "Área de Trabalho": "Grande ABC - SP", "Modelo da Tela": "MONITOR ALL IN ONE 21,5", "latitude": -23.6503094, "longitude": -46.5749418, "Data prevista de troca": "2026-06-24"}, {"Cód Ponto": 29402, "Ponto": "Square Garden I - Torre 3", "Endereço": "Rua Jorge Beretta, 282, Parque Erasmo Assunção, Santo André", "Área de Trabalho": "Grande ABC - SP", "Modelo da Tela": "MONITOR ALL IN ONE 21,5", "latitude": -23.6388136, "longitude": -46.5038255, "Data prevista de troca": "2026-06-24"}, {"Cód Ponto": 49712, "Ponto": "KZ Conecta Capão - Bloco A", "Endereço": "Rua Cabo Estácio da Conceição, 406, Parque Maria Helena, São Paulo", "Área de Trabalho": "SUL - 4 (MORUMBI) - SP", "Modelo da Tela": "MONITOR ALL IN ONE 21,5", "latitude": -23.6622244, "longitude": -46.7651125, "Data prevista de troca": "2026-06-24"}, {"Cód Ponto": 49713, "Ponto": "KZ Conecta Capão - Bloco B", "Endereço": "Rua Cabo Estácio da Conceição, 406, Parque Maria Helena, São Paulo", "Área de Trabalho": "SUL - 4 (MORUMBI) - SP", "Modelo da Tela": "MONITOR ALL IN ONE 21,5", "latitude": -23.6622244, "longitude": -46.7651125, "Data prevista de troca": "2026-06-24"}, {"Cód Ponto": 27666, "Ponto": "Terra Nova - Torre 3", "Endereço": "Avenida Novo Osasco, 481, Bussocaba, Osasco", "Área de Trabalho": "Osasco - SP", "Modelo da Tela": "MONITOR ALL IN ONE 21,5", "latitude": -23.5642096, "longitude": -46.7858763, "Data prevista de troca": "2026-06-25"}, {"Cód Ponto": 27391, "Ponto": "Via Nações - Torre 3", "Endereço": "Rua Jubair Celestino, 195, Presidente Altino, Osasco", "Área de Trabalho": "Osasco - SP", "Modelo da Tela": "MONITOR ALL IN ONE 21,5", "latitude": -23.52259, "longitude": -46.7710472, "Data prevista de troca": "2026-06-25"}, {"Cód Ponto": 39475, "Ponto": "Vila Mazzei - Torre 4", "Endereço": "Avenida Mário Pernambuco, 626, Vila Mazzei, São Paulo", "Área de Trabalho": "NORTE - 1 - SP", "Modelo da Tela": "MONITOR ALL IN ONE 21,5", "latitude": -23.4609641, "longitude": -46.6011109, "Data prevista de troca": "2026-06-25"}, {"Cód Ponto": 49359, "Ponto": "Helbor Patteo São Paulo - Torre 3", "Endereço": "Rua Balsa, 1301, Freguesia do Ó, São Paulo", "Área de Trabalho": "NORTE - 2 - SP", "Modelo da Tela": "MONITOR ALL IN ONE 21,5", "latitude": -23.5067081, "longitude": -46.7037691, "Data prevista de troca": "2026-06-25"}, {"Cód Ponto": 10301, "Ponto": "Good Life Vila Romana - Cantareira", "Endereço": "Rua Aurélia, 300, Vila Romana, São Paulo", "Área de Trabalho": "OESTE - 1 - SP", "Modelo da Tela": "MONITOR ALL IN ONE 21,5", "latitude": -23.5244636, "longitude": -46.6981099, "Data prevista de troca": "2026-06-26"}, {"Cód Ponto": 19801, "Ponto": "Jardim das Azaleias - Aquarella", "Endereço": "Rua Francisco Luís de Souza Júnior, 350, Água Branca, São Paulo", "Área de Trabalho": "OESTE - 1 - SP", "Modelo da Tela": "MONITOR ALL IN ONE 21,5", "latitude": -23.5135657, "longitude": -46.6891139, "Data prevista de troca": "2026-06-26"}];
+        const INITIAL_DATA = [{"CÃ³d Ponto": 14335, "Ponto": "Ville de Nivelles", "EndereÃ§o": "Rua Estero Belaco, 407, Vila da SaÃºde, SÃ£o Paulo", "Ãrea de Trabalho": "SUL - 1 - SP", "Modelo da Tela": "MONITOR ALL IN ONE 21,5", "latitude": -23.6174615, "longitude": -46.6317325, "Data prevista de troca": "2026-05-06"}, {"CÃ³d Ponto": 14714, "Ponto": "Ambience", "EndereÃ§o": "Avenida Camilo Castelo Branco, 55, Vila Gumercindo, SÃ£o Paulo", "Ãrea de Trabalho": "SUL - 1 - SP", "Modelo da Tela": "MONITOR ALL IN ONE 21,5", "latitude": -23.6050377, "longitude": -46.6204543, "Data prevista de troca": "2026-05-06"}, {"CÃ³d Ponto": 32702, "Ponto": "Soleil Vila Mariana - Saint Tropez", "EndereÃ§o": "Rua Pelotas, 209, Vila Mariana, SÃ£o Paulo", "Ãrea de Trabalho": "SUL - 1 - SP", "Modelo da Tela": "MONITOR ALL IN ONE 21,5", "latitude": -23.5820661, "longitude": -46.6446223, "Data prevista de troca": "2026-05-06"}, {"CÃ³d Ponto": 19907, "Ponto": "Darius Milhaud", "EndereÃ§o": "Rua Faustolo, 645, Ãgua Branca, SÃ£o Paulo", "Ãrea de Trabalho": "OESTE - 1 - SP", "Modelo da Tela": "MONITOR ALL IN ONE 21,5", "latitude": -23.5240356, "longitude": -46.6912341, "Data prevista de troca": "2026-05-07"}, {"CÃ³d Ponto": 6043, "Ponto": "Ccc - Casa das Caldeiras", "EndereÃ§o": "Avenida Francisco Matarazzo, 1752, Ãgua Branca, SÃ£o Paulo", "Ãrea de Trabalho": "OESTE - 1 - SP", "Modelo da Tela": "MONITOR ALL IN ONE 21,5", "latitude": -23.5257073, "longitude": -46.6794962, "Data prevista de troca": "2026-05-07"}, {"CÃ³d Ponto": 19908, "Ponto": "Villa Marchetti", "EndereÃ§o": "Avenida Mercedes, 203, Alto da Lapa, SÃ£o Paulo", "Ãrea de Trabalho": "OESTE - 1 - SP", "Modelo da Tela": "MONITOR ALL IN ONE 21,5", "latitude": -23.5225206, "longitude": -46.7122289, "Data prevista de troca": "2026-05-07"}, {"CÃ³d Ponto": 14661, "Ponto": "Palm Offices", "EndereÃ§o": "Rua CayowaÃ¡, 759, Perdizes, SÃ£o Paulo", "Ãrea de Trabalho": "OESTE - 1 - SP", "Modelo da Tela": "MONITOR ALL IN ONE 21,5", "latitude": -23.5352935, "longitude": -46.6815871, "Data prevista de troca": "2026-05-07"}, {"CÃ³d Ponto": 14607, "Ponto": "Fontana Di Trevi - AndrÃ©a", "EndereÃ§o": "Rua Doutor Clementino, 456, Belenzinho, SÃ£o Paulo", "Ãrea de Trabalho": "LESTE - 1 - SP", "Modelo da Tela": "MONITOR ALL IN ONE 21,5", "latitude": -23.5411981, "longitude": -46.5916333, "Data prevista de troca": "2026-05-08"}, {"CÃ³d Ponto": 33095, "Ponto": "Portale della Mooca - Torre Siena", "EndereÃ§o": "Rua Dias Leme, 123, Mooca, SÃ£o Paulo", "Ãrea de Trabalho": "LESTE - 1 - SP", "Modelo da Tela": "MONITOR ALL IN ONE 21,5", "latitude": -23.5603075, "longitude": -46.5949206, "Data prevista de troca": "2026-05-08"}, {"CÃ³d Ponto": 19878, "Ponto": "Portal do TatuapÃ© - Rio Negro", "EndereÃ§o": "Rua Ulisses Cruz, 579, TatuapÃ©, SÃ£o Paulo", "Ãrea de Trabalho": "LESTE - 1 - SP", "Modelo da Tela": "MONITOR ALL IN ONE 21,5", "latitude": -23.5318455, "longitude": -46.5812679, "Data prevista de troca": "2026-05-08"}, {"CÃ³d Ponto": 27615, "Ponto": "EdifÃ­cio Arthur", "EndereÃ§o": "Rua Amazonas, 140, Vila GalvÃ£o, Guarulhos", "Ãrea de Trabalho": "Guarulhos - SP", "Modelo da Tela": "MONITOR ALL IN ONE 21,5", "latitude": -23.4531253, "longitude": -46.5566706, "Data prevista de troca": "2026-05-11"}, {"CÃ³d Ponto": 28429, "Ponto": "Monte LÃ­bano", "EndereÃ§o": "Rua Soldado BrasÃ­lio Pinto de Almeida, 85, Vila Almeida, Guarulhos", "Ãrea de Trabalho": "Guarulhos - SP", "Modelo da Tela": "MONITOR ALL IN ONE 21,5", "latitude": -23.4714446, "longitude": -46.5327929, "Data prevista de troca": "2026-05-11"}, {"CÃ³d Ponto": 28779, "Ponto": "Residencial Milano", "EndereÃ§o": "Rua SÃ£o Ludgero, 33, Jardim do Triunfo, Guarulhos", "Ãrea de Trabalho": "Guarulhos - SP", "Modelo da Tela": "MONITOR ALL IN ONE 21,5", "latitude": -23.4092107, "longitude": -46.4019699, "Data prevista de troca": "2026-05-11"}, {"CÃ³d Ponto": 21585, "Ponto": "Altos do ButantÃ£ - Torre A", "EndereÃ§o": "Avenida Nossa Senhora da AssunÃ§Ã£o, 647, Vila ButantÃ£, SÃ£o Paulo", "Ãrea de Trabalho": "Osasco - SP", "Modelo da Tela": "MONITOR ALL IN ONE 21,5", "latitude": -23.5706525, "longitude": -46.7447017, "Data prevista de troca": "2026-05-12"}, {"CÃ³d Ponto": 33552, "Ponto": "CondomÃ­nio ChapecÃ³ - Torre B", "EndereÃ§o": "Rodovia Raposo Tavares, 8312, Jardim Boa Vista (Zona Oeste), SÃ£o Paulo", "Ãrea de Trabalho": "Osasco - SP", "Modelo da Tela": "MONITOR ALL IN ONE 21,5", "latitude": -23.582975, "longitude": -46.7964138, "Data prevista de troca": "2026-05-12"}, {"CÃ³d Ponto": 12944, "Ponto": "Flex Osasco I - Torre 1", "EndereÃ§o": "Via Transversal Sul, 169, Novo Osasco, Osasco", "Ãrea de Trabalho": "Osasco - SP", "Modelo da Tela": "MONITOR ALL IN ONE 21,5", "latitude": -23.57843, "longitude": -46.79485, "Data prevista de troca": "2026-05-12"}, {"CÃ³d Ponto": 41631, "Ponto": "Garden SÃ£o Francisco - Torre Royal", "EndereÃ§o": "Rua Doutor Paulo Ferraz da Costa Aguiar, 1418, Vila Yara, Osasco", "Ãrea de Trabalho": "Osasco - SP", "Modelo da Tela": "MONITOR ALL IN ONE 21,5", "latitude": -23.5547475, "longitude": -46.7630573, "Data prevista de troca": "2026-05-12"}, {"CÃ³d Ponto": 14075, "Ponto": "Parque da Cidade - Jequitiba - Hall", "EndereÃ§o": "Avenida das NaÃ§Ãµes Unidas, 14401, Vila Gertrudes, SÃ£o Paulo", "Ãrea de Trabalho": "SANTO AMARO - SP", "Modelo da Tela": "MONITOR ALL IN ONE 21,5", "latitude": -23.6248774, "longitude": -46.7065507, "Data prevista de troca": "2026-05-13"}, {"CÃ³d Ponto": 27198, "Ponto": "Portal Marajoara - BoracÃ©ia", "EndereÃ§o": "Rua Geraldo de MendonÃ§a Mello, 280, Vila Isa, SÃ£o Paulo", "Ãrea de Trabalho": "SANTO AMARO - SP", "Modelo da Tela": "MONITOR ALL IN ONE 21,5", "latitude": -23.6704562, "longitude": -46.6903952, "Data prevista de troca": "2026-05-13"}, {"CÃ³d Ponto": 9023, "Ponto": "Residencial Interlagos - FÃªnix 05", "EndereÃ§o": "Avenida Interlagos, 871, Jardim Umuarama, SÃ£o Paulo", "Ãrea de Trabalho": "SANTO AMARO - SP", "Modelo da Tela": "MONITOR ALL IN ONE 21,5", "latitude": -23.6624342, "longitude": -46.6789504, "Data prevista de troca": "2026-05-13"}, {"CÃ³d Ponto": 41055, "Ponto": "Residencial Need Campo Belo", "EndereÃ§o": "Rua JoÃ£o Ãlvares Soares, 1512, Campo Belo, SÃ£o Paulo", "Ãrea de Trabalho": "SANTO AMARO - SP", "Modelo da Tela": "MONITOR ALL IN ONE 21,5", "latitude": -23.6203998, "longitude": -46.6701218, "Data prevista de troca": "2026-05-13"}, {"CÃ³d Ponto": 44158, "Ponto": "EdifÃ­cio IndaiÃ¡", "EndereÃ§o": "Alameda SarutaiÃ¡, 96, Jardim Paulista, SÃ£o Paulo", "Ãrea de Trabalho": "Paulista / Jardins - SP", "Modelo da Tela": "MONITOR ALL IN ONE 21,5", "latitude": -23.5702145, "longitude": -46.6528008, "Data prevista de troca": "2026-05-14"}, {"CÃ³d Ponto": 29205, "Ponto": "EdifÃ­cio SobradÃ£o - Bloco A", "EndereÃ§o": "Rua Bela Cintra, 1744, ConsolaÃ§Ã£o, SÃ£o Paulo", "Ãrea de Trabalho": "Paulista / Jardins - SP", "Modelo da Tela": "MONITOR ALL IN ONE 21,5", "latitude": -23.5603262, "longitude": -46.6665745, "Data prevista de troca": "2026-05-14"}, {"CÃ³d Ponto": 31705, "Ponto": "EdifÃ­cio Supremus - Torre 1", "EndereÃ§o": "Rua ConvenÃ§Ã£o de Itu, 57, Jardim Paulista, SÃ£o Paulo", "Ãrea de Trabalho": "Paulista / Jardins - SP", "Modelo da Tela": "MONITOR ALL IN ONE 21,5", "latitude": -23.5652386, "longitude": -46.656972, "Data prevista de troca": "2026-05-14"}, {"CÃ³d Ponto": 59696, "Ponto": "EdifÃ­cio Juliana", "EndereÃ§o": "Rua Nebraska, 189, Brooklin Novo, SÃ£o Paulo", "Ãrea de Trabalho": "Faria Lima / Itaim Bibi - SP", "Modelo da Tela": "MONITOR ALL IN ONE 21,5", "latitude": -2.36120227999999e+16, "longitude": -4.66797169e+16, "Data prevista de troca": "2026-05-15"}, {"CÃ³d Ponto": 225, "Ponto": "Joaquim Floriano 913", "EndereÃ§o": "Rua Joaquim Floriano, 913, Itaim Bibi, SÃ£o Paulo", "Ãrea de Trabalho": "Faria Lima / Itaim Bibi - SP", "Modelo da Tela": "MONITOR ALL IN ONE 21,5", "latitude": -23.5857298, "longitude": -46.6788337, "Data prevista de troca": "2026-05-15"}, {"CÃ³d Ponto": 44064, "Ponto": "Maison Royale", "EndereÃ§o": "Rua Tuim, 484, Vila Uberabinha, SÃ£o Paulo", "Ãrea de Trabalho": "Faria Lima / Itaim Bibi - SP", "Modelo da Tela": "MONITOR ALL IN ONE 21,5", "latitude": -23.6008189, "longitude": -46.6698248, "Data prevista de troca": "2026-05-15"}, {"CÃ³d Ponto": 186, "Ponto": "New Century", "EndereÃ§o": "Rua Leopoldo Couto de MagalhÃ£es JÃºnior, 758, Itaim Bibi, SÃ£o Paulo", "Ãrea de Trabalho": "Faria Lima / Itaim Bibi - SP", "Modelo da Tela": "MONITOR ALL IN ONE 21,5", "latitude": -23.588151, "longitude": -46.68042, "Data prevista de troca": "2026-05-15"}, {"CÃ³d Ponto": 41672, "Ponto": "CondomÃ­nio EdifÃ­cio SÃ£o Paulo", "EndereÃ§o": "Rua SÃ£o Paulo, 671, CerÃ¢mica, SÃ£o Caetano do Sul", "Ãrea de Trabalho": "Grande ABC - SP", "Modelo da Tela": "MONITOR ALL IN ONE 21,5", "latitude": -23.6219456, "longitude": -46.5748616, "Data prevista de troca": "2026-05-18"}, {"CÃ³d Ponto": 40610, "Ponto": "Double deck Residence Tower", "EndereÃ§o": "Rua Amazonas, 1205, Osvaldo Cruz, SÃ£o Caetano do Sul", "Ãrea de Trabalho": "Grande ABC - SP", "Modelo da Tela": "MONITOR ALL IN ONE 21,5", "latitude": -23.6215557, "longitude": -46.5692461, "Data prevista de troca": "2026-05-18"}, {"CÃ³d Ponto": 8689, "Ponto": "Due Belle - Asti", "EndereÃ§o": "Rua LuÃ­s Louza, 181, OlÃ­mpico, SÃ£o Caetano do Sul", "Ãrea de Trabalho": "Grande ABC - SP", "Modelo da Tela": "MONITOR ALL IN ONE 21,5", "latitude": -23.6235266, "longitude": -46.5628106, "Data prevista de troca": "2026-05-18"}, {"CÃ³d Ponto": 33613, "Ponto": "EdifÃ­cio Elizabeth", "EndereÃ§o": "Rua Rio Branco, 477, Centro, SÃ£o Bernardo do Campo", "Ãrea de Trabalho": "Grande ABC - SP", "Modelo da Tela": "MONITOR ALL IN ONE 21,5", "latitude": -23.7075091, "longitude": -46.5497742, "Data prevista de troca": "2026-05-18"}, {"CÃ³d Ponto": 7516, "Ponto": "Absoluto 1", "EndereÃ§o": "Rua Marina Crespi, 274, Mooca, SÃ£o Paulo", "Ãrea de Trabalho": "LESTE - 1 - SP", "Modelo da Tela": "MONITOR ALL IN ONE 21,5", "latitude": -23.5574432, "longitude": -46.6046938, "Data prevista de troca": "2026-05-19"}, {"CÃ³d Ponto": 7515, "Ponto": "Absoluto 2", "EndereÃ§o": "Rua Marina Crespi, 274, Mooca, SÃ£o Paulo", "Ãrea de Trabalho": "LESTE - 1 - SP", "Modelo da Tela": "MONITOR ALL IN ONE 21,5", "latitude": -23.5574432, "longitude": -46.6046938, "Data prevista de troca": "2026-05-19"}, {"CÃ³d Ponto": 33705, "Ponto": "Condominio Habitacional Bresser II - Torre 2", "EndereÃ§o": "Rua Visconde de ParnaÃ­ba, 1501, Mooca, SÃ£o Paulo", "Ãrea de Trabalho": "LESTE - 1 - SP", "Modelo da Tela": "MONITOR ALL IN ONE 21,5", "latitude": -23.5478934, "longitude": -46.6114901, "Data prevista de troca": "2026-05-19"}, {"CÃ³d Ponto": 59804, "Ponto": "Condominio Projeto Viver Celso Garcia - Torre Arara", "EndereÃ§o": "Avenida Celso Garcia, 1907, BrÃ¡s, SÃ£o Paulo", "Ãrea de Trabalho": "LESTE - 1 - SP", "Modelo da Tela": "MONITOR ALL IN ONE 21,5", "latitude": -235374245.0, "longitude": -4.65943526e+16, "Data prevista de troca": "2026-05-19"}, {"CÃ³d Ponto": 33708, "Ponto": "CondomÃ­nio Ares Santana", "EndereÃ§o": "Rua Engenheiro Mac Lean, 427, Santana, SÃ£o Paulo", "Ãrea de Trabalho": "NORTE - 1 - SP", "Modelo da Tela": "MONITOR ALL IN ONE 21,5", "latitude": -23.4981289, "longitude": -46.6358907, "Data prevista de troca": "2026-05-20"}, {"CÃ³d Ponto": 34725, "Ponto": "CondomÃ­nio Bay Vista", "EndereÃ§o": "Rua Manuel de Almeida, 307, Vila Paiva, SÃ£o Paulo", "Ãrea de Trabalho": "NORTE - 1 - SP", "Modelo da Tela": "MONITOR ALL IN ONE 21,5", "latitude": -23.5060399, "longitude": -46.6023707, "Data prevista de troca": "2026-05-20"}, {"CÃ³d Ponto": 39950, "Ponto": "EdifÃ­cio Joan MirÃ³", "EndereÃ§o": "Rua Soror AngÃ©lica, 521, Vila Ester (Zona Norte), SÃ£o Paulo", "Ãrea de Trabalho": "NORTE - 1 - SP", "Modelo da Tela": "MONITOR ALL IN ONE 21,5", "latitude": -23.5030602, "longitude": -46.6437554, "Data prevista de troca": "2026-05-20"}, {"CÃ³d Ponto": 32562, "Ponto": "EdifÃ­cio Marcos", "EndereÃ§o": "Rua Ana Benvinda de Andrade, 115, Santana, SÃ£o Paulo", "Ãrea de Trabalho": "NORTE - 1 - SP", "Modelo da Tela": "MONITOR ALL IN ONE 21,5", "latitude": -23.4929743, "longitude": -46.6272793, "Data prevista de troca": "2026-05-20"}, {"CÃ³d Ponto": 14711, "Ponto": "AmazÃ´nia - Torre BelÃ©m", "EndereÃ§o": "Rua BarÃ£o do Bananal, 760, Vila PompÃ©ia, SÃ£o Paulo", "Ãrea de Trabalho": "OESTE - 1 - SP", "Modelo da Tela": "MONITOR ALL IN ONE 21,5", "latitude": -23.5309551, "longitude": -46.6874537, "Data prevista de troca": "2026-05-21"}, {"CÃ³d Ponto": 33121, "Ponto": "AntÃ´nio Carlos Jobim - Torre B", "EndereÃ§o": "Rua Fradique Coutinho, 332, Pinheiros, SÃ£o Paulo", "Ãrea de Trabalho": "OESTE - 1 - SP", "Modelo da Tela": "MONITOR ALL IN ONE 21,5", "latitude": -23.5636105, "longitude": -46.6859116, "Data prevista de troca": "2026-05-21"}, {"CÃ³d Ponto": 34714, "Ponto": "Arte Arquitetura Pinheiros 2", "EndereÃ§o": "Rua Doutor VirgÃ­lio de Carvalho Pinto, 645, Pinheiros, SÃ£o Paulo", "Ãrea de Trabalho": "OESTE - 1 - SP", "Modelo da Tela": "MONITOR ALL IN ONE 21,5", "latitude": -23.5608139, "longitude": -46.6858517, "Data prevista de troca": "2026-05-21"}, {"CÃ³d Ponto": 65152, "Ponto": "Cond. West Gardens - Torre Bristol", "EndereÃ§o": "Rua Corrientes, 135, Lapa, SÃ£o Paulo", "Ãrea de Trabalho": "OESTE - 1 - SP", "Modelo da Tela": "MONITOR ALL IN ONE 21,5", "latitude": -2.35222747e+16, "longitude": -4.67111775999999e+16, "Data prevista de troca": "2026-05-21"}, {"CÃ³d Ponto": 49658, "Ponto": "CondomÃ­nio Algarve", "EndereÃ§o": "Avenida IrerÃ©, 2047, Planalto Paulista, SÃ£o Paulo", "Ãrea de Trabalho": "SUL - 1 - SP", "Modelo da Tela": "MONITOR ALL IN ONE 21,5", "latitude": -23.628337, "longitude": -46.645339, "Data prevista de troca": "2026-05-22"}, {"CÃ³d Ponto": 40846, "Ponto": "CondomÃ­nio Ipiranga Residencial - Torre I", "EndereÃ§o": "Avenida Nossa Senhora da EncarnaÃ§Ã£o, 680, Jardim Maria Estela, SÃ£o Paulo", "Ãrea de Trabalho": "SUL - 1 - SP", "Modelo da Tela": "MONITOR ALL IN ONE 21,5", "latitude": -23.633357, "longitude": -46.6002956, "Data prevista de troca": "2026-05-22"}, {"CÃ³d Ponto": 64233, "Ponto": "Costa do AtlÃ¢ntico II - Ubatuba", "EndereÃ§o": "Rua Adriano Racine, 147, Jardim Celeste, SÃ£o Paulo", "Ãrea de Trabalho": "SUL - 1 - SP", "Modelo da Tela": "MONITOR ALL IN ONE 21,5", "latitude": -236595336.0, "longitude": -4.66145313e+16, "Data prevista de troca": "2026-05-22"}, {"CÃ³d Ponto": 27449, "Ponto": "EdifÃ­cio Archimedes", "EndereÃ§o": "Alameda dos AicÃ¡s, 1028, IndianÃ³polis, SÃ£o Paulo", "Ãrea de Trabalho": "SUL - 1 - SP", "Modelo da Tela": "MONITOR ALL IN ONE 21,5", "latitude": -23.6117079, "longitude": -46.6609806, "Data prevista de troca": "2026-05-22"}, {"CÃ³d Ponto": 50688, "Ponto": "Altos do Morumbi Sul - Torre 1", "EndereÃ§o": "Rua Nossa Senhora do Bom Conselho, 320, ChÃ¡cara Nossa Senhora do Bom Conselho, SÃ£o Paulo", "Ãrea de Trabalho": "SUL - 4 (MORUMBI) - SP", "Modelo da Tela": "MONITOR ALL IN ONE 21,5", "latitude": -23.6420459, "longitude": -46.7590714, "Data prevista de troca": "2026-05-25"}, {"CÃ³d Ponto": 49007, "Ponto": "Ape Jardim Sul", "EndereÃ§o": "Rua JosÃ© da Silva Ribeiro, 814, Vila Andrade, SÃ£o Paulo", "Ãrea de Trabalho": "SUL - 4 (MORUMBI) - SP", "Modelo da Tela": "MONITOR ALL IN ONE 21,5", "latitude": -23.6273991, "longitude": -46.744333, "Data prevista de troca": "2026-05-25"}, {"CÃ³d Ponto": 41415, "Ponto": "Aquarelle - Torre 1 - Rouge", "EndereÃ§o": "Rua Iuru, 40, Vila Andrade, SÃ£o Paulo", "Ãrea de Trabalho": "SUL - 4 (MORUMBI) - SP", "Modelo da Tela": "MONITOR ALL IN ONE 21,5", "latitude": -23.6330155, "longitude": -46.7345769, "Data prevista de troca": "2026-05-25"}, {"CÃ³d Ponto": 39378, "Ponto": "CondomÃ­nio ChÃ¡cara TangarÃ¡ - Torre Lago", "EndereÃ§o": "Estrada Carlos Queiroz Telles, 81, Jardim Fonte do Morumbi, SÃ£o Paulo", "Ãrea de Trabalho": "SUL - 4 (MORUMBI) - SP", "Modelo da Tela": "MONITOR ALL IN ONE 21,5", "latitude": -23.6300193, "longitude": -46.7207726, "Data prevista de troca": "2026-05-25"}, {"CÃ³d Ponto": 14447, "Ponto": "Centro Empresarial Ipiranga", "EndereÃ§o": "Rua do Grito, 387, Ipiranga, SÃ£o Paulo", "Ãrea de Trabalho": "SUL - 2 - SP", "Modelo da Tela": "MONITOR ALL IN ONE 21,5", "latitude": -23.5990058, "longitude": -46.6010642, "Data prevista de troca": "2026-05-26"}, {"CÃ³d Ponto": 40971, "Ponto": "EdifÃ­cio OcaporÃ£", "EndereÃ§o": "Rua Paracatu, 846, Parque Imperial, SÃ£o Paulo", "Ãrea de Trabalho": "SUL - 2 - SP", "Modelo da Tela": "MONITOR ALL IN ONE 21,5", "latitude": -23.6222118, "longitude": -46.6333832, "Data prevista de troca": "2026-05-26"}, {"CÃ³d Ponto": 39152, "Ponto": "Famile Anchieta 580 - Bloco B", "EndereÃ§o": "Via Anchieta, 580, Vila Moinho Velho, SÃ£o Paulo", "Ãrea de Trabalho": "SUL - 2 - SP", "Modelo da Tela": "MONITOR ALL IN ONE 21,5", "latitude": -23.6071216, "longitude": -46.599684, "Data prevista de troca": "2026-05-26"}, {"CÃ³d Ponto": 33348, "Ponto": "Gardens Living Club - Mirabell", "EndereÃ§o": "Rua Descampado, 121, Vila Vera, SÃ£o Paulo", "Ãrea de Trabalho": "SUL - 2 - SP", "Modelo da Tela": "MONITOR ALL IN ONE 21,5", "latitude": -23.6218728, "longitude": -46.6032689, "Data prevista de troca": "2026-05-26"}, {"CÃ³d Ponto": 42590, "Ponto": "Jardins do Brasil Mantiqueira - ADM", "EndereÃ§o": "Avenida HilÃ¡rio Pereira de Souza, 492, Centro, Osasco", "Ãrea de Trabalho": "Osasco - SP", "Modelo da Tela": "MONITOR ALL IN ONE 21,5", "latitude": -23.5346836, "longitude": -46.7687904, "Data prevista de troca": "2026-05-27"}, {"CÃ³d Ponto": 27656, "Ponto": "Living Magic 2 - Torre 1", "EndereÃ§o": "Avenida Manoel Pedro Pimentel, 103, Continental, Osasco", "Ãrea de Trabalho": "Osasco - SP", "Modelo da Tela": "MONITOR ALL IN ONE 21,5", "latitude": -23.5354259, "longitude": -46.7619033, "Data prevista de troca": "2026-05-27"}, {"CÃ³d Ponto": 33306, "Ponto": "Parque Central Osasco - Reserva - Torre 3", "EndereÃ§o": "Rua Professor Luis Eulalio de Bueno Vidigal, 175, Centro, Osasco", "Ãrea de Trabalho": "Osasco - SP", "Modelo da Tela": "MONITOR ALL IN ONE 21,5", "latitude": -23.5253521, "longitude": -46.7816523, "Data prevista de troca": "2026-05-27"}, {"CÃ³d Ponto": 28989, "Ponto": "PrÃ­ncipe de Sevilha", "EndereÃ§o": "Rua Carlos Weber, 1288, Vila Leopoldina, SÃ£o Paulo", "Ãrea de Trabalho": "Osasco - SP", "Modelo da Tela": "MONITOR ALL IN ONE 21,5", "latitude": -23.5311311, "longitude": -46.7276772, "Data prevista de troca": "2026-05-27"}, {"CÃ³d Ponto": 43489, "Ponto": "Almagah 227 - Comercial", "EndereÃ§o": "Rua Airi, 227, Vila Gomes Cardim, SÃ£o Paulo", "Ãrea de Trabalho": "LESTE - 2 - SP", "Modelo da Tela": "MONITOR ALL IN ONE 21,5", "latitude": -23.5409617, "longitude": -46.5683831, "Data prevista de troca": "2026-05-28"}, {"CÃ³d Ponto": 19751, "Ponto": "Beverly Hills", "EndereÃ§o": "Rua AntÃ´nio Alves Barril, 355, Jardim AnÃ¡lia Franco, SÃ£o Paulo", "Ãrea de Trabalho": "LESTE - 2 - SP", "Modelo da Tela": "MONITOR ALL IN ONE 21,5", "latitude": -23.559335, "longitude": -46.5612023, "Data prevista de troca": "2026-05-28"}, {"CÃ³d Ponto": 33236, "Ponto": "Memory AnÃ¡lia Franco", "EndereÃ§o": "Rua QuixadÃ¡, 80, Vila Invernada, SÃ£o Paulo", "Ãrea de Trabalho": "LESTE - 2 - SP", "Modelo da Tela": "MONITOR ALL IN ONE 21,5", "latitude": -23.5665986, "longitude": -46.5672855, "Data prevista de troca": "2026-05-28"}, {"CÃ³d Ponto": 40923, "Ponto": "Residencial Gran Canaria", "EndereÃ§o": "Rua da MeaÃ§Ã£o, 224, Vila Regente FeijÃ³, SÃ£o Paulo", "Ãrea de Trabalho": "LESTE - 2 - SP", "Modelo da Tela": "MONITOR ALL IN ONE 21,5", "latitude": -23.5546526, "longitude": -46.5688795, "Data prevista de troca": "2026-05-28"}, {"CÃ³d Ponto": 40124, "Ponto": "Elev Barra Funda - Torre 2", "EndereÃ§o": "Rua Josef Kryss, 120, Parque Industrial Tomas Edson, SÃ£o Paulo", "Ãrea de Trabalho": "Centro - 1 - SP", "Modelo da Tela": "MONITOR ALL IN ONE 21,5", "latitude": -23.5179609, "longitude": -46.6754367, "Data prevista de troca": "2026-05-29"}, {"CÃ³d Ponto": 43526, "Ponto": "Flow Barra Funda I", "EndereÃ§o": "Rua FederaÃ§Ã£o Paulista de Futebol, 41, VÃ¡rzea da Barra Funda, SÃ£o Paulo", "Ãrea de Trabalho": "Centro - 1 - SP", "Modelo da Tela": "MONITOR ALL IN ONE 21,5", "latitude": -23.5228612, "longitude": -46.6676884, "Data prevista de troca": "2026-05-29"}, {"CÃ³d Ponto": 40049, "Ponto": "Forvm Tower", "EndereÃ§o": "Avenida MarquÃªs de SÃ£o Vicente, 182, VÃ¡rzea da Barra Funda, SÃ£o Paulo", "Ãrea de Trabalho": "Centro - 1 - SP", "Modelo da Tela": "MONITOR ALL IN ONE 21,5", "latitude": -23.5220901, "longitude": -46.6614921, "Data prevista de troca": "2026-05-29"}, {"CÃ³d Ponto": 44201, "Ponto": "Reserva Barra Funda - Torre A", "EndereÃ§o": "Rua Rubens Porta Nova, 166, Parque Industrial Tomas Edson, SÃ£o Paulo", "Ãrea de Trabalho": "Centro - 1 - SP", "Modelo da Tela": "MONITOR ALL IN ONE 21,5", "latitude": -23.5197388, "longitude": -46.6648109, "Data prevista de troca": "2026-05-29"}, {"CÃ³d Ponto": 20398, "Ponto": "Setin downtown SÃ£o LuÃ­s", "EndereÃ§o": "Viaduto Nove de Julho, 200, Centro, SÃ£o Paulo", "Ãrea de Trabalho": "Centro - 1 - SP", "Modelo da Tela": "MONITOR ALL IN ONE 21,5", "latitude": -23.5482457, "longitude": -46.6423309, "Data prevista de troca": "2026-06-01"}, {"CÃ³d Ponto": 49154, "Ponto": "Viva Barra Funda - Torre B", "EndereÃ§o": "Rua do Bosque, 804, Barra Funda, SÃ£o Paulo", "Ãrea de Trabalho": "Centro - 1 - SP", "Modelo da Tela": "MONITOR ALL IN ONE 21,5", "latitude": -23.5248877, "longitude": -46.6564948, "Data prevista de troca": "2026-06-01"}, {"CÃ³d Ponto": 41000, "Ponto": "CondomÃ­nio EdifÃ­cio Andrea", "EndereÃ§o": "Rua Adolfo Gordo, 100, Campos ElÃ­seos, SÃ£o Paulo", "Ãrea de Trabalho": "Centro - 2 - SP", "Modelo da Tela": "MONITOR ALL IN ONE 21,5", "latitude": -23.5335428, "longitude": -46.6494988, "Data prevista de troca": "2026-06-01"}, {"CÃ³d Ponto": 41742, "Ponto": "CondomÃ­nio Silvana", "EndereÃ§o": "Avenida Paulista, 639, Bela Vista, SÃ£o Paulo", "Ãrea de Trabalho": "Centro - 2 - SP", "Modelo da Tela": "MONITOR ALL IN ONE 21,5", "latitude": -23.5675034, "longitude": -46.6494689, "Data prevista de troca": "2026-06-01"}, {"CÃ³d Ponto": 44329, "Ponto": "CondomÃ­nio Wonder By PraÃ§as da Cidade", "EndereÃ§o": "Rua Ernesto de Castro, 139, BrÃ¡s, SÃ£o Paulo", "Ãrea de Trabalho": "LESTE - 1 - SP", "Modelo da Tela": "MONITOR ALL IN ONE 21,5", "latitude": -23.551411, "longitude": -46.6144755, "Data prevista de troca": "2026-06-02"}, {"CÃ³d Ponto": 32588, "Ponto": "EdifÃ­cio Concepto", "EndereÃ§o": "Rua Ilansa, 274, Vila Prudente, SÃ£o Paulo", "Ãrea de Trabalho": "LESTE - 1 - SP", "Modelo da Tela": "MONITOR ALL IN ONE 21,5", "latitude": -23.5796138, "longitude": -46.5888306, "Data prevista de troca": "2026-06-02"}, {"CÃ³d Ponto": 11660, "Ponto": "In SÃ£o Paulo Vilaboim A", "EndereÃ§o": "Rua Ibitirama, 2300, Vila Prudente, SÃ£o Paulo", "Ãrea de Trabalho": "LESTE - 1 - SP", "Modelo da Tela": "MONITOR ALL IN ONE 21,5", "latitude": -23.59953506812, "longitude": -46.576435809787, "Data prevista de troca": "2026-06-02"}, {"CÃ³d Ponto": 41687, "Ponto": "Residencial - Edificios Renoir e Monet - Torre A", "EndereÃ§o": "Rua Campo Largo, 190, Vila Bertioga, SÃ£o Paulo", "Ãrea de Trabalho": "LESTE - 1 - SP", "Modelo da Tela": "MONITOR ALL IN ONE 21,5", "latitude": -23.5674741, "longitude": -46.5839517, "Data prevista de troca": "2026-06-02"}, {"CÃ³d Ponto": 65150, "Ponto": "Cond. West Gardens - Torre Windsor", "EndereÃ§o": "Rua Corrientes, 135, Lapa, SÃ£o Paulo", "Ãrea de Trabalho": "OESTE - 1 - SP", "Modelo da Tela": "MONITOR ALL IN ONE 21,5", "latitude": -2.35222747e+16, "longitude": -4.67111775999999e+16, "Data prevista de troca": "2026-06-03"}, {"CÃ³d Ponto": 32201, "Ponto": "CondomÃ­nio Trio Perdizes", "EndereÃ§o": "Rua Desembargador GuimarÃ£es, 92, Ãgua Branca, SÃ£o Paulo", "Ãrea de Trabalho": "OESTE - 1 - SP", "Modelo da Tela": "MONITOR ALL IN ONE 21,5", "latitude": -23.5298918, "longitude": -46.674277, "Data prevista de troca": "2026-06-03"}, {"CÃ³d Ponto": 21778, "Ponto": "EdifÃ­cio Affonso Aliperti", "EndereÃ§o": "Rua Bianchi Bertoldi, 129, Pinheiros, SÃ£o Paulo", "Ãrea de Trabalho": "OESTE - 1 - SP", "Modelo da Tela": "MONITOR ALL IN ONE 21,5", "latitude": -23.5687854, "longitude": -46.6912248, "Data prevista de troca": "2026-06-03"}, {"CÃ³d Ponto": 30672, "Ponto": "EdifÃ­cio Ville Bayard", "EndereÃ§o": "Rua Francisco Bayardo, 551, Perdizes, SÃ£o Paulo", "Ãrea de Trabalho": "OESTE - 1 - SP", "Modelo da Tela": "MONITOR ALL IN ONE 21,5", "latitude": -23.5381087, "longitude": -46.6894857, "Data prevista de troca": "2026-06-03"}, {"CÃ³d Ponto": 44397, "Ponto": "Green Loadd SaÃºde", "EndereÃ§o": "Avenida Jabaquara, 1744, MirandÃ³polis, SÃ£o Paulo", "Ãrea de Trabalho": "SUL - 1 - SP", "Modelo da Tela": "MONITOR ALL IN ONE 21,5", "latitude": -23.619526, "longitude": -46.63975, "Data prevista de troca": "2026-06-05"}, {"CÃ³d Ponto": 20034, "Ponto": "Jardim BotÃ¢nico - Bloco 11", "EndereÃ§o": "Rua Isabel de GÃ³is, 8, Jardim Botucatu, SÃ£o Paulo", "Ãrea de Trabalho": "SUL - 1 - SP", "Modelo da Tela": "MONITOR ALL IN ONE 21,5", "latitude": -23.6360913, "longitude": -46.6098002, "Data prevista de troca": "2026-06-05"}, {"CÃ³d Ponto": 7797, "Ponto": "Jardin de Mermier", "EndereÃ§o": "Avenida ItaboraÃ­, 109, Bosque da SaÃºde, SÃ£o Paulo", "Ãrea de Trabalho": "SUL - 1 - SP", "Modelo da Tela": "MONITOR ALL IN ONE 21,5", "latitude": -23.6109584, "longitude": -46.6303892, "Data prevista de troca": "2026-06-05"}, {"CÃ³d Ponto": 39324, "Ponto": "On Paulista - TR", "EndereÃ§o": "Avenida Bernardino de Campos, 1340, ParaÃ­so, SÃ£o Paulo", "Ãrea de Trabalho": "SUL - 1 - SP", "Modelo da Tela": "MONITOR ALL IN ONE 21,5", "latitude": -23.576159, "longitude": -46.641496, "Data prevista de troca": "2026-06-05"}, {"CÃ³d Ponto": 50948, "Ponto": "Edificio Caravelle", "EndereÃ§o": "Rua Paim, 223, Bela Vista, SÃ£o Paulo", "Ãrea de Trabalho": "Centro - 2 - SP", "Modelo da Tela": "MONITOR ALL IN ONE 21,5", "latitude": -23.5543288, "longitude": -46.6502525, "Data prevista de troca": "2026-06-08"}, {"CÃ³d Ponto": 49486, "Ponto": "EdifÃ­cio Suzana", "EndereÃ§o": "Rua Itacolomi, 596, HigienÃ³polis, SÃ£o Paulo", "Ãrea de Trabalho": "Centro - 2 - SP", "Modelo da Tela": "MONITOR ALL IN ONE 21,5", "latitude": -23.5490557, "longitude": -46.6579171, "Data prevista de troca": "2026-06-08"}, {"CÃ³d Ponto": 7719, "Ponto": "Nathalie", "EndereÃ§o": "Rua Conselheiro Brotero, 1140, Santa CecÃ­lia, SÃ£o Paulo", "Ãrea de Trabalho": "Centro - 2 - SP", "Modelo da Tela": "MONITOR ALL IN ONE 21,5", "latitude": -23.5363745, "longitude": -46.6609366, "Data prevista de troca": "2026-06-08"}, {"CÃ³d Ponto": 39284, "Ponto": "Think Home Republica", "EndereÃ§o": "Rua Bento Freitas, 420, RepÃºblica, SÃ£o Paulo", "Ãrea de Trabalho": "Centro - 2 - SP", "Modelo da Tela": "MONITOR ALL IN ONE 21,5", "latitude": -23.545786, "longitude": -46.6456974, "Data prevista de troca": "2026-06-08"}, {"CÃ³d Ponto": 8674, "Ponto": "San Genaro", "EndereÃ§o": "PraÃ§a do CentenÃ¡rio de Vila Prudente, 139, Vila Prudente, SÃ£o Paulo", "Ãrea de Trabalho": "LESTE - 1 - SP", "Modelo da Tela": "MONITOR ALL IN ONE 21,5", "latitude": -23.5816097, "longitude": -46.5825367, "Data prevista de troca": "2026-06-09"}, {"CÃ³d Ponto": 34219, "Ponto": "Urban Mooca 2", "EndereÃ§o": "Rua Frei Gaspar, 66, Mooca, SÃ£o Paulo", "Ãrea de Trabalho": "LESTE - 1 - SP", "Modelo da Tela": "MONITOR ALL IN ONE 21,5", "latitude": -23.5506205, "longitude": -46.6101499, "Data prevista de troca": "2026-06-09"}, {"CÃ³d Ponto": 7932, "Ponto": "Vallore BrÃ¡s - Veneza", "EndereÃ§o": "Rua do Lucas, 225, BrÃ¡s, SÃ£o Paulo", "Ãrea de Trabalho": "LESTE - 1 - SP", "Modelo da Tela": "MONITOR ALL IN ONE 21,5", "latitude": -23.5425173, "longitude": -46.6253977, "Data prevista de troca": "2026-06-09"}, {"CÃ³d Ponto": 41707, "Ponto": "Verone Family Club", "EndereÃ§o": "Rua Celso de Azevedo Marques, 360, Parque da Mooca, SÃ£o Paulo", "Ãrea de Trabalho": "LESTE - 1 - SP", "Modelo da Tela": "MONITOR ALL IN ONE 21,5", "latitude": -23.568717, "longitude": -46.5947973, "Data prevista de troca": "2026-06-09"}, {"CÃ³d Ponto": 41597, "Ponto": "Living da Vila Guilherme", "EndereÃ§o": "Rua Amazonas da Silva, 813, Vila Guilherme, SÃ£o Paulo", "Ãrea de Trabalho": "NORTE - 1 - SP", "Modelo da Tela": "MONITOR ALL IN ONE 21,5", "latitude": -23.5125097, "longitude": -46.6090784, "Data prevista de troca": "2026-06-10"}, {"CÃ³d Ponto": 28865, "Ponto": "Novo Andarai - Torre C", "EndereÃ§o": "Rua Manguari, 501, Jardim AndaraÃ­, SÃ£o Paulo", "Ãrea de Trabalho": "NORTE - 1 - SP", "Modelo da Tela": "MONITOR ALL IN ONE 21,5", "latitude": -23.5226336, "longitude": -46.58209, "Data prevista de troca": "2026-06-10"}, {"CÃ³d Ponto": 44606, "Ponto": "Port De La Rochelle", "EndereÃ§o": "Rua Doutor JoÃ£o Batista Soares de Faria, 103, Santana, SÃ£o Paulo", "Ãrea de Trabalho": "NORTE - 1 - SP", "Modelo da Tela": "MONITOR ALL IN ONE 21,5", "latitude": -23.4953677, "longitude": -46.6287578, "Data prevista de troca": "2026-06-10"}, {"CÃ³d Ponto": 21471, "Ponto": "PraÃ§a D Amoreira", "EndereÃ§o": "Rua Conselheiro Moreira de Barros, 2399, Lauzane Paulista, SÃ£o Paulo", "Ãrea de Trabalho": "NORTE - 1 - SP", "Modelo da Tela": "MONITOR ALL IN ONE 21,5", "latitude": -23.4842254, "longitude": -46.6425537, "Data prevista de troca": "2026-06-10"}, {"CÃ³d Ponto": 63531, "Ponto": "Res. Villa Park Osasco - Torre 1", "EndereÃ§o": "Avenida Edmundo Amaral, 904, Piratininga, Osasco", "Ãrea de Trabalho": "Osasco - SP", "Modelo da Tela": "MONITOR ALL IN ONE 21,5", "latitude": -2.35118520999999e+16, "longitude": -4.68074559999999e+16, "Data prevista de troca": "2026-06-11"}, {"CÃ³d Ponto": 28120, "Ponto": "Residencial Repletto - Torre A", "EndereÃ§o": "Rua Justino Alves Batista, 779, Vila Yolanda, Osasco", "Ãrea de Trabalho": "Osasco - SP", "Modelo da Tela": "MONITOR ALL IN ONE 21,5", "latitude": -23.5529236, "longitude": -46.7936294, "Data prevista de troca": "2026-06-11"}, {"CÃ³d Ponto": 20249, "Ponto": "Resort Ecovida - Torre 2", "EndereÃ§o": "Rua Vicente Alves da Silva, 700, Jardim Roberto, Osasco", "Ãrea de Trabalho": "Osasco - SP", "Modelo da Tela": "MONITOR ALL IN ONE 21,5", "latitude": -23.5473375, "longitude": -46.8013068, "Data prevista de troca": "2026-06-11"}, {"CÃ³d Ponto": 49709, "Ponto": "San Diego", "EndereÃ§o": "Rua Doutor Manoel de Paiva Ramos, 60, Cidade SÃ£o Francisco, SÃ£o Paulo", "Ãrea de Trabalho": "Osasco - SP", "Modelo da Tela": "MONITOR ALL IN ONE 21,5", "latitude": -23.5596581, "longitude": -46.7554626, "Data prevista de troca": "2026-06-11"}, {"CÃ³d Ponto": 40441, "Ponto": "CondomÃ­nio EdifÃ­cio Airosa", "EndereÃ§o": "Rua Palacete das Ãguias, 610, Vila Alexandria, SÃ£o Paulo", "Ãrea de Trabalho": "SANTO AMARO - SP", "Modelo da Tela": "MONITOR ALL IN ONE 21,5", "latitude": -23.6423554, "longitude": -46.6681226, "Data prevista de troca": "2026-06-12"}, {"CÃ³d Ponto": 68087, "Ponto": "CondomÃ­nio EdifÃ­cio Carlos Eduardo", "EndereÃ§o": "Rua Vera Cruz, 70, Santo Amaro, SÃ£o Paulo", "Ãrea de Trabalho": "SANTO AMARO - SP", "Modelo da Tela": "MONITOR ALL IN ONE 21,5", "latitude": -236493404.0, "longitude": -4.67062426999999e+16, "Data prevista de troca": "2026-06-12"}, {"CÃ³d Ponto": 40151, "Ponto": "Connection Brooklin", "EndereÃ§o": "Rua Professor JosÃ© Leite e Oiticica, 125, Vila Gertrudes, SÃ£o Paulo", "Ãrea de Trabalho": "SANTO AMARO - SP", "Modelo da Tela": "MONITOR ALL IN ONE 21,5", "latitude": -23.6215978, "longitude": -46.6943768, "Data prevista de troca": "2026-06-12"}, {"CÃ³d Ponto": 19587, "Ponto": "New Home Chacara Flora - Begonha", "EndereÃ§o": "Avenida Interlagos, 1880, Jardim Marajoara, SÃ£o Paulo", "Ãrea de Trabalho": "SANTO AMARO - SP", "Modelo da Tela": "MONITOR ALL IN ONE 21,5", "latitude": -23.6703796, "longitude": -46.6782731, "Data prevista de troca": "2026-06-12"}, {"CÃ³d Ponto": 51205, "Ponto": "EdifÃ­cio Cintia", "EndereÃ§o": "Rua Doutor Francisco JosÃ© Longo, 281, ChÃ¡cara Inglesa, SÃ£o Paulo", "Ãrea de Trabalho": "SUL - 1 - SP", "Modelo da Tela": "MONITOR ALL IN ONE 21,5", "latitude": -23.6066595, "longitude": -46.6298878, "Data prevista de troca": "2026-06-15"}, {"CÃ³d Ponto": 33554, "Ponto": "EdifÃ­cio NEO", "EndereÃ§o": "Rua Traituba, 71, SaÃºde, SÃ£o Paulo", "Ãrea de Trabalho": "SUL - 1 - SP", "Modelo da Tela": "MONITOR ALL IN ONE 21,5", "latitude": -23.6130327, "longitude": -46.6324194, "Data prevista de troca": "2026-06-15"}, {"CÃ³d Ponto": 59293, "Ponto": "Florear Studio", "EndereÃ§o": "Rua dos CrisÃ¢ntemos, 77, MirandÃ³polis, SÃ£o Paulo", "Ãrea de Trabalho": "SUL - 1 - SP", "Modelo da Tela": "MONITOR ALL IN ONE 21,5", "latitude": -23606472.0, "longitude": -4.66393768999999e+16, "Data prevista de troca": "2026-06-15"}, {"CÃ³d Ponto": 34218, "Ponto": "Gaivotas", "EndereÃ§o": "Rua Guiratinga, 931, ChÃ¡cara Inglesa, SÃ£o Paulo", "Ãrea de Trabalho": "SUL - 1 - SP", "Modelo da Tela": "MONITOR ALL IN ONE 21,5", "latitude": -23.6100416, "longitude": -46.6310774, "Data prevista de troca": "2026-06-15"}, {"CÃ³d Ponto": 63614, "Ponto": "Abdon", "EndereÃ§o": "Rua Abdon Batista, 175, Parque das Paineiras, SÃ£o Paulo", "Ãrea de Trabalho": "LESTE - 3 - SP", "Modelo da Tela": "MONITOR ALL IN ONE 21,5", "latitude": -235376285.0, "longitude": -4.64823610999999e+16, "Data prevista de troca": "2026-06-16"}, {"CÃ³d Ponto": 8338, "Ponto": "Camuri - Torre 2", "EndereÃ§o": "Rua Renzo Baldini, 901, Parada XV de Novembro, SÃ£o Paulo", "Ãrea de Trabalho": "LESTE - 3 - SP", "Modelo da Tela": "MONITOR ALL IN ONE 21,5", "latitude": -23.5258105, "longitude": -46.4347666, "Data prevista de troca": "2026-06-16"}, {"CÃ³d Ponto": 59772, "Ponto": "CondomÃ­nio Forte SÃ£o Mateus - Bloco 5", "EndereÃ§o": "Rua Forte da Ribeira, 250, Parque SÃ£o LourenÃ§o, SÃ£o Paulo", "Ãrea de Trabalho": "LESTE - 3 - SP", "Modelo da Tela": "MONITOR ALL IN ONE 21,5", "latitude": -2.36044045999999e+16, "longitude": -4.64664120999999e+16, "Data prevista de troca": "2026-06-16"}, {"CÃ³d Ponto": 28823, "Ponto": "EdifÃ­cio Colinas Di Napoli", "EndereÃ§o": "Rua JoÃ£o TomÃ©, 60, Vila Buenos Aires, SÃ£o Paulo", "Ãrea de Trabalho": "LESTE - 3 - SP", "Modelo da Tela": "MONITOR ALL IN ONE 21,5", "latitude": -23.5118184, "longitude": -46.5028028, "Data prevista de troca": "2026-06-16"}, {"CÃ³d Ponto": 8153, "Ponto": "Via Paulista Home Stay", "EndereÃ§o": "Rua Martiniano de Carvalho, 807, Bela Vista, SÃ£o Paulo", "Ãrea de Trabalho": "Centro - 2 - SP", "Modelo da Tela": "MONITOR ALL IN ONE 21,5", "latitude": -23.5657496, "longitude": -46.6424708, "Data prevista de troca": "2026-06-17"}, {"CÃ³d Ponto": 21856, "Ponto": "Caravelas - Torre B", "EndereÃ§o": "Rua Paulo Orozimbo, 530, Cambuci, SÃ£o Paulo", "Ãrea de Trabalho": "Centro - 3 - SP", "Modelo da Tela": "MONITOR ALL IN ONE 21,5", "latitude": -23.5719579, "longitude": -46.6255326, "Data prevista de troca": "2026-06-17"}, {"CÃ³d Ponto": 29143, "Ponto": "EdifÃ­cio Joy Cambucy II", "EndereÃ§o": "Rua ClÃ­maco Barbosa, 494, Cambuci, SÃ£o Paulo", "Ãrea de Trabalho": "Centro - 3 - SP", "Modelo da Tela": "MONITOR ALL IN ONE 21,5", "latitude": -23.5652309, "longitude": -46.6159214, "Data prevista de troca": "2026-06-17"}, {"CÃ³d Ponto": 19818, "Ponto": "Morada da Primavera - LÃ­rios", "EndereÃ§o": "Rua SÃ£o Joaquim, 309, Liberdade, SÃ£o Paulo", "Ãrea de Trabalho": "Centro - 3 - SP", "Modelo da Tela": "MONITOR ALL IN ONE 21,5", "latitude": -23.561322, "longitude": -46.6357284, "Data prevista de troca": "2026-06-17"}, {"CÃ³d Ponto": 49273, "Ponto": "Sinfonia Vila Mascote", "EndereÃ§o": "Avenida Santa Catarina, 1374, Vila Mascote, SÃ£o Paulo", "Ãrea de Trabalho": "SUL - 2 - SP", "Modelo da Tela": "MONITOR ALL IN ONE 21,5", "latitude": -23.6471274, "longitude": -46.6628888, "Data prevista de troca": "2026-06-18"}, {"CÃ³d Ponto": 14731, "Ponto": "St. Germain-des-Pres", "EndereÃ§o": "Rua Praia do Castelo, 170, Vila Mascote, SÃ£o Paulo", "Ãrea de Trabalho": "SUL - 2 - SP", "Modelo da Tela": "MONITOR ALL IN ONE 21,5", "latitude": -23.6468889, "longitude": -46.6682944, "Data prevista de troca": "2026-06-18"}, {"CÃ³d Ponto": 28756, "Ponto": "Viva Benx Vila Mascote", "EndereÃ§o": "Avenida TÃºlio Teodoro de Campos, 6, Vila Paulista, SÃ£o Paulo", "Ãrea de Trabalho": "SUL - 2 - SP", "Modelo da Tela": "MONITOR ALL IN ONE 21,5", "latitude": -23.639345, "longitude": -46.6626987, "Data prevista de troca": "2026-06-18"}, {"CÃ³d Ponto": 59904, "Ponto": "Ãrio Golf Garden", "EndereÃ§o": "Avenida Nossa Senhora do SabarÃ¡, 409, Vila Sofia, SÃ£o Paulo", "Ãrea de Trabalho": "SUL - 3 - SP", "Modelo da Tela": "MONITOR ALL IN ONE 21,5", "latitude": -2.36604093e+16, "longitude": -4.66950768e+16, "Data prevista de troca": "2026-06-18"}, {"CÃ³d Ponto": 29610, "Ponto": "Residencial CÃ¡diz", "EndereÃ§o": "Rua AntÃ´nio de Barros, 2501, Vila CarrÃ£o, SÃ£o Paulo", "Ãrea de Trabalho": "LESTE - 3 - SP", "Modelo da Tela": "MONITOR ALL IN ONE 21,5", "latitude": -23.55205, "longitude": -46.554, "Data prevista de troca": "2026-06-19"}, {"CÃ³d Ponto": 49189, "Ponto": "Residencial Plano & Vila Carmosina Victorio Santim - Torre A", "EndereÃ§o": "Rua VictÃ³rio Santim, 2776, Itaquera, SÃ£o Paulo", "Ãrea de Trabalho": "LESTE - 3 - SP", "Modelo da Tela": "MONITOR ALL IN ONE 21,5", "latitude": -23.5585034, "longitude": -46.4496, "Data prevista de troca": "2026-06-19"}, {"CÃ³d Ponto": 41064, "Ponto": "Spazio San domingos - Bloco I", "EndereÃ§o": "Rua Olga Fadel Abarca, 430, Jardim Santa Terezinha (Zona Leste), SÃ£o Paulo", "Ãrea de Trabalho": "LESTE - 3 - SP", "Modelo da Tela": "MONITOR ALL IN ONE 21,5", "latitude": -23.573698, "longitude": -46.5024219, "Data prevista de troca": "2026-06-19"}, {"CÃ³d Ponto": 40487, "Ponto": "Villaggio di AnÃ¡lia Franco - Torre Veneto", "EndereÃ§o": "Rua Visconde de BalsemÃ£o, 191, Vila Mafra, SÃ£o Paulo", "Ãrea de Trabalho": "LESTE - 3 - SP", "Modelo da Tela": "MONITOR ALL IN ONE 21,5", "latitude": -23.5590319, "longitude": -46.5483503, "Data prevista de troca": "2026-06-19"}, {"CÃ³d Ponto": 63686, "Ponto": "Mix Aricanduva 1", "EndereÃ§o": "Rua Olga Fadel Abarca, 320, Jardim Santa Terezinha (Zona Leste), SÃ£o Paulo", "Ãrea de Trabalho": "LESTE - 3 - SP", "Modelo da Tela": "MONITOR ALL IN ONE 21,5", "latitude": -2.35728304e+16, "longitude": -4.65033166999999e+16, "Data prevista de troca": "2026-06-22"}, {"CÃ³d Ponto": 41653, "Ponto": "Plano & Jacu Pessego Augusto Carlos Bauman II - Torre B", "EndereÃ§o": "Rua Augusto Carlos Bauman, 266, Itaquera, SÃ£o Paulo", "Ãrea de Trabalho": "LESTE - 3 - SP", "Modelo da Tela": "MONITOR ALL IN ONE 21,5", "latitude": -23.5349707, "longitude": -46.4514481, "Data prevista de troca": "2026-06-22"}, {"CÃ³d Ponto": 39236, "Ponto": "Plano EstaÃ§Ã£o Patriarca", "EndereÃ§o": "Rua Aldeia Paracanti, 38, Vila RÃ©, SÃ£o Paulo", "Ãrea de Trabalho": "LESTE - 3 - SP", "Modelo da Tela": "MONITOR ALL IN ONE 21,5", "latitude": -23.5333679, "longitude": -46.4968717, "Data prevista de troca": "2026-06-22"}, {"CÃ³d Ponto": 40809, "Ponto": "RaÃ­zes Guilhermina EsperanÃ§a - Torre A", "EndereÃ§o": "Rua Tapari, 158, Vila EsperanÃ§a, SÃ£o Paulo", "Ãrea de Trabalho": "LESTE - 3 - SP", "Modelo da Tela": "MONITOR ALL IN ONE 21,5", "latitude": -23.5293149, "longitude": -46.5190637, "Data prevista de troca": "2026-06-22"}, {"CÃ³d Ponto": 33620, "Ponto": "Vista Real", "EndereÃ§o": "Rua Bela Vista, 377, Santo Amaro, SÃ£o Paulo", "Ãrea de Trabalho": "SANTO AMARO - SP", "Modelo da Tela": "MONITOR ALL IN ONE 21,5", "latitude": -23.6336071, "longitude": -46.6919797, "Data prevista de troca": "2026-06-23"}, {"CÃ³d Ponto": 28720, "Ponto": "Residencial Eucaliptos - C", "EndereÃ§o": "Avenida Padre Arlindo Vieira, 2895, Jardim Vergueiro (SacomÃ£), SÃ£o Paulo", "Ãrea de Trabalho": "SUL - 1 - SP", "Modelo da Tela": "MONITOR ALL IN ONE 21,5", "latitude": -23.6449126, "longitude": -46.6061975, "Data prevista de troca": "2026-06-23"}, {"CÃ³d Ponto": 20175, "Ponto": "Upper Side", "EndereÃ§o": "Rua Salvador de Edra, 03, SaÃºde, SÃ£o Paulo", "Ãrea de Trabalho": "SUL - 1 - SP", "Modelo da Tela": "MONITOR ALL IN ONE 21,5", "latitude": -23.6159782, "longitude": -46.6425369, "Data prevista de troca": "2026-06-23"}, {"CÃ³d Ponto": 20422, "Ponto": "Mares do Norte - Guaratuba", "EndereÃ§o": "Avenida Lauro Gomes, 5901, Vila Vivaldi, SÃ£o Bernardo do Campo", "Ãrea de Trabalho": "Grande ABC - SP", "Modelo da Tela": "MONITOR ALL IN ONE 21,5", "latitude": -23.6503094, "longitude": -46.5749418, "Data prevista de troca": "2026-06-24"}, {"CÃ³d Ponto": 29402, "Ponto": "Square Garden I - Torre 3", "EndereÃ§o": "Rua Jorge Beretta, 282, Parque Erasmo AssunÃ§Ã£o, Santo AndrÃ©", "Ãrea de Trabalho": "Grande ABC - SP", "Modelo da Tela": "MONITOR ALL IN ONE 21,5", "latitude": -23.6388136, "longitude": -46.5038255, "Data prevista de troca": "2026-06-24"}, {"CÃ³d Ponto": 49712, "Ponto": "KZ Conecta CapÃ£o - Bloco A", "EndereÃ§o": "Rua Cabo EstÃ¡cio da ConceiÃ§Ã£o, 406, Parque Maria Helena, SÃ£o Paulo", "Ãrea de Trabalho": "SUL - 4 (MORUMBI) - SP", "Modelo da Tela": "MONITOR ALL IN ONE 21,5", "latitude": -23.6622244, "longitude": -46.7651125, "Data prevista de troca": "2026-06-24"}, {"CÃ³d Ponto": 49713, "Ponto": "KZ Conecta CapÃ£o - Bloco B", "EndereÃ§o": "Rua Cabo EstÃ¡cio da ConceiÃ§Ã£o, 406, Parque Maria Helena, SÃ£o Paulo", "Ãrea de Trabalho": "SUL - 4 (MORUMBI) - SP", "Modelo da Tela": "MONITOR ALL IN ONE 21,5", "latitude": -23.6622244, "longitude": -46.7651125, "Data prevista de troca": "2026-06-24"}, {"CÃ³d Ponto": 27666, "Ponto": "Terra Nova - Torre 3", "EndereÃ§o": "Avenida Novo Osasco, 481, Bussocaba, Osasco", "Ãrea de Trabalho": "Osasco - SP", "Modelo da Tela": "MONITOR ALL IN ONE 21,5", "latitude": -23.5642096, "longitude": -46.7858763, "Data prevista de troca": "2026-06-25"}, {"CÃ³d Ponto": 27391, "Ponto": "Via NaÃ§Ãµes - Torre 3", "EndereÃ§o": "Rua Jubair Celestino, 195, Presidente Altino, Osasco", "Ãrea de Trabalho": "Osasco - SP", "Modelo da Tela": "MONITOR ALL IN ONE 21,5", "latitude": -23.52259, "longitude": -46.7710472, "Data prevista de troca": "2026-06-25"}, {"CÃ³d Ponto": 39475, "Ponto": "Vila Mazzei - Torre 4", "EndereÃ§o": "Avenida MÃ¡rio Pernambuco, 626, Vila Mazzei, SÃ£o Paulo", "Ãrea de Trabalho": "NORTE - 1 - SP", "Modelo da Tela": "MONITOR ALL IN ONE 21,5", "latitude": -23.4609641, "longitude": -46.6011109, "Data prevista de troca": "2026-06-25"}, {"CÃ³d Ponto": 49359, "Ponto": "Helbor Patteo SÃ£o Paulo - Torre 3", "EndereÃ§o": "Rua Balsa, 1301, Freguesia do Ã“, SÃ£o Paulo", "Ãrea de Trabalho": "NORTE - 2 - SP", "Modelo da Tela": "MONITOR ALL IN ONE 21,5", "latitude": -23.5067081, "longitude": -46.7037691, "Data prevista de troca": "2026-06-25"}, {"CÃ³d Ponto": 10301, "Ponto": "Good Life Vila Romana - Cantareira", "EndereÃ§o": "Rua AurÃ©lia, 300, Vila Romana, SÃ£o Paulo", "Ãrea de Trabalho": "OESTE - 1 - SP", "Modelo da Tela": "MONITOR ALL IN ONE 21,5", "latitude": -23.5244636, "longitude": -46.6981099, "Data prevista de troca": "2026-06-26"}, {"CÃ³d Ponto": 19801, "Ponto": "Jardim das Azaleias - Aquarella", "EndereÃ§o": "Rua Francisco LuÃ­s de Souza JÃºnior, 350, Ãgua Branca, SÃ£o Paulo", "Ãrea de Trabalho": "OESTE - 1 - SP", "Modelo da Tela": "MONITOR ALL IN ONE 21,5", "latitude": -23.5135657, "longitude": -46.6891139, "Data prevista de troca": "2026-06-26"}];
  
         // ============================================================
         // INITIALIZATION
@@ -2119,11 +2162,11 @@
             }
  
             updateConfigUI();
+            setupAutoSync();
             populateFilters();
             applyFilters();
             renderWeek();
             renderObs();
-            document.getElementById('obsGeneral').value = generalObs;
  
             // Drag & Drop for import
             const ua = document.getElementById('uploadArea');
@@ -2134,15 +2177,21 @@
                 ua.classList.remove('dragover');
                 if (e.dataTransfer.files.length) handleFile(e.dataTransfer.files[0]);
             });
+
+            document.addEventListener('visibilitychange', () => {
+                if (!document.hidden && sheetsConnected && !isSyncing) {
+                    forceSync(true);
+                }
+            });
         }
  
         function loadFallbackData() {
             allData = INITIAL_DATA.map((r, i) => ({
                 id: i + 1,
-                codPonto: r['Cód Ponto'],
+                codPonto: r['CÃ³d Ponto'],
                 ponto: r['Ponto'],
-                endereco: r['Endereço'],
-                area: r['Área de Trabalho'],
+                endereco: r['EndereÃ§o'],
+                area: r['Ãrea de Trabalho'],
                 modelo: r['Modelo da Tela'],
                 latitude: r['latitude'],
                 longitude: r['longitude'],
@@ -2176,7 +2225,7 @@
             const dates = [...new Set(allData.map(r => r.data).filter(Boolean))].sort();
  
             const areaSelect = document.getElementById('filterArea');
-            areaSelect.innerHTML = '<option value="">Todas as Áreas</option>';
+            areaSelect.innerHTML = '<option value="">Todas as Ãreas</option>';
             areas.forEach(a => {
                 areaSelect.innerHTML += `<option value="${a}">${a}</option>`;
             });
@@ -2224,7 +2273,7 @@
                 }
                 if (area && r.area !== area) return false;
                 if (date && r.data !== date) return false;
-                if (status && r.status !== status) return false;
+                if (status && normalizeStatusValue(r.status) !== status) return false;
                 return true;
             });
  
@@ -2232,6 +2281,7 @@
             currentPage = 1;
             renderTable();
             updateKPIs();
+            renderObs();
         }
  
         // ============================================================
@@ -2274,8 +2324,8 @@
  
             tbody.innerHTML = pageData.map(r => {
                 const dateFormatted = safeDateDisplay(r.data);
-                const statusClass = r.status || 'pendente';
-                const statusLabel = {pendente: 'Pendente', concluido: 'Concluído', atrasado: 'Atrasado'}[statusClass] || 'Pendente';
+                const statusClass = normalizeStatusValue(r.status);
+                const statusLabel = {pendente: 'Pendente', concluido: 'ConcluÃ­do', atrasado: 'Atrasado'}[statusClass] || 'Pendente';
                 const statusIcon = {pendente: 'fa-clock', concluido: 'fa-check-circle', atrasado: 'fa-exclamation-circle'}[statusClass] || 'fa-clock';
                 const checked = selectedRows.has(r.id) ? 'checked' : '';
                 const idx = allData.findIndex(d => d.id === r.id);
@@ -2291,8 +2341,8 @@
                     <td><span class="status-badge status-${statusClass}"><i class="fa-solid ${statusIcon}"></i> ${statusLabel}</span></td>
                     <td>
                         <div class="td-actions">
-                            ${r.status !== 'concluido' 
-                                ? `<button class="btn-icon btn-success" title="Concluir Serviço" onclick="markDone(${idx})" style="background:var(--success);color:#fff;border:none"><i class="fa-solid fa-check"></i></button>`
+                            ${statusClass !== 'concluido' 
+                                ? `<button class="btn-icon btn-success" title="Concluir ServiÃ§o" onclick="markDone(${idx})" style="background:var(--success);color:#fff;border:none"><i class="fa-solid fa-check"></i></button>`
                                 : `<button class="btn-icon btn-secondary" title="Reabrir" onclick="markPending(${idx})" style="background:var(--warning);color:#fff;border:none"><i class="fa-solid fa-rotate-left"></i></button>`
                             }
                             <button class="btn-icon btn-secondary" title="Editar" onclick="openEditModal(${idx})"><i class="fa-solid fa-pen"></i></button>
@@ -2363,7 +2413,7 @@
             document.getElementById('kpiAreas').textContent = areas.size;
  
             // Progress
-            const done = allData.filter(r => r.status === 'concluido').length;
+            const done = allData.filter(r => normalizeStatusValue(r.status) === 'concluido').length;
             const pct = allData.length ? Math.round((done / allData.length) * 100) : 0;
             document.getElementById('kpiProgress').textContent = pct + '%';
             document.getElementById('kpiProgressBar').style.width = pct + '%';
@@ -2412,7 +2462,7 @@
                 d.setDate(d.getDate() + i);
                 const dStr = formatDateISO(d);
                 const count = allData.filter(r => r.data === dStr).length;
-                const doneCount = allData.filter(r => r.data === dStr && r.status === 'concluido').length;
+                const doneCount = allData.filter(r => r.data === dStr && normalizeStatusValue(r.status) === 'concluido').length;
                 const isToday = formatDateISO(today) === dStr;
  
                 totalWeek += count;
@@ -2435,7 +2485,7 @@
                 </div>
                 <div class="week-stat-item">
                     <div class="week-stat-value" style="color:var(--success)">${doneWeek}</div>
-                    <div class="week-stat-label">Concluídas</div>
+                    <div class="week-stat-label">ConcluÃ­das</div>
                 </div>
                 <div class="week-stat-item">
                     <div class="week-stat-value" style="color:var(--warning)">${pendingWeek}</div>
@@ -2540,7 +2590,7 @@
             applyFilters();
             renderWeek();
             updateKPIs();
-            showToast(`Serviço "${allData[idx].ponto}" concluído com sucesso!`, 'success');
+            showToast(`ServiÃ§o "${allData[idx].ponto}" concluÃ­do com sucesso!`, 'success');
         }
  
         function markPending(idx) {
@@ -2552,7 +2602,7 @@
             applyFilters();
             renderWeek();
             updateKPIs();
-            showToast(`Serviço "${allData[idx].ponto}" reaberto como Pendente`, 'info');
+            showToast(`ServiÃ§o "${allData[idx].ponto}" reaberto como Pendente`, 'info');
         }
  
         function cycleStatus(idx) {
@@ -2567,14 +2617,14 @@
             applyFilters();
             renderWeek();
             updateKPIs();
-            showToast(`Status alterado para: ${next === 'concluido' ? 'Concluído' : next === 'atrasado' ? 'Atrasado' : 'Pendente'}`, 'info');
+            showToast(`Status alterado para: ${next === 'concluido' ? 'ConcluÃ­do' : next === 'atrasado' ? 'Atrasado' : 'Pendente'}`, 'info');
         }
  
         function openDeleteModal(idx) {
             deleteTarget = idx;
             const r = allData[idx];
             document.getElementById('deleteMsg').textContent =
-                `Deseja realmente excluir o registro "${r.ponto}" (Cód: ${r.codPonto})?`;
+                `Deseja realmente excluir o registro "${r.ponto}" (CÃ³d: ${r.codPonto})?`;
             openModal('deleteModal');
         }
  
@@ -2586,7 +2636,7 @@
                 renderWeek();
                 updateKPIs();
                 closeModal('deleteModal');
-                showToast('Registro excluído com sucesso', 'success');
+                showToast('Registro excluÃ­do com sucesso', 'success');
  
                 if (sheetsConnected && removed[0] && removed[0]._row) {
                     setSyncStatus('syncing', 'Excluindo...');
@@ -2626,7 +2676,7 @@
             populateFilters();
             applyFilters();
             renderWeek();
-            showToast('Registros selecionados excluídos', 'success');
+            showToast('Registros selecionados excluÃ­dos', 'success');
         }
  
         function toggleSelect(id) {
@@ -2679,16 +2729,16 @@
  
                         return {
                             id: (allData.length ? Math.max(...allData.map(d => d.id)) : 0) + i + 1,
-                            codPonto: r['Cód Ponto'] || '',
+                            codPonto: r['CÃ³d Ponto'] || '',
                             ponto: r['Ponto'] || '',
-                            endereco: r['Endereço'] || '',
-                            area: r['Área de Trabalho'] || '',
+                            endereco: r['EndereÃ§o'] || '',
+                            area: r['Ãrea de Trabalho'] || '',
                             modelo: r['Modelo da Tela'] || '',
                             latitude: r['latitude'] || '',
                             longitude: r['longitude'] || '',
                             data: dateVal,
-                            status: getAutoStatus(dateVal),
-                            obs: ''
+                            status: normalizeStatusValue(r['Status'] || r['status'] || r['Situacao'] || r['Situação'] || getAutoStatus(dateVal)),
+                            obs: r['Observacao'] || r['ObservaÃ§Ã£o'] || r['observacao'] || r['Obs'] || r['destino da observaÃ§Ã£o'] || r['destino da observacao'] || ''
                         };
                     }).filter(r => r.ponto);
  
@@ -2724,16 +2774,16 @@
  
         function exportExcel() {
             const exportData = filteredData.map(r => ({
-                'Cód Ponto': r.codPonto,
+                'CÃ³d Ponto': r.codPonto,
                 'Ponto': r.ponto,
-                'Endereço': r.endereco,
-                'Área de Trabalho': r.area,
+                'EndereÃ§o': r.endereco,
+                'Ãrea de Trabalho': r.area,
                 'Modelo da Tela': r.modelo,
                 'latitude': r.latitude,
                 'longitude': r.longitude,
                 'Data prevista de troca': r.data,
                 'Status': r.status,
-                'Observação': r.obs
+                'Observacao': r.obs
             }));
  
             const ws = XLSX.utils.json_to_sheet(exportData);
@@ -2748,57 +2798,41 @@
         // ============================================================
         function renderObs() {
             const list = document.getElementById('obsList');
-            if (observations.length === 0) {
-                list.innerHTML = '<p style="color:var(--text-muted);font-size:13px;padding:12px 0">Nenhuma observação adicionada.</p>';
+            const source = Array.isArray(filteredData) ? filteredData : allData;
+            const getObsText = r => (
+                r.obs ||
+                r.observacao ||
+                r.Observacao ||
+                r['ObservaÃ§Ã£o'] ||
+                r['Observacao'] ||
+                r['destino da observaÃ§Ã£o'] ||
+                r['destino da observacao'] ||
+                ''
+            ).toString().trim();
+            const pendingWithObs = source
+                .map(r => ({ ...r, obsText: getObsText(r), normalizedStatus: normalizeStatusValue(r.status) }))
+                .filter(r => r.normalizedStatus === 'pendente' && r.obsText);
+
+            if (pendingWithObs.length === 0) {
+                list.innerHTML = '<p style="color:var(--text-muted);font-size:13px;padding:12px 0">Nenhum chamado pendente com observacao nos filtros atuais.</p>';
                 return;
             }
-            list.innerHTML = observations.map((o, i) => `
-                <div class="obs-item">
-                    <span class="obs-item-text">${escapeHtml(o.text)}</span>
-                    <span class="obs-item-date">${o.date}</span>
-                    <button class="obs-item-delete" onclick="removeObs(${i})"><i class="fa-solid fa-xmark"></i></button>
-                </div>
-            `).join('');
-        }
- 
-        function addObs() {
-            const input = document.getElementById('obsInput');
-            const text = input.value.trim();
-            if (!text) return;
-            observations.unshift({
-                text: text,
-                date: new Date().toLocaleDateString('pt-BR', {day:'2-digit',month:'2-digit',hour:'2-digit',minute:'2-digit'})
-            });
-            localStorage.setItem('noc_obs', JSON.stringify(observations));
-            input.value = '';
-            renderObs();
-            showToast('Observação adicionada', 'success');
-        }
- 
-        function removeObs(idx) {
-            observations.splice(idx, 1);
-            localStorage.setItem('noc_obs', JSON.stringify(observations));
-            renderObs();
-        }
- 
-        function clearObs() {
-            observations = [];
-            localStorage.setItem('noc_obs', '[]');
-            renderObs();
-            showToast('Observações limpas', 'info');
-        }
- 
-        function saveGeneralObs() {
-            generalObs = document.getElementById('obsGeneral').value;
-            localStorage.setItem('noc_general_obs', generalObs);
-            showToast('Observações gerais salvas', 'success');
-        }
- 
-        function switchObsTab(tab, el) {
-            document.querySelectorAll('.obs-tab').forEach(t => t.classList.remove('active'));
-            el.classList.add('active');
-            document.getElementById('obsNotesTab').style.display = tab === 'notes' ? 'block' : 'none';
-            document.getElementById('obsGeneralTab').style.display = tab === 'general' ? 'block' : 'none';
+
+            list.innerHTML = pendingWithObs.map(r => {
+                const dateLabel = r.data ? new Date(r.data + 'T00:00:00').toLocaleDateString('pt-BR') : 'Sem data';
+                return `
+                    <div class="obs-item" style="display:block;padding:10px 0">
+                        <div style="display:flex;justify-content:space-between;gap:12px;margin-bottom:4px">
+                            <strong style="color:var(--text-primary);font-size:12px">${escapeHtml(r.ponto || 'Ponto sem nome')}</strong>
+                            <span class="obs-item-date">${dateLabel}</span>
+                        </div>
+                        <div style="color:var(--text-muted);font-size:11px;margin-bottom:5px">
+                            Cod ${escapeHtml(r.codPonto || '-')} &bull; ${escapeHtml(r.area || '-')}
+                        </div>
+                        <div class="obs-item-text">${escapeHtml(r.obsText)}</div>
+                    </div>
+                `;
+            }).join('');
         }
  
         // ============================================================
@@ -2877,7 +2911,7 @@
             // Populate map area filter
             const areas = [...new Set(allData.map(r => r.area).filter(Boolean))].sort();
             const sel = document.getElementById('mapAreaFilter');
-            sel.innerHTML = '<option value="">Todas as Áreas</option>';
+            sel.innerHTML = '<option value="">Todas as Ãreas</option>';
             areas.forEach(a => sel.innerHTML += `<option value="${a}">${a}</option>`);
  
             updateMap();
@@ -2926,8 +2960,9 @@
             points.forEach((r, idx) => {
                 const color = getAreaColor(r.area);
                 areasOnMap.add(r.area);
-                const statusLabel = {pendente: 'Pendente', concluido: 'Concluído', atrasado: 'Atrasado'}[r.status] || 'Pendente';
-                const statusColor = {pendente: 'var(--warning)', concluido: 'var(--success)', atrasado: 'var(--danger)'}[r.status] || '#f59e0b';
+                const statusClass = normalizeStatusValue(r.status);
+                const statusLabel = {pendente: 'Pendente', concluido: 'ConcluÃ­do', atrasado: 'Atrasado'}[statusClass] || 'Pendente';
+                const statusColor = {pendente: 'var(--warning)', concluido: 'var(--success)', atrasado: 'var(--danger)'}[statusClass] || '#f59e0b';
                 const dateFormatted = safeDateDisplay(r.data);
  
                 const marker = L.marker([r.latitude, r.longitude], {
@@ -2936,9 +2971,9 @@
  
                 marker.bindPopup(`
                     <div class="popup-title">${r.ponto}</div>
-                    <div class="popup-row"><span class="popup-label">Cód:</span> <span class="popup-value">${r.codPonto}</span></div>
-                    <div class="popup-row"><span class="popup-label">Endereço:</span> <span class="popup-value">${r.endereco}</span></div>
-                    <div class="popup-row"><span class="popup-label">Área:</span> <span class="popup-value"><span style="display:inline-block;width:8px;height:8px;border-radius:50%;background:${color};margin-right:4px"></span>${r.area}</span></div>
+                    <div class="popup-row"><span class="popup-label">CÃ³d:</span> <span class="popup-value">${r.codPonto}</span></div>
+                    <div class="popup-row"><span class="popup-label">EndereÃ§o:</span> <span class="popup-value">${r.endereco}</span></div>
+                    <div class="popup-row"><span class="popup-label">Ãrea:</span> <span class="popup-value"><span style="display:inline-block;width:8px;height:8px;border-radius:50%;background:${color};margin-right:4px"></span>${r.area}</span></div>
                     <div class="popup-row"><span class="popup-label">Data:</span> <span class="popup-value">${dateFormatted}</span></div>
                     <div class="popup-row"><span class="popup-label">Status:</span> <span class="popup-value" style="color:${statusColor};font-weight:600">${statusLabel}</span></div>
                     <div class="popup-row"><span class="popup-label">Modelo:</span> <span class="popup-value">${r.modelo}</span></div>
@@ -2982,7 +3017,7 @@
  
             const points = mapMarkers.map(m => m.pointData).filter(r => r.latitude && r.longitude);
             if (points.length < 2) {
-                showToast('Precisa de pelo menos 2 pontos para traçar rota', 'info');
+                showToast('Precisa de pelo menos 2 pontos para traÃ§ar rota', 'info');
                 return;
             }
  
