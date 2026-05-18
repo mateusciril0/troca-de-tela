@@ -3382,24 +3382,31 @@
         }
 
         saveToSheets = async function(action, payload) {
-            if (!sheetsConnected || !sheetsUrl) return;
-            if (isSyncing) return;
+            if (!sheetsConnected || !sheetsUrl) throw new Error('Google Sheets não conectado.');
+            if (isSyncing) throw new Error('Sincronização em andamento. Aguarde e tente novamente.');
             isSyncing = true;
             setSyncStatus('syncing', 'Salvando controle...');
             try {
+                let res = { success: true };
                 if (action === 'updateStatus') {
                     const row = allData.find(r => String(r._row) === String(payload.row));
-                    if (row) { row.status = payload.status; await sheetsRequest('saveControle', { controle: buildControleFromRecord(row) }); }
+                    if (row) {
+                        row.status = payload.status;
+                        res = await sheetsRequest('saveControle', { controle: buildControleFromRecord(row) });
+                    }
                 } else if (payload && payload.record) {
-                    await sheetsRequest('saveControle', { controle: buildControleFromRecord(payload.record) });
+                    res = await sheetsRequest('saveControle', { controle: buildControleFromRecord(payload.record) });
                 } else if (payload && payload.controle) {
-                    await sheetsRequest('saveControle', { controle: payload.controle });
+                    res = await sheetsRequest('saveControle', { controle: payload.controle });
                 }
+                if (!res || res.success === false) throw new Error((res && res.error) || 'Apps Script não confirmou a gravação.');
                 await forceSync(true);
                 setSyncStatus('synced', 'Google Sheets');
+                return true;
             } catch (err) {
                 setSyncStatus('error', 'Erro ao salvar');
                 showToast('Erro ao salvar controle: ' + err.message, 'error');
+                throw err;
             } finally { isSyncing = false; }
         };
 
@@ -3436,7 +3443,7 @@
             document.getElementById('formQtdRetorno').value = '';
         };
 
-        saveRecord = function() {
+        saveRecord = async function() {
             const idx = parseInt(document.getElementById('editIndex').value);
             const terceiroId = document.getElementById('formTerceiro').value || '';
             const record = {
@@ -3458,17 +3465,33 @@
                 qtdRetorno: asNumber(document.getElementById('formQtdRetorno').value)
             };
             if (!record.ponto) { showToast('Preencha o nome do ponto', 'error'); return; }
+            if (!sheetsConnected || !sheetsUrl) {
+                showToast('Conecte ao Google Sheets antes de salvar. Assim evitamos salvar só na tela.', 'error');
+                openModal('configModal');
+                return;
+            }
+            const previous = idx >= 0 ? {...allData[idx]} : null;
             if (idx >= 0) {
                 record.id = allData[idx].id; record._row = allData[idx]._row; record.key = allData[idx].key; record.qtdTrocar = allData[idx].qtdTrocar;
                 allData[idx] = {...allData[idx], ...record};
-                showToast('Controle do chamado atualizado com sucesso', 'success');
-                if (sheetsConnected) saveToSheets('saveControle', { record: allData[idx] });
+                try {
+                    await saveToSheets('saveControle', { record: allData[idx] });
+                    showToast('Controle gravado na planilha com sucesso', 'success');
+                } catch (err) {
+                    allData[idx] = previous;
+                    return;
+                }
             } else {
                 record.id = allData.length ? Math.max(...allData.map(r => r.id)) + 1 : 1;
                 record.key = makeChamadoKey(record);
                 allData.push(record);
-                showToast('Registro local adicionado. Para roteiro oficial, cadastre também na aba Roteiro Telas.', 'info');
-                if (sheetsConnected) saveToSheets('saveControle', { record });
+                try {
+                    await saveToSheets('saveControle', { record });
+                    showToast('Controle gravado na planilha com sucesso. Para roteiro oficial, cadastre também na aba Roteiro Telas.', 'success');
+                } catch (err) {
+                    allData = allData.filter(r => r.id !== record.id);
+                    return;
+                }
             }
             saveData(); refreshViews(); renderTerceirosPanel(); closeModal('editModal');
         };
