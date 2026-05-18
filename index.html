@@ -2322,11 +2322,15 @@
             });
  
             const dateSelect = document.getElementById('filterDate');
-            dateSelect.innerHTML = '<option value="">Todas as Datas</option>';
+            const selectedDate = dateSelect.value;
+            dateSelect.innerHTML = '<option value="">Todas as Datas</option><option value="__week__">Agendamentos da Semana</option>';
             dates.forEach(d => {
                 const formatted = safeDateDisplay(d);
                 dateSelect.innerHTML += `<option value="${d}">${formatted}</option>`;
             });
+            if ([...dateSelect.options].some(opt => opt.value === selectedDate)) {
+                dateSelect.value = selectedDate;
+            }
         }
  
         let _syncingDate = false;
@@ -2345,7 +2349,7 @@
             if (_syncingDate) return;
             _syncingDate = true;
             const tableDate = document.getElementById('filterDate').value;
-            document.getElementById('mapDate').value = tableDate || '';
+            document.getElementById('mapDate').value = tableDate === '__week__' ? '' : (tableDate || '');
             applyFilters();
             updateMap();
             _syncingDate = false;
@@ -2363,7 +2367,11 @@
                     if (!hay.includes(search)) return false;
                 }
                 if (area && r.area !== area) return false;
-                if (date && r.data !== date) return false;
+                if (date === '__week__') {
+                    const wsStr = formatDateISO(currentWeekStart);
+                    const weStr = formatDateISO(getCurrentWeekEnd());
+                    if (!r.data || r.data < wsStr || r.data > weStr) return false;
+                } else if (date && r.data !== date) return false;
                 if (status && normalizeStatusValue(r.status) !== status) return false;
                 return true;
             });
@@ -2525,11 +2533,21 @@
         function formatDateISO(d) {
             return d.toISOString().slice(0, 10);
         }
+
+        function getCurrentWeekEnd() {
+            const weekEnd = new Date(currentWeekStart);
+            weekEnd.setDate(weekEnd.getDate() + 4);
+            return weekEnd;
+        }
  
         function changeWeek(dir) {
             currentWeekStart.setDate(currentWeekStart.getDate() + dir * 7);
+            document.getElementById('filterDate').value = '__week__';
+            document.getElementById('mapDate').value = '';
             renderWeek();
             updateKPIs();
+            applyFilters();
+            updateMap();
         }
  
         function renderWeek() {
@@ -2538,8 +2556,7 @@
             const today = new Date();
             today.setHours(0, 0, 0, 0);
  
-            const weekEnd = new Date(currentWeekStart);
-            weekEnd.setDate(weekEnd.getDate() + 4);
+            const weekEnd = getCurrentWeekEnd();
             document.getElementById('weekLabel').textContent =
                 `${currentWeekStart.toLocaleDateString('pt-BR', {day:'2-digit',month:'short'})} - ${weekEnd.toLocaleDateString('pt-BR', {day:'2-digit',month:'short'})}`;
  
@@ -2994,10 +3011,9 @@
                 maxZoom: 18
             }).addTo(map);
  
-            // Set today's date and sync with table filter
-            const today = new Date().toISOString().slice(0, 10);
-            document.getElementById('mapDate').value = today;
-            document.getElementById('filterDate').value = today;
+            // Agendamentos da Semana is the main date filter.
+            document.getElementById('mapDate').value = '';
+            document.getElementById('filterDate').value = '__week__';
  
             // Populate map area filter
             const areas = [...new Set(allData.map(r => r.area).filter(Boolean))].sort();
@@ -3037,11 +3053,17 @@
             document.getElementById('routeBtn').innerHTML = '<i class="fa-solid fa-route"></i> Mostrar Rota';
  
             const selectedDate = document.getElementById('mapDate').value;
+            const tableDateFilter = document.getElementById('filterDate').value;
             const selectedArea = document.getElementById('mapAreaFilter').value;
  
             let points = allData.filter(r => {
                 if (!r.latitude || !r.longitude) return false;
                 if (selectedDate && r.data !== selectedDate) return false;
+                if (!selectedDate && tableDateFilter === '__week__') {
+                    const wsStr = formatDateISO(currentWeekStart);
+                    const weStr = formatDateISO(getCurrentWeekEnd());
+                    if (!r.data || r.data < wsStr || r.data > weStr) return false;
+                }
                 if (selectedArea && r.area !== selectedArea) return false;
                 return true;
             });
@@ -3069,7 +3091,7 @@
                     <div class="popup-row"><span class="popup-label">Data:</span> <span class="popup-value">${dateFormatted}</span></div>
                     <div class="popup-row"><span class="popup-label">Status:</span> <span class="popup-value" style="color:${statusColor};font-weight:600">${statusLabel}</span></div>
                     <div class="popup-row"><span class="popup-label">Modelo:</span> <span class="popup-value">${r.modelo}</span></div>
-                    <div class="popup-row"><button class="btn btn-sm btn-secondary" onclick="openEditModal(${idx});">Editar coordenadas</button></div>
+                    
                 `, {maxWidth: 300});
  
                 marker.pointData = r;
@@ -3238,8 +3260,8 @@
                 endereco: r.endereco || r.location || r.local || r['Endereço'] || r.Endereco || '',
                 area: r.area || r['Área de Trabalho'] || r['Area de Trabalho'] || '',
                 modelo: r.modelo || r['Modelo da Tela'] || '',
-                latitude: parseFloat(findField(r, ['latitude', 'Latitude', 'lat', 'Lat', 'lng', 'Lng']) || r.latitude || r.Latitude || '') || '',
-                longitude: parseFloat(findField(r, ['longitude', 'Longitude', 'lng', 'Lng', 'long', 'Long']) || r.longitude || r.Longitude || '') || '',
+                latitude: parseFloat(findField(r, ['latitude', 'Latitude', 'lat', 'Lat']) || r.latitude || r.Latitude || c.Latitude || c.latitude || '') || '',
+                longitude: parseFloat(findField(r, ['longitude', 'Longitude', 'lng', 'Lng', 'long', 'Long']) || r.longitude || r.Longitude || c.Longitude || c.longitude || '') || '',
                 data,
                 qtdNoPonto: r.qtdNoPonto || r['Quantidade no ponto'] || '',
                 qtdTrocar,
@@ -3313,7 +3335,9 @@
                 qtdProgramada: record.qtdProgramada || record.qtdTrocar || 0,
                 qtdConsumida: record.qtdConsumida || 0,
                 qtdRetorno: record.qtdRetorno || 0,
-                observacao: record.obs || ''
+                observacao: record.obs || '',
+                latitude: record.latitude || '',
+                longitude: record.longitude || ''
             };
         }
 
