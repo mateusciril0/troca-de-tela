@@ -3064,10 +3064,12 @@
                     <div class="popup-title">${r.ponto}</div>
                     <div class="popup-row"><span class="popup-label">CÃ³d:</span> <span class="popup-value">${r.codPonto}</span></div>
                     <div class="popup-row"><span class="popup-label">EndereÃ§o:</span> <span class="popup-value">${r.endereco}</span></div>
+                    <div class="popup-row"><span class="popup-label">Lat / Lng:</span> <span class="popup-value">${r.latitude || '-'} / ${r.longitude || '-'}</span></div>
                     <div class="popup-row"><span class="popup-label">Ãrea:</span> <span class="popup-value"><span style="display:inline-block;width:8px;height:8px;border-radius:50%;background:${color};margin-right:4px"></span>${r.area}</span></div>
                     <div class="popup-row"><span class="popup-label">Data:</span> <span class="popup-value">${dateFormatted}</span></div>
                     <div class="popup-row"><span class="popup-label">Status:</span> <span class="popup-value" style="color:${statusColor};font-weight:600">${statusLabel}</span></div>
                     <div class="popup-row"><span class="popup-label">Modelo:</span> <span class="popup-value">${r.modelo}</span></div>
+                    <div class="popup-row"><button class="btn btn-sm btn-secondary" onclick="openEditModal(${idx});">Editar coordenadas</button></div>
                 `, {maxWidth: 300});
  
                 marker.pointData = r;
@@ -3224,25 +3226,26 @@
             const c = controleByKey(key);
             const terceiroId = c['Terceiro ID'] || c.terceiroId || '';
             const terceiroNome = c['Terceiro Nome'] || c.terceiroNome || terceiroNameById(terceiroId);
-            const data = normalizeRoteiroDate(r.dataAgendada || r['Data Agendada'] || r['Data prevista de troca'] || r.data || '');
+            const data = normalizeRoteiroDate(r.dataAgendada || r['Data Agendada'] || r['Data prevista de troca'] || r.data || r.date || '');
             const qtdTrocar = asNumber(r.qtdTrocar || r['Quantidade para trocar'] || r['Qtd Trocar'] || c['Qtd Programada'] || 0);
+            const rawStatus = findField(r, ['status', 'Status', 'situacao', 'situação', 'situacao', 'Status']) || c.Status || c.status || '';
             return {
                 id: i + 1,
                 key,
                 _row: r._row || 0,
                 codPonto: r.codPonto || r['Cód Ponto'] || r['Cod Ponto'] || '',
                 ponto: r.ponto || r.Ponto || '',
-                endereco: r.endereco || r['Endereço'] || r.Endereco || '',
+                endereco: r.endereco || r.location || r.local || r['Endereço'] || r.Endereco || '',
                 area: r.area || r['Área de Trabalho'] || r['Area de Trabalho'] || '',
                 modelo: r.modelo || r['Modelo da Tela'] || '',
-                latitude: parseFloat(r.latitude || r.Latitude || '') || '',
-                longitude: parseFloat(r.longitude || r.Longitude || '') || '',
+                latitude: parseFloat(findField(r, ['latitude', 'Latitude', 'lat', 'Lat', 'lng', 'Lng']) || r.latitude || r.Latitude || '') || '',
+                longitude: parseFloat(findField(r, ['longitude', 'Longitude', 'lng', 'Lng', 'long', 'Long']) || r.longitude || r.Longitude || '') || '',
                 data,
                 qtdNoPonto: r.qtdNoPonto || r['Quantidade no ponto'] || '',
                 qtdTrocar,
                 orientacao: r.orientacao || r['Orientação'] || r['Coluna 9'] || '',
                 observacaoRoteiro: r.observacaoRoteiro || r['Observação Roteiro'] || '',
-                status: c.Status ? normalizeStatusValue(c.Status) : getAutoStatus(data),
+                status: normalizeStatusValue(rawStatus) || getAutoStatus(data),
                 obs: c['Observação'] || c.observacao || '',
                 terceiroId,
                 terceiroNome,
