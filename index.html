@@ -2750,7 +2750,7 @@
                     setSyncStatus('syncing', 'Excluindo...');
                     try {
                         isSyncing = false;
-                        await sheetsRequest('delete', { row: removed[0]._row });
+                        await sheetsRequest('deleteControle', { key: makeChamadoKey(removed[0]), controle: buildControleFromRecord(removed[0]) });
                         setSyncStatus('synced', 'Google Sheets');
                         // Row numbers shifted after delete, resync
                         setTimeout(async () => {
