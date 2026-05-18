@@ -610,6 +610,7 @@
       </div>
       <div class="modal-body">
         <input type="hidden" id="chamadoKey">
+        <input type="hidden" id="chamadoRow">
         <div class="form-grid">
           <div class="field"><label>Cod Ponto</label><input id="codPonto" class="input"></div>
           <div class="field"><label>Data Agendada</label><input id="dataAgendada" class="input" type="date"></div>
@@ -757,6 +758,7 @@
 
     function normalizeChamado(r) {
       return {
+        _row: r._row || '',
         key: r.key || makeKey(r),
         codPonto: clean(r.codPonto),
         dataAgendada: normalizeDate(r.dataAgendada || r.data),
@@ -851,7 +853,7 @@
 
     function renderTable() {
       const body = document.getElementById('tableBody');
-      body.innerHTML = filtered.map(c => {
+      body.innerHTML = filtered.map((c, index) => {
         const status = badge(c.status);
         return `<tr>
           <td class="code">${escapeHtml(c.codPonto || '-')}</td>
@@ -868,9 +870,9 @@
           <td>${emptyDash(c.longitude)}</td>
           <td>
             <div class="inline-actions">
-              ${c.status !== 'concluido' ? `<button class="btn icon success" onclick="quickStatus('${escapeJs(c.key)}','concluido')" title="Concluir"><i class="fa-solid fa-check"></i></button>` : `<button class="btn icon warning" onclick="quickStatus('${escapeJs(c.key)}','pendente')" title="Reabrir"><i class="fa-solid fa-rotate-left"></i></button>`}
-              <button class="btn icon secondary" onclick="openChamadoModal('${escapeJs(c.key)}')" title="Editar"><i class="fa-solid fa-pen"></i></button>
-              <button class="btn icon danger" onclick="deleteChamado('${escapeJs(c.key)}')" title="Excluir"><i class="fa-solid fa-trash"></i></button>
+              ${c.status !== 'concluido' ? `<button class="btn icon success" onclick="quickStatus(${index},'concluido')" title="Concluir"><i class="fa-solid fa-check"></i></button>` : `<button class="btn icon warning" onclick="quickStatus(${index},'pendente')" title="Reabrir"><i class="fa-solid fa-rotate-left"></i></button>`}
+              <button class="btn icon secondary" onclick="openChamadoModal(${index})" title="Editar"><i class="fa-solid fa-pen"></i></button>
+              <button class="btn icon danger" onclick="deleteChamado(${index})" title="Excluir"><i class="fa-solid fa-trash"></i></button>
             </div>
           </td>
         </tr>`;
@@ -959,11 +961,17 @@
       map.fitBounds(L.featureGroup(markers).getBounds().pad(.16));
     }
 
-    function openChamadoModal(key) {
+    function getChamadoRef(ref) {
+      if (typeof ref === 'number') return filtered[ref] || null;
+      return ref ? chamados.find(item => item.key === ref) || null : null;
+    }
+
+    function openChamadoModal(ref) {
       populateTerceiroSelects();
-      const c = key ? chamados.find(item => item.key === key) : null;
+      const c = getChamadoRef(ref);
       document.getElementById('chamadoTitle').textContent = c ? 'Editar Chamado' : 'Adicionar Chamado';
       document.getElementById('chamadoKey').value = c ? c.key : '';
+      document.getElementById('chamadoRow').value = c ? c._row : '';
       document.getElementById('codPonto').value = c ? c.codPonto : '';
       document.getElementById('dataAgendada').value = c ? c.dataAgendada : '';
       document.getElementById('ponto').value = c ? c.ponto : '';
@@ -987,6 +995,7 @@
       }
       const terceiroId = document.getElementById('terceiroId').value;
       const record = {
+        _row: document.getElementById('chamadoRow').value,
         key: document.getElementById('chamadoKey').value,
         codPonto: document.getElementById('codPonto').value,
         dataAgendada: document.getElementById('dataAgendada').value,
@@ -1018,8 +1027,8 @@
       }
     }
 
-    async function quickStatus(key, status) {
-      const c = chamados.find(item => item.key === key);
+    async function quickStatus(ref, status) {
+      const c = getChamadoRef(ref);
       if (!c) return;
       c.status = status;
       if (status === 'concluido' && !c.qtdConsumida) c.qtdConsumida = c.qtdProgramada || 1;
@@ -1034,12 +1043,12 @@
       }
     }
 
-    async function deleteChamado(key) {
-      const c = chamados.find(item => item.key === key);
+    async function deleteChamado(ref) {
+      const c = getChamadoRef(ref);
       if (!c || !confirm(`Excluir o chamado "${c.ponto}" de Roteiro Telas?`)) return;
       setSyncStatus('syncing', 'Excluindo...');
       try {
-        await requestSheets('deleteChamado', { key, chamado: c });
+        await requestSheets('deleteChamado', { key: c.key, chamado: c });
         await loadFromSheets(false);
         toast('Chamado excluido de Roteiro Telas.', 'success');
       } catch (err) {
