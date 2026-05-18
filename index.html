@@ -3226,6 +3226,12 @@
             return isNaN(n) ? 0 : n;
         }
 
+        function asCoordinate(v) {
+            if (v === null || v === undefined || v === '') return '';
+            const n = Number(String(v).trim().replace(',', '.'));
+            return isNaN(n) ? '' : n;
+        }
+
         function makeChamadoKey(r) {
             return String(r.key || [r.data || r.dataAgendada || '', r.codPonto || '', r.ponto || ''].join('|'));
         }
@@ -3294,8 +3300,8 @@
                 endereco: r.endereco || r.location || r.local || r['Endereço'] || r.Endereco || '',
                 area: r.area || r['Área de Trabalho'] || r['Area de Trabalho'] || '',
                 modelo: r.modelo || r['Modelo da Tela'] || '',
-                latitude: parseFloat(findField(r, ['latitude', 'Latitude', 'lat', 'Lat']) || r.latitude || r.Latitude || c.Latitude || c.latitude || '') || '',
-                longitude: parseFloat(findField(r, ['longitude', 'Longitude', 'lng', 'Lng', 'long', 'Long']) || r.longitude || r.Longitude || c.Longitude || c.longitude || '') || '',
+                latitude: asCoordinate(findField(c, ['Latitude', 'latitude', 'lat', 'Lat']) || findField(r, ['latitude', 'Latitude', 'lat', 'Lat']) || r.latitude || r.Latitude),
+                longitude: asCoordinate(findField(c, ['Longitude', 'longitude', 'lng', 'Lng', 'long', 'Long']) || findField(r, ['longitude', 'Longitude', 'lng', 'Lng', 'long', 'Long']) || r.longitude || r.Longitude),
                 data,
                 qtdNoPonto: r.qtdNoPonto || r['Quantidade no ponto'] || '',
                 qtdTrocar,
