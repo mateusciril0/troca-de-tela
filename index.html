@@ -3230,12 +3230,46 @@
             return String(r.key || [r.data || r.dataAgendada || '', r.codPonto || '', r.ponto || ''].join('|'));
         }
 
+        function normalizeMatchText(v) {
+            return String(v || '')
+                .normalize('NFD')
+                .replace(/[\u0300-\u036f]/g, '')
+                .toLowerCase()
+                .trim()
+                .replace(/\s+/g, ' ');
+        }
+
+        function cleanMatchCode(v) {
+            return String(v || '').trim().replace(/\.0$/, '');
+        }
+
+        function getControleCod(c) {
+            return c['Cód Ponto'] || c['CÃ³d Ponto'] || c['Cod Ponto'] || c.codPonto || '';
+        }
+
+        function getControleDate(c) {
+            return normalizeDate(c['Data Agendada'] || c.dataAgendada || c.data || '');
+        }
+
         function normalizeRoteiroDate(v) {
             return normalizeDate(v);
         }
 
-        function controleByKey(key) {
-            return controles.find(c => String(c['Key'] || c.key || '') === String(key)) || {};
+        function controleByKey(key, roteiroRow) {
+            const byKey = controles.find(c => String(c['Key'] || c.key || '') === String(key));
+            if (byKey) return byKey;
+
+            const roteiroCod = cleanMatchCode(roteiroRow.codPonto || roteiroRow['Cód Ponto'] || roteiroRow['Cod Ponto'] || '');
+            const roteiroData = normalizeDate(roteiroRow.data || roteiroRow.dataAgendada || roteiroRow['Data Agendada'] || roteiroRow['Data prevista de troca'] || '');
+            const roteiroPonto = normalizeMatchText(roteiroRow.ponto || roteiroRow.Ponto || '');
+
+            return controles.find(c => {
+                const codOk = cleanMatchCode(getControleCod(c)) === roteiroCod;
+                const dataOk = getControleDate(c) === roteiroData;
+                const controlePonto = normalizeMatchText(c.Ponto || c.ponto || '');
+                const pontoOk = !controlePonto || !roteiroPonto || controlePonto === roteiroPonto;
+                return codOk && dataOk && pontoOk;
+            }) || {};
         }
 
         function terceiroNameById(id) {
@@ -3245,7 +3279,7 @@
 
         function mapRoteiroRowNovo(r, i) {
             const key = r.key || r.Key || makeChamadoKey({data:r.dataAgendada || r['Data Agendada'], codPonto:r.codPonto || r['Cód Ponto'], ponto:r.ponto || r.Ponto});
-            const c = controleByKey(key);
+            const c = controleByKey(key, r);
             const terceiroId = c['Terceiro ID'] || c.terceiroId || '';
             const terceiroNome = c['Terceiro Nome'] || c.terceiroNome || terceiroNameById(terceiroId);
             const data = normalizeRoteiroDate(r.dataAgendada || r['Data Agendada'] || r['Data prevista de troca'] || r.data || r.date || '');
